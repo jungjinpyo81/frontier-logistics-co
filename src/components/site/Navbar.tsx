@@ -1,20 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
 
 const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/our-story", label: "Our Story" },
-  { to: "/services", label: "Services" },
-  { to: "/global-network", label: "Global Network" },
-  { to: "/trade-solutions", label: "Trade & Solutions" },
-  { to: "/insights", label: "Insights" },
-  { to: "/contact", label: "Contact" },
+  { to: "/our-story", label: "회사소개" },
+  { to: "/services", label: "서비스" },
+  { to: "/global-network", label: "글로벌 네트워크" },
+  { to: "/trade-solutions", label: "트레이드 솔루션" },
+  { to: "/insights", label: "인사이트" },
+  { to: "/contact", label: "문의하기" },
 ] as const;
 
 export function Navbar({ overlay = false }: { overlay?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -33,65 +30,49 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
           : "bg-transparent"
       }`}
     >
-      <div className="container-x flex h-20 items-center justify-between">
-        <Link to="/" className="flex items-center group">
-          <img
-            src={solid ? "/logo-dark.png" : "/logo.png"}
-            alt="G9 GLOBAL"
-            className="h-8 md:h-9 w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
-          />
-        </Link>
+      <div className="container-x flex flex-col items-center pt-4 pb-2">
+        {/* Top row: logo centered, utility links on right */}
+        <div className="w-full flex items-center justify-between">
+          <div className="hidden md:flex items-center gap-4 text-[11px] tracking-widest uppercase opacity-0 pointer-events-none">
+            <span>placeholder</span>
+          </div>
 
-        <nav className="hidden lg:flex items-center gap-7">
-          {NAV.slice(1, -1).map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className={`text-[13px] font-medium tracking-wide transition-colors hover:text-gold ${
-                solid ? "text-foreground/80" : "text-white/90"
-              }`}
-              activeProps={{ className: "!text-gold" }}
-            >
-              {n.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden lg:flex items-center gap-3">
-          <Link to="/contact" className="btn-gold !py-2.5 !px-5 !text-[12px]">
-            Request a Quote
+          <Link to="/" className="flex items-center group mx-auto md:mx-0 md:absolute md:left-1/2 md:-translate-x-1/2">
+            <img
+              src={solid ? "/logo-dark.png" : "/logo.png"}
+              alt="G9 GLOBAL"
+              className="h-10 md:h-12 w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
+            />
           </Link>
-        </div>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className={`lg:hidden p-2 ${solid ? "text-navy" : "text-white"}`}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
-
-      {open && (
-        <div className="lg:hidden bg-white border-t border-border">
-          <div className="container-x py-4 flex flex-col">
-            {NAV.map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                onClick={() => setOpen(false)}
-                className="py-3 text-sm font-medium text-foreground border-b border-border/60 last:border-0"
-                activeProps={{ className: "!text-gold" }}
-              >
-                {n.label}
-              </Link>
-            ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="btn-gold mt-4">
-              Request a Quote
-            </Link>
+          <div className={`hidden md:flex items-center gap-5 text-[11px] tracking-[0.18em] uppercase font-medium ${solid ? "text-foreground/70" : "text-white/80"}`}>
+            <Link to="/" className="hover:text-gold transition-colors">HOME</Link>
+            <span className={solid ? "text-foreground/30" : "text-white/30"}>|</span>
+            <button type="button" className="hover:text-gold transition-colors" aria-label="English">ENG</button>
+            <span className={solid ? "text-foreground/30" : "text-white/30"}>|</span>
+            <Link to="/contact" className="hover:text-gold transition-colors">CONTACT US</Link>
           </div>
         </div>
-      )}
+
+        {/* Bottom row: horizontal menu */}
+        <nav className="w-full mt-3 md:mt-4">
+          <ul className="flex items-center justify-center gap-6 md:gap-10 overflow-x-auto whitespace-nowrap px-2 pb-1 scrollbar-none">
+            {NAV.map((n) => (
+              <li key={n.to}>
+                <Link
+                  to={n.to}
+                  className={`text-[13px] md:text-[14px] font-semibold tracking-wide transition-colors hover:text-gold ${
+                    solid ? "text-foreground/85" : "text-white/95"
+                  }`}
+                  activeProps={{ className: "!text-gold" }}
+                >
+                  {n.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }
