@@ -1,17 +1,12 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode, type HTMLAttributes } from "react";
 
-export function Reveal({
-  children,
-  delay = 0,
-  as: Tag = "div",
-  className = "",
-}: {
+interface RevealProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   delay?: number;
-  as?: keyof JSX.IntrinsicElements;
-  className?: string;
-}) {
-  const ref = useRef<HTMLElement | null>(null);
+}
+
+export function Reveal({ children, delay = 0, className = "", ...rest }: RevealProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -31,6 +26,10 @@ export function Reveal({
     return () => obs.disconnect();
   }, [delay]);
 
-  // @ts-expect-error generic ref
-  return <Tag ref={ref} className={`reveal ${className}`}>{children}</Tag>;
+  return (
+    <div ref={ref} className={`reveal ${className}`} {...rest}>
+      {children}
+    </div>
+  );
 }
+
