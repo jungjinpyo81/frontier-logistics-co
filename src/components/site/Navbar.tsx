@@ -7,7 +7,6 @@ const NAV = [
   { to: "/our-story", label: "Our Story" },
   { to: "/services", label: "Services" },
   { to: "/global-network", label: "Global Network" },
-  { to: "/special-cargo", label: "Special Cargo" },
   { to: "/trade-solutions", label: "Trade & Solutions" },
   { to: "/insights", label: "Insights" },
   { to: "/contact", label: "Contact" },

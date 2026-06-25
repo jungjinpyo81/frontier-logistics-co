@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Ship, Plane, Package, Truck, Warehouse, ArrowRight, Check } from "lucide-react";
+import { Ship, Plane, Package, Truck, Warehouse, ArrowRight, Check, Snowflake, Flame, HardHat, Sparkles } from "lucide-react";
 import air from "@/assets/air-freight.jpg";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
@@ -91,6 +91,49 @@ function Services() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-mist py-28 md:py-36 border-t border-border">
+        <div className="container-x">
+          <Reveal>
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-3">
+                <span className="hairline" />
+                <span className="text-[11px] tracking-[0.25em] uppercase text-gold">06 · 특수화물</span>
+              </div>
+              <h2 className="font-display text-4xl md:text-5xl text-navy mt-6 leading-tight">
+                Special Cargo <span className="italic text-gold">capabilities.</span>
+              </h2>
+              <p className="mt-6 text-foreground/70 leading-relaxed">
+                위험물, 콜드체인, 프로젝트 화물, 고가품 — 일반 화물 이상의 전문성을 요구하는 모든 화물을 안전하게 운송합니다.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
+            {[
+              { icon: Flame, en: "Dangerous Goods", ko: "위험물", desc: "IMDG · IATA DGR 자격 보유. 전 클래스 운송 가능." },
+              { icon: Snowflake, en: "Cold Chain", ko: "콜드체인", desc: "온도 민감 화물·식품·바이오를 위한 정온 운송." },
+              { icon: HardHat, en: "Project Cargo", ko: "프로젝트 화물", desc: "중량물·플랜트 설비를 위한 맞춤 솔루션." },
+              { icon: Sparkles, en: "High-Value Goods", ko: "고가품", desc: "보안 운송·풀 트래킹·전용 보험 옵션." },
+            ].map(({ icon: Ic, en, ko, desc }) => (
+              <Reveal key={en}>
+                <div className="bg-background p-7 h-full">
+                  <Ic className="size-7 text-gold" strokeWidth={1.5} />
+                  <div className="mt-6 text-[11px] tracking-[0.22em] uppercase text-muted-foreground">{ko}</div>
+                  <div className="mt-1 font-display text-xl text-navy">{en}</div>
+                  <p className="mt-3 text-sm text-foreground/70 leading-relaxed">{desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-12">
+            <Link to="/special-cargo" className="inline-flex items-center gap-2 text-sm font-medium text-navy border-b border-navy/30 pb-1 hover:text-gold hover:border-gold">
+              View Special Cargo details <ArrowRight size={14} />
+            </Link>
+          </div>
         </div>
       </section>
 
