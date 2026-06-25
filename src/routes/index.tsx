@@ -38,7 +38,7 @@ function Home() {
       <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-navy-deep/40 to-navy-deep/90" />
       <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/70 via-transparent to-transparent" />
 
-      <div className="relative z-10 container-x flex-1 flex flex-col justify-center pb-12 pt-36">
+      <div className="relative z-10 container-x flex-1 flex flex-col justify-center pb-12 pt-44">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="max-w-2xl animate-fade-up">
             <div className="flex items-center gap-3 mb-8">
