@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TradeSolutionsRouteImport } from './routes/trade-solutions'
 import { Route as SpecialCargoRouteImport } from './routes/special-cargo'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as InsightsRouteImport } from './routes/insights'
@@ -26,6 +27,11 @@ const TradeSolutionsRoute = TradeSolutionsRouteImport.update({
 const SpecialCargoRoute = SpecialCargoRouteImport.update({
   id: '/special-cargo',
   path: '/special-cargo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/insights': typeof InsightsRoute
   '/our-story': typeof OurStoryRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/special-cargo': typeof SpecialCargoRoute
   '/trade-solutions': typeof TradeSolutionsRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/insights': typeof InsightsRoute
   '/our-story': typeof OurStoryRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/special-cargo': typeof SpecialCargoRoute
   '/trade-solutions': typeof TradeSolutionsRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/insights': typeof InsightsRoute
   '/our-story': typeof OurStoryRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/special-cargo': typeof SpecialCargoRoute
   '/trade-solutions': typeof TradeSolutionsRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/our-story'
     | '/services'
+    | '/sitemap.xml'
     | '/special-cargo'
     | '/trade-solutions'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/our-story'
     | '/services'
+    | '/sitemap.xml'
     | '/special-cargo'
     | '/trade-solutions'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/our-story'
     | '/services'
+    | '/sitemap.xml'
     | '/special-cargo'
     | '/trade-solutions'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRoute
   OurStoryRoute: typeof OurStoryRoute
   ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SpecialCargoRoute: typeof SpecialCargoRoute
   TradeSolutionsRoute: typeof TradeSolutionsRoute
 }
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/special-cargo'
       fullPath: '/special-cargo'
       preLoaderRoute: typeof SpecialCargoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRoute,
   OurStoryRoute: OurStoryRoute,
   ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SpecialCargoRoute: SpecialCargoRoute,
   TradeSolutionsRoute: TradeSolutionsRoute,
 }
