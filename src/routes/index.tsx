@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Boxes, Globe2, TrendingUp, BookOpen, Newspaper, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroShip from "@/assets/hero-ship.jpg";
 
 export const Route = createFileRoute("/")({
@@ -15,15 +15,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Home,
 });
-
-const CTA_CARDS = [
-  { to: "/our-story", icon: BookOpen, label: "Our Story", ko: "회사소개", desc: "Who we are and why" },
-  { to: "/services", icon: Boxes, label: "Services", ko: "서비스", desc: "Ocean, air, express, special cargo" },
-  { to: "/global-network", icon: Globe2, label: "Global Network", ko: "글로벌 네트워크", desc: "120+ countries, 6 continents" },
-  { to: "/trade-solutions", icon: TrendingUp, label: "Trade Solutions", ko: "트레이드 솔루션", desc: "Cross-border B2B commerce" },
-  { to: "/insights", icon: Newspaper, label: "Insights", ko: "인사이트", desc: "News & industry updates" },
-  { to: "/contact", icon: Mail, label: "Contact", ko: "문의하기", desc: "Get a quote or talk" },
-];
 
 function Home() {
   return (
