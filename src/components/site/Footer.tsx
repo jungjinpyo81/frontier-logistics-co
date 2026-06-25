@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className="bg-navy text-white/80">
       <div className="container-x py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <img
               src="/logo.png"
@@ -23,26 +23,6 @@ export function Footer() {
             </div>
           </div>
 
-          <FooterCol
-            title="Services"
-            links={[
-              ["Ocean Freight", "/services"],
-              ["Air Freight", "/services"],
-              ["Express", "/services"],
-              ["Inland", "/services"],
-              ["Warehousing", "/services"],
-            ]}
-          />
-          <FooterCol
-            title="Company"
-            links={[
-              ["Our Story", "/our-story"],
-              ["Global Network", "/global-network"],
-              ["Special Cargo", "/special-cargo"],
-              ["Trade & Solutions", "/trade-solutions"],
-              ["Insights", "/insights"],
-            ]}
-          />
           <FooterCol
             title="Contact"
             links={[
