@@ -9,8 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TradeSolutionsRouteImport } from './routes/trade-solutions'
+import { Route as SpecialCargoRouteImport } from './routes/special-cargo'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as OurStoryRouteImport } from './routes/our-story'
+import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as GlobalNetworkRouteImport } from './routes/global-network'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TradeSolutionsRoute = TradeSolutionsRouteImport.update({
+  id: '/trade-solutions',
+  path: '/trade-solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialCargoRoute = SpecialCargoRouteImport.update({
+  id: '/special-cargo',
+  path: '/special-cargo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurStoryRoute = OurStoryRouteImport.update({
+  id: '/our-story',
+  path: '/our-story',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GlobalNetworkRoute = GlobalNetworkRouteImport.update({
+  id: '/global-network',
+  path: '/global-network',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +61,130 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/global-network': typeof GlobalNetworkRoute
+  '/insights': typeof InsightsRoute
+  '/our-story': typeof OurStoryRoute
+  '/services': typeof ServicesRoute
+  '/special-cargo': typeof SpecialCargoRoute
+  '/trade-solutions': typeof TradeSolutionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/global-network': typeof GlobalNetworkRoute
+  '/insights': typeof InsightsRoute
+  '/our-story': typeof OurStoryRoute
+  '/services': typeof ServicesRoute
+  '/special-cargo': typeof SpecialCargoRoute
+  '/trade-solutions': typeof TradeSolutionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/global-network': typeof GlobalNetworkRoute
+  '/insights': typeof InsightsRoute
+  '/our-story': typeof OurStoryRoute
+  '/services': typeof ServicesRoute
+  '/special-cargo': typeof SpecialCargoRoute
+  '/trade-solutions': typeof TradeSolutionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/global-network'
+    | '/insights'
+    | '/our-story'
+    | '/services'
+    | '/special-cargo'
+    | '/trade-solutions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contact'
+    | '/global-network'
+    | '/insights'
+    | '/our-story'
+    | '/services'
+    | '/special-cargo'
+    | '/trade-solutions'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/global-network'
+    | '/insights'
+    | '/our-story'
+    | '/services'
+    | '/special-cargo'
+    | '/trade-solutions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  GlobalNetworkRoute: typeof GlobalNetworkRoute
+  InsightsRoute: typeof InsightsRoute
+  OurStoryRoute: typeof OurStoryRoute
+  ServicesRoute: typeof ServicesRoute
+  SpecialCargoRoute: typeof SpecialCargoRoute
+  TradeSolutionsRoute: typeof TradeSolutionsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/trade-solutions': {
+      id: '/trade-solutions'
+      path: '/trade-solutions'
+      fullPath: '/trade-solutions'
+      preLoaderRoute: typeof TradeSolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/special-cargo': {
+      id: '/special-cargo'
+      path: '/special-cargo'
+      fullPath: '/special-cargo'
+      preLoaderRoute: typeof SpecialCargoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-story': {
+      id: '/our-story'
+      path: '/our-story'
+      fullPath: '/our-story'
+      preLoaderRoute: typeof OurStoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/global-network': {
+      id: '/global-network'
+      path: '/global-network'
+      fullPath: '/global-network'
+      preLoaderRoute: typeof GlobalNetworkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +197,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  GlobalNetworkRoute: GlobalNetworkRoute,
+  InsightsRoute: InsightsRoute,
+  OurStoryRoute: OurStoryRoute,
+  ServicesRoute: ServicesRoute,
+  SpecialCargoRoute: SpecialCargoRoute,
+  TradeSolutionsRoute: TradeSolutionsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
