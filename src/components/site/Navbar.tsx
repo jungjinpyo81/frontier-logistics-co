@@ -37,18 +37,12 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
       }`}
     >
       <div className="container-x flex h-20 items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className={`size-9 grid place-items-center transition-colors ${solid ? "bg-navy" : "bg-white/10 backdrop-blur-sm border border-white/30"}`}>
-            <span className={`font-display text-lg ${solid ? "text-gold" : "text-gold"}`}>地</span>
-          </div>
-          <div className="leading-tight">
-            <div className={`font-display text-base tracking-tight ${solid ? "text-navy" : "text-white"}`}>
-              JIGU GLOBAL
-            </div>
-            <div className={`text-[10px] tracking-[0.25em] uppercase ${solid ? "text-muted-foreground" : "text-white/70"}`}>
-              지구글로벌
-            </div>
-          </div>
+        <Link to="/" className="flex items-center group">
+          <img
+            src={solid ? logoDark.url : logoLight.url}
+            alt="G9 GLOBAL"
+            className="h-8 md:h-9 w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7">
