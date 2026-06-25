@@ -27,16 +27,17 @@ const CTA_CARDS = [
 
 function Home() {
   return (
-    <section className="relative min-h-[100svh] w-full overflow-hidden bg-navy-deep flex flex-col">
+    <section className="relative min-h-[100svh] w-full overflow-hidden bg-navy flex flex-col">
       <img
         src={heroShip}
         alt="Container ship at sea"
         width={1920}
         height={1280}
-        className="absolute inset-0 size-full object-cover opacity-70 animate-ken"
+        className="absolute inset-0 size-full object-cover opacity-95 animate-ken"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-navy-deep/40 to-navy-deep/90" />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/70 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-navy-deep/15 to-navy-deep/70" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/55 via-transparent to-transparent" />
+      <div className="absolute inset-0 pointer-events-none animate-float-slow bg-[radial-gradient(circle_at_20%_30%,rgba(212,175,55,0.18),transparent_55%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.12),transparent_50%)]" />
 
       <div className="relative z-10 container-x flex-1 flex flex-col justify-center pb-12 pt-44">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -72,11 +73,11 @@ function Home() {
                 <Link
                   key={to}
                   to={to}
-                  className="group flex flex-col gap-3 p-5 bg-white/5 border border-white/10 backdrop-blur-sm rounded-sm hover:bg-white/10 hover:border-gold/50 transition"
+                  className="group flex flex-col gap-3 p-5 bg-white/10 border border-white/15 backdrop-blur-md rounded-sm hover:bg-white/20 hover:border-gold/60 hover:-translate-y-1 transition duration-300 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.4)]"
                 >
                   <div className="flex items-center justify-between">
-                    <Icon className="size-6 text-gold" strokeWidth={1.5} />
-                    <ArrowUpRight className="size-4 text-white/40 group-hover:text-gold transition" />
+                    <Icon className="size-6 text-gold group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+                    <ArrowUpRight className="size-4 text-white/60 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition" />
                   </div>
                   <div>
                     <div className="text-[15px] font-medium text-white group-hover:text-gold transition">
