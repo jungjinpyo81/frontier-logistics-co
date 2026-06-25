@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <img
-              src={logoLight.url}
+              src="/logo.png"
               alt="G9 GLOBAL"
               className="h-10 w-auto object-contain mb-6"
             />
