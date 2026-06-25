@@ -17,7 +17,12 @@ import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as GlobalNetworkRouteImport } from './routes/global-network'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminNewRouteImport } from './routes/admin.new'
+import { Route as AdminEditIdRouteImport } from './routes/admin.edit.$id'
 
 const TradeSolutionsRoute = TradeSolutionsRouteImport.update({
   id: '/trade-solutions',
@@ -59,14 +64,41 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminNewRoute = AdminNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEditIdRoute = AdminEditIdRouteImport.update({
+  id: '/edit/$id',
+  path: '/edit/$id',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/global-network': typeof GlobalNetworkRoute
   '/insights': typeof InsightsRoute
@@ -75,9 +107,13 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/special-cargo': typeof SpecialCargoRoute
   '/trade-solutions': typeof TradeSolutionsRoute
+  '/admin/new': typeof AdminNewRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/edit/$id': typeof AdminEditIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/global-network': typeof GlobalNetworkRoute
   '/insights': typeof InsightsRoute
@@ -86,10 +122,15 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/special-cargo': typeof SpecialCargoRoute
   '/trade-solutions': typeof TradeSolutionsRoute
+  '/admin/new': typeof AdminNewRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/edit/$id': typeof AdminEditIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/global-network': typeof GlobalNetworkRoute
   '/insights': typeof InsightsRoute
@@ -98,11 +139,16 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/special-cargo': typeof SpecialCargoRoute
   '/trade-solutions': typeof TradeSolutionsRoute
+  '/admin/new': typeof AdminNewRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/edit/$id': typeof AdminEditIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
+    | '/auth'
     | '/contact'
     | '/global-network'
     | '/insights'
@@ -111,9 +157,13 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/special-cargo'
     | '/trade-solutions'
+    | '/admin/new'
+    | '/admin/'
+    | '/admin/edit/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/contact'
     | '/global-network'
     | '/insights'
@@ -122,9 +172,14 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/special-cargo'
     | '/trade-solutions'
+    | '/admin/new'
+    | '/admin'
+    | '/admin/edit/$id'
   id:
     | '__root__'
     | '/'
+    | '/admin'
+    | '/auth'
     | '/contact'
     | '/global-network'
     | '/insights'
@@ -133,10 +188,15 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/special-cargo'
     | '/trade-solutions'
+    | '/admin/new'
+    | '/admin/'
+    | '/admin/edit/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   GlobalNetworkRoute: typeof GlobalNetworkRoute
   InsightsRoute: typeof InsightsRoute
@@ -205,6 +265,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -212,11 +286,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/new': {
+      id: '/admin/new'
+      path: '/new'
+      fullPath: '/admin/new'
+      preLoaderRoute: typeof AdminNewRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/edit/$id': {
+      id: '/admin/edit/$id'
+      path: '/edit/$id'
+      fullPath: '/admin/edit/$id'
+      preLoaderRoute: typeof AdminEditIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminNewRoute: typeof AdminNewRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminEditIdRoute: typeof AdminEditIdRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminNewRoute: AdminNewRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminEditIdRoute: AdminEditIdRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   GlobalNetworkRoute: GlobalNetworkRoute,
   InsightsRoute: InsightsRoute,
