@@ -7,15 +7,11 @@ export function Footer() {
       <div className="container-x py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="size-10 grid place-items-center bg-white/5 border border-white/15">
-                <span className="font-display text-xl text-gold">地</span>
-              </div>
-              <div>
-                <div className="font-display text-lg text-white">JIGU GLOBAL</div>
-                <div className="text-[10px] tracking-[0.25em] uppercase text-white/50">지구글로벌</div>
-              </div>
-            </div>
+            <img
+              src={logoLight.url}
+              alt="G9 GLOBAL"
+              className="h-10 w-auto object-contain mb-6"
+            />
             <p className="text-sm leading-relaxed max-w-sm text-white/60">
               Connecting business beyond borders. <br />
               Global logistics solutions across every continent.
