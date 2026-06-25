@@ -35,8 +35,9 @@ function Home() {
         height={1280}
         className="absolute inset-0 size-full object-cover opacity-95 animate-ken"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-navy-deep/40 to-navy-deep/90" />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/70 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-navy-deep/15 to-navy-deep/70" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/55 via-transparent to-transparent" />
+      <div className="absolute inset-0 pointer-events-none animate-float-slow bg-[radial-gradient(circle_at_20%_30%,rgba(212,175,55,0.18),transparent_55%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.12),transparent_50%)]" />
 
       <div className="relative z-10 container-x flex-1 flex flex-col justify-center pb-12 pt-44">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
