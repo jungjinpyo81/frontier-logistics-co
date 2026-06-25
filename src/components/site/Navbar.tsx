@@ -37,7 +37,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
       <div className="container-x flex h-20 items-center justify-between">
         <Link to="/" className="flex items-center group">
           <img
-            src={solid ? logoDark.url : logoLight.url}
+            src={solid ? "/logo-dark.png" : "/logo.png"}
             alt="G9 GLOBAL"
             className="h-8 md:h-9 w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
           />
