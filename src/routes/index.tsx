@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Boxes, Globe2, TrendingUp, BookOpen, Newspaper, Mail } from "lucide-react";
-import heroShip from "@/assets/hero-ship.jpg";
+import heroShip from "@/assets/hero-pick-drop.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,7 +30,7 @@ function Home() {
     <section className="relative min-h-[100svh] w-full overflow-hidden bg-navy flex flex-col">
       <img
         src={heroShip}
-        alt="Container ship at sea"
+        alt="Hands passing a parcel across a glowing world map — global pick & drop logistics"
         width={1920}
         height={1280}
         className="absolute inset-0 size-full object-cover opacity-95 animate-ken"
