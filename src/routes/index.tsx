@@ -44,7 +44,7 @@ function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-navy-deep/40 to-navy-deep/90" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/70 via-transparent to-transparent" />
 
-        <div className="relative z-10 container-x h-full flex flex-col justify-start pb-24 pt-44">
+        <div className="relative z-10 container-x h-full flex flex-col justify-start pb-24 pt-36">
           <div className="max-w-4xl animate-fade-up">
             <div className="flex items-center gap-3 mb-8">
               <span className="hairline" />
