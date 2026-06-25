@@ -73,11 +73,11 @@ function Home() {
                 <Link
                   key={to}
                   to={to}
-                  className="group flex flex-col gap-3 p-5 bg-white/5 border border-white/10 backdrop-blur-sm rounded-sm hover:bg-white/10 hover:border-gold/50 transition"
+                  className="group flex flex-col gap-3 p-5 bg-white/10 border border-white/15 backdrop-blur-md rounded-sm hover:bg-white/20 hover:border-gold/60 hover:-translate-y-1 transition duration-300 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.4)]"
                 >
                   <div className="flex items-center justify-between">
-                    <Icon className="size-6 text-gold" strokeWidth={1.5} />
-                    <ArrowUpRight className="size-4 text-white/40 group-hover:text-gold transition" />
+                    <Icon className="size-6 text-gold group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+                    <ArrowUpRight className="size-4 text-white/60 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition" />
                   </div>
                   <div>
                     <div className="text-[15px] font-medium text-white group-hover:text-gold transition">
