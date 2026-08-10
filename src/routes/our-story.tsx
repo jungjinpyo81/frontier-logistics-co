@@ -42,7 +42,7 @@ function Story() {
       <PageHero
         eyebrow="Our Story"
         title={ko ? <>화물, <br /><span className="italic text-gold">그 이상을 움직입니다.</span></> : <>We Move More <br /><span className="italic text-gold">Than Cargo.</span></>}
-        sub={ko ? "우리는 단순히 화물을 운송하지 않습니다. 새로운 시장과 기회, 사람과 비즈니스를 연결합니다." : "We don't just move freight. We connect new markets, opportunities, people, and businesses."}
+        sub={ko ? <>물류를 넘어, 글로벌 비즈니스를 함께 설계합니다.&nbsp;<br />지구글로벌의 트레이드 솔루션.</> : "We don't just move freight. We connect new markets, opportunities, people, and businesses."}
         image={containers}
       />
 
