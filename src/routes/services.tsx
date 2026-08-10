@@ -110,10 +110,10 @@ function Services() {
                         <Icon className="size-32 md:size-44 text-navy/10" strokeWidth={0.8} />
                       </div>
                     )}
-                    {!("image" in rest && rest.image) && (
+                    {(!("image" in rest && rest.image) || ("keepBadge" in rest && rest.keepBadge)) && (
                       <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                        <div className="font-display text-7xl md:text-8xl text-navy/15">0{i + 1}</div>
-                        <Icon className="size-10 text-gold" strokeWidth={1.2} />
+                        <div className={`font-display text-7xl md:text-8xl ${"image" in rest && rest.image ? "text-white/80 drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)]" : "text-navy/15"}`}>0{i + 1}</div>
+                        <Icon className="size-10 text-gold drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]" strokeWidth={1.2} />
                       </div>
                     )}
                   </div>
