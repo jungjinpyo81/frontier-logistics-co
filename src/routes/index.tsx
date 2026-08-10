@@ -174,32 +174,28 @@ function Home() {
           </div>
         </div>
 
-        {/* company history */}
+        {/* what we do */}
         <div className="mt-auto pt-12">
           <span className="text-[11px] tracking-[0.25em] uppercase text-gold mb-5 block">
-            {ko ? "회사 연혁" : "Our History"}
+            {ko ? "우리가 하는 일" : "What We Do"}
           </span>
           <div className="border border-white/10 bg-navy-deep/50 backdrop-blur-sm px-6 py-7 md:px-8">
-            <ol className="relative grid gap-7 md:grid-cols-5 md:gap-4">
-              <span className="hidden md:block absolute left-0 right-0 top-[22px] h-px bg-white/15" />
-              {TIMELINE.map((t) => {
-                const Icon = t.icon;
+            <ol className="grid grid-cols-2 md:grid-cols-5 gap-5 md:gap-4">
+              {WHAT_WE_DO.map((item) => {
+                const Icon = item.icon;
                 return (
-                  <li key={t.y} className="group relative flex gap-4 md:block">
-                    <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-navy-deep text-gold transition duration-300 group-hover:border-gold group-hover:bg-gold/10 group-hover:-translate-y-0.5 md:mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+                  <li key={item.en} className="group flex flex-col items-center text-center gap-3">
+                    <span className="flex size-11 items-center justify-center rounded-full border border-gold/50 bg-navy-deep text-gold transition duration-300 group-hover:border-gold group-hover:bg-gold/10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
                       <Icon size={20} strokeWidth={1.5} />
                     </span>
                     <div>
-                      <div className="font-display text-2xl md:text-3xl text-white leading-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{t.y}</div>
-                      <div className="mt-2 text-xs md:text-[13px] text-white/60 whitespace-pre-line leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">
-                        {ko ? t.ko : t.en}
-                      </div>
+                      <div className="text-[14px] font-medium text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{ko ? item.ko : item.en}</div>
+                      <div className="mt-1 text-[11px] text-white/55 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">{ko ? item.koD : item.enD}</div>
                     </div>
                   </li>
                 );
               })}
             </ol>
-
           </div>
         </div>
       </div>
