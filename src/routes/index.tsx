@@ -88,6 +88,7 @@ function Home() {
   const { lang } = useLang();
   const ko = lang === "ko";
   return (
+    <>
     <section className="relative min-h-[100svh] w-full overflow-hidden bg-navy flex flex-col">
       <img
         src={heroShip}
