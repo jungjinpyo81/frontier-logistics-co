@@ -148,7 +148,7 @@ function Story() {
   );
 }
 
-function PageHero({ eyebrow, title, sub, image }: { eyebrow: string; title: React.ReactNode; sub: string; image: string }) {
+function PageHero({ eyebrow, title, sub, image }: { eyebrow: string; title: React.ReactNode; sub: React.ReactNode; image: string }) {
   return (
     <section className="relative h-[80svh] min-h-[520px] w-full overflow-hidden bg-navy-deep">
       <img src={image} alt="" width={1920} height={1280} className="absolute inset-0 size-full object-cover opacity-55 animate-ken" />
@@ -159,7 +159,7 @@ function PageHero({ eyebrow, title, sub, image }: { eyebrow: string; title: Reac
           <span className="text-[11px] tracking-[0.32em] uppercase text-gold">{eyebrow}</span>
         </div>
         <h1 className="font-display text-white text-5xl md:text-7xl leading-[1.03] max-w-4xl">{title}</h1>
-        <p className="mt-6 text-white/70 max-w-xl text-base md:text-lg leading-relaxed">{sub}</p>
+        <div className="mt-6 text-white/70 max-w-xl text-base md:text-lg leading-relaxed">{sub}</div>
       </div>
     </section>
   );
