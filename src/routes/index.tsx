@@ -89,6 +89,21 @@ function Home() {
   const ko = lang === "ko";
   return (
     <>
+    {/* Vimeo video banner */}
+    <section className="relative w-full bg-navy pt-32 pb-8 md:pt-36">
+      <div className="container-x">
+        <div className="relative aspect-video w-full overflow-hidden border border-white/10 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.4)]">
+          <iframe
+            src="https://player.vimeo.com/video/1217004087"
+            title="JIGU GLOBAL"
+            className="absolute inset-0 size-full"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </div>
+    </section>
+
     <section className="relative min-h-[100svh] w-full overflow-hidden bg-navy flex flex-col">
       <img
         src={heroShip}
