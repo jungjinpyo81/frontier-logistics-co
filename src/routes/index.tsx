@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Boxes, Globe2, TrendingUp, BookOpen, Newspaper, Mail, Truck, Forklift, Brush, Building2 } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Boxes, Globe2, TrendingUp, BookOpen, Newspaper, Mail, Ship, Plane, PackageCheck, Sparkles } from "lucide-react";
 import heroShip from "@/assets/hero-ship.jpg";
 import { useLang } from "@/lib/i18n";
 
@@ -72,38 +72,15 @@ const CTA_CARDS = [
   },
 ];
 
-const TIMELINE = [
-  {
-    y: "2011",
-    icon: Truck,
-    ko: "서정물류\n평택 화물운송업 시작",
-    en: "Seojeong Logistics founded — freight transport in Pyeongtaek",
-  },
-  {
-    y: "2013",
-    icon: Forklift,
-    ko: "화물운송 및\n중장비 사업",
-    en: "Expanded into freight and heavy equipment",
-  },
-  {
-    y: "2016",
-    icon: Brush,
-    ko: "바닥청소차\n렌탈사업 확장",
-    en: "Expanded into floor-sweeper rental business",
-  },
-  {
-    y: "2021",
-    icon: Building2,
-    ko: "주식회사 변환 및\n자회사 ㈜지구글로벌 발족",
-    en: "Incorporated; launched subsidiary JIGU GLOBAL Co., Ltd.",
-  },
-  {
-    y: "2022",
-    icon: Globe2,
-    ko: "사세확장으로 인한\n㈜지구글로벌 분사",
-    en: "JIGU GLOBAL spun off following business growth",
-  },
+const WHAT_WE_DO = [
+  { icon: Ship, ko: "해상운송", en: "Ocean Freight", koD: "FCL·LCL·Bulk", enD: "FCL · LCL · Bulk" },
+  { icon: Plane, ko: "항공운송", en: "Air Freight", koD: "긴급·정기 화물", enD: "Urgent & scheduled cargo" },
+  { icon: PackageCheck, ko: "국제특송", en: "Int'l Express", koD: "소화물·도어투도어", enD: "Parcel · door-to-door" },
+  { icon: Sparkles, ko: "특수화물", en: "Special Cargo", koD: "위험물·콜드체인·프로젝트", enD: "DG · cold chain · project" },
+  { icon: TrendingUp, ko: "무역 솔루션", en: "Trade Solutions", koD: "통관·수출입 대행", enD: "Customs & trade support" },
 ];
+
+
 
 
 function Home() {
