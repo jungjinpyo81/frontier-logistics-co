@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Boxes, Globe2, TrendingUp, BookOpen, Newspaper, Mail, Ship, Plane, PackageCheck, Sparkles } from "lucide-react";
 import heroShip from "@/assets/hero-ship.jpg";
+import { LocationMap } from "@/components/site/LocationMap";
 import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
