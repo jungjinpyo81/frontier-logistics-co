@@ -79,8 +79,8 @@ function Contact() {
           <h1 className="font-display text-5xl md:text-7xl leading-[1.03] max-w-4xl">
             {ko ? (
               <>
-                귀사의 비즈니스를 <br />
-                <span className="italic text-gold">함께 앞으로 나아가게 합니다.</span>
+                한 단계 더 도약할 수 있도록 <br />
+                <span className="italic text-gold">함께합니다.</span>
               </>
             ) : (
               <>
