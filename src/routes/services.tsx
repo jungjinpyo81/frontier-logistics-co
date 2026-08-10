@@ -27,18 +27,21 @@ const SERVICES = [
   {
     icon: Ship, en: "Ocean Freight", ko: "해상 운송",
     image: oceanPort.url,
+    keepBadge: true,
     desc: { ko: "FCL · LCL · 프로젝트 카고. 주요 글로벌 항로의 안정적인 선복 확보와 경쟁력 있는 운임을 제공합니다.", en: "FCL · LCL · Project Cargo. We secure reliable space and competitive rates across major global trade lanes." },
     items: { ko: ["FCL (풀 컨테이너)", "LCL (혼재 화물)", "프로젝트 & 벌크 화물", "글로벌 선적 솔루션"], en: ["FCL (Full Container Load)", "LCL (Less than Container Load)", "Project & Break-bulk Cargo", "Global Shipping Solutions"] },
   },
   {
     icon: Plane, en: "Air Freight", ko: "항공 운송",
     image: airCargo.url,
+    keepBadge: true,
     desc: { ko: "긴급 화물과 고가 제품을 위한 글로벌 항공 네트워크 및 통합 솔루션.", en: "A global air network and integrated solutions built for urgent shipments and high-value goods." },
     items: { ko: ["일반 항공 화물", "긴급/시간제한 화물", "고가 제품", "국제특송 연계"], en: ["General Air Cargo", "Urgent / Time-critical", "High-value Products", "International Express Integration"] },
   },
   {
     icon: Package, en: "Express Service", ko: "국제특송",
     image: expressDelivery.url,
+    keepBadge: true,
     desc: { ko: "B2B 특송부터 이커머스 물류, 샘플 발송까지 — 빠르게 성장하는 국제특송 서비스.", en: "From B2B express to e-commerce logistics and sample shipping — our fast-growing international express service." },
     items: { ko: ["B2B 특송", "이커머스 물류", "샘플 발송", "긴급 배송"], en: ["B2B Express", "E-commerce Logistics", "Sample Shipping", "Urgent Delivery"] },
   },
