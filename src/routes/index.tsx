@@ -209,12 +209,12 @@ function Home() {
                 const Icon = t.icon;
                 return (
                   <li key={t.y} className="group relative flex gap-4 md:block">
-                    <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-navy-deep text-gold transition duration-300 group-hover:border-gold group-hover:bg-gold/10 group-hover:-translate-y-0.5 md:mb-4">
+                    <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-navy-deep text-gold transition duration-300 group-hover:border-gold group-hover:bg-gold/10 group-hover:-translate-y-0.5 md:mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
                       <Icon size={20} strokeWidth={1.5} />
                     </span>
                     <div>
-                      <div className="font-display text-2xl md:text-3xl text-white leading-none">{t.y}</div>
-                      <div className="mt-2 text-xs md:text-[13px] text-white/60 whitespace-pre-line leading-relaxed">
+                      <div className="font-display text-2xl md:text-3xl text-white leading-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{t.y}</div>
+                      <div className="mt-2 text-xs md:text-[13px] text-white/60 whitespace-pre-line leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">
                         {ko ? t.ko : t.en}
                       </div>
                     </div>
