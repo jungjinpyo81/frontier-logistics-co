@@ -131,7 +131,7 @@ function Story() {
           <Reveal delay={120}>
             <span className="eyebrow"><span className="hairline" /> Vision</span>
             <h2 className="font-display mt-6 text-4xl md:text-5xl leading-tight">
-              {ko ? <>대한민국을 대표하는 <br /><span className="italic text-gold">가장 신뢰받는</span> 글로벌 물류 브랜드. 차세대</> : <>To become Korea's <span className="italic text-gold">most trusted</span> global logistics brand.</>}
+              {ko ? <>대한민국을 대표하는 <br /><span className="italic text-gold">가장 신뢰받는</span> 글로벌 물류 브랜드.</> : <>To become Korea's <span className="italic text-gold">most trusted</span> global logistics brand.</>}
             </h2>
             <p className="mt-8 text-white/70 leading-relaxed max-w-md">
               {ko ? "우리는 한국을 대표하는 글로벌 물류 브랜드로 성장하여, 세계 어느 곳에서도 우리의 고객이 안정적으로 비즈니스를 이어갈 수 있는 인프라가 되겠습니다." : "We aim to grow into Korea's leading global logistics brand — the infrastructure that lets our clients run their business reliably, anywhere in the world."}
