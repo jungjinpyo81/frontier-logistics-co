@@ -72,7 +72,7 @@ function Trade() {
                   <Icon className="size-6 text-gold mt-1 shrink-0" strokeWidth={1.4} />
                   <div>
                     <div className="font-display text-xl text-navy">{ko ? t.ko : t.en}</div>
-                    <div className="text-sm text-foreground/70 mt-1">{ko ? d.ko : d.en}</div>
+                    <div className="text-sm text-foreground/70 mt-1 whitespace-pre-line">{ko ? d.ko : d.en}</div>
                   </div>
                 </div>
               ))}
