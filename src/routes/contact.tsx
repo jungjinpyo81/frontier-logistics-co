@@ -181,7 +181,7 @@ function Contact() {
               <ul className="mt-10 space-y-8">
                 <Info icon={Mail} label={ko ? "이메일" : "Email"} value="sj.hwang@g9global.net" />
                 <Info icon={Phone} label={ko ? "전화" : "Phone"} value="+82 31 651 4473" />
-                <Info icon={MessageCircle} label="KakaoTalk" value="@jiguglobal" />
+                <Info icon={MessageCircle} label="KakaoTalk" value={ko ? "카카오톡 상담하기" : "@jiguglobal"} />
                 <Info
                   icon={MapPin}
                   label={ko ? "본사" : "HQ"}
