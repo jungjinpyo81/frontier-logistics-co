@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Ship, Plane, Package, Truck, Warehouse, ArrowRight, Check, Snowflake, Flame, HardHat, Sparkles } from "lucide-react";
 import air from "@/assets/air-freight.jpg";
+import oceanPort from "@/assets/ocean-freight-port.jpg.asset.json";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
@@ -22,6 +23,7 @@ export const Route = createFileRoute("/services")({
 const SERVICES = [
   {
     icon: Ship, en: "Ocean Freight", ko: "해상 운송",
+    image: oceanPort.url,
     desc: { ko: "FCL · LCL · 프로젝트 카고. 주요 글로벌 항로의 안정적인 선복 확보와 경쟁력 있는 운임을 제공합니다.", en: "FCL · LCL · Project Cargo. We secure reliable space and competitive rates across major global trade lanes." },
     items: { ko: ["FCL (풀 컨테이너)", "LCL (혼재 화물)", "프로젝트 & 벌크 화물", "글로벌 선적 솔루션"], en: ["FCL (Full Container Load)", "LCL (Less than Container Load)", "Project & Break-bulk Cargo", "Global Shipping Solutions"] },
   },
@@ -68,7 +70,7 @@ function Services() {
 
       <section className="bg-background py-28 md:py-36">
         <div className="container-x space-y-28">
-          {SERVICES.map(({ icon: Icon, en, ko: koLabel, desc, items }, i) => (
+          {SERVICES.map(({ icon: Icon, en, ko: koLabel, desc, items, ...rest }, i) => (
             <Reveal key={en}>
               <div className={`grid gap-12 lg:grid-cols-12 items-center ${i % 2 ? "lg:[direction:rtl]" : ""}`}>
                 <div className="lg:col-span-5 [direction:ltr]">
@@ -89,15 +91,27 @@ function Services() {
                 </div>
                 <div className="lg:col-span-7 [direction:ltr]">
                   <div className="relative aspect-[4/3] bg-mist overflow-hidden border border-border">
-                    <div className="absolute inset-0 grid place-items-center">
-                      <Icon className="size-32 md:size-44 text-navy/10" strokeWidth={0.8} />
-                    </div>
-                    <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                      <div className="font-display text-7xl md:text-8xl text-navy/15">0{i + 1}</div>
-                      <Icon className="size-10 text-gold" strokeWidth={1.2} />
-                    </div>
+                    {"image" in rest && rest.image ? (
+                      <img
+                        src={rest.image as string}
+                        alt={ko ? `${koLabel} 서비스 이미지` : `${en} service image`}
+                        loading="lazy"
+                        className="absolute inset-0 size-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 grid place-items-center">
+                        <Icon className="size-32 md:size-44 text-navy/10" strokeWidth={0.8} />
+                      </div>
+                    )}
+                    {!("image" in rest && rest.image) && (
+                      <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div className="font-display text-7xl md:text-8xl text-navy/15">0{i + 1}</div>
+                        <Icon className="size-10 text-gold" strokeWidth={1.2} />
+                      </div>
+                    )}
                   </div>
                 </div>
+
               </div>
             </Reveal>
           ))}
