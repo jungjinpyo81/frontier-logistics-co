@@ -26,11 +26,11 @@ const NAV: NavItem[] = [
       { to: "/services", ko: "창고 (일반/특수)", en: "Warehousing" },
     ],
   },
-  { to: "/global-network", ko: "글로벌 네트워크", en: "Global Network" },
+  { to: "/global-network", ko: "네트워크", en: "Network" },
   {
     to: "/trade-solutions",
-    ko: "무역 솔루션",
-    en: "Trade Solutions",
+    ko: "무역",
+    en: "Trade",
     sub: [
       { to: "/trade-solutions", ko: "국내 중고차 수출", en: "Used Car Export" },
       { to: "/trade-solutions", ko: "장비 수출입", en: "Equipment Trading" },
