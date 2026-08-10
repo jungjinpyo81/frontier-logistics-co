@@ -2,17 +2,56 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n";
 
-const NAV = [
-  { to: "/our-story", ko: "회사소개", en: "Our Story" },
-  { to: "/services", ko: "서비스", en: "Services" },
+type SubItem = { to: string; ko: string; en: string };
+type NavItem = { to: string; ko: string; en: string; sub?: SubItem[] };
+
+const NAV: NavItem[] = [
+  {
+    to: "/our-story",
+    ko: "회사소개",
+    en: "Our Story",
+    sub: [
+      { to: "/our-story", ko: "소개 및 연혁", en: "About & History" },
+      { to: "/our-story", ko: "조직도", en: "Organization" },
+    ],
+  },
+  {
+    to: "/services",
+    ko: "서비스",
+    en: "Services",
+    sub: [
+      { to: "/services", ko: "해상 수출입 (FCL / LCL)", en: "Ocean (FCL / LCL)" },
+      { to: "/services", ko: "항공 수출입", en: "Air Freight" },
+      { to: "/services", ko: "국제특송", en: "Express" },
+      { to: "/services", ko: "창고 (일반)", en: "Warehousing" },
+      { to: "/special-cargo", ko: "창고 (특수)", en: "Special Cargo" },
+    ],
+  },
   { to: "/global-network", ko: "글로벌 네트워크", en: "Global Network" },
-  { to: "/trade-solutions", ko: "무역 솔루션", en: "Trade Solutions" },
-  { to: "/insights", ko: "인사이트", en: "Insights" },
-  { to: "/contact", ko: "문의하기", en: "Contact" },
-] as const;
+  {
+    to: "/trade-solutions",
+    ko: "무역 솔루션",
+    en: "Trade Solutions",
+    sub: [
+      { to: "/trade-solutions", ko: "국내 중고차 수출", en: "Used Car Export" },
+      { to: "/trade-solutions", ko: "장비 수출입", en: "Equipment Trading" },
+      { to: "/trade-solutions", ko: "기계 수출입", en: "Machinery Trading" },
+    ],
+  },
+  {
+    to: "/contact",
+    ko: "문의 / 공지",
+    en: "Contact / News",
+    sub: [
+      { to: "/contact", ko: "온라인 문의", en: "Online Inquiry" },
+      { to: "/insights", ko: "공지사항", en: "Notices" },
+    ],
+  },
+];
 
 export function Navbar({ overlay = false }: { overlay?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const { lang, setLang } = useLang();
 
   useEffect(() => {
