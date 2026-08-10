@@ -4,6 +4,7 @@ import air from "@/assets/air-freight.jpg";
 import oceanPort from "@/assets/ocean-freight-port.jpg.asset.json";
 import airCargo from "@/assets/air-freight-cargo.jpg.asset.json";
 import expressDelivery from "@/assets/express-delivery.jpg.asset.json";
+import warehouseInterior from "@/assets/warehouse-interior.jpg.asset.json";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
@@ -48,6 +49,8 @@ const SERVICES = [
   },
   {
     icon: Warehouse, en: "Warehousing Solutions", ko: "보관·풀필먼트",
+    image: warehouseInterior.url,
+    keepBadge: true,
     desc: { ko: "보관·리패킹·풀필먼트·디스트리뷰션을 통합 운영하는 글로벌 창고 네트워크.", en: "A global warehouse network integrating storage, repacking, fulfillment, and distribution." },
     items: { ko: ["보관", "리패킹", "풀필먼트", "물류센터 연계"], en: ["Storage", "Repacking", "Fulfillment", "Distribution Center Integration"] },
   },
@@ -107,10 +110,10 @@ function Services() {
                         <Icon className="size-32 md:size-44 text-navy/10" strokeWidth={0.8} />
                       </div>
                     )}
-                    {!("image" in rest && rest.image) && (
+                    {(!("image" in rest && rest.image) || ("keepBadge" in rest && rest.keepBadge)) && (
                       <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                        <div className="font-display text-7xl md:text-8xl text-navy/15">0{i + 1}</div>
-                        <Icon className="size-10 text-gold" strokeWidth={1.2} />
+                        <div className={`font-display text-7xl md:text-8xl ${"image" in rest && rest.image ? "text-white/80 drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)]" : "text-navy/15"}`}>0{i + 1}</div>
+                        <Icon className="size-10 text-gold drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]" strokeWidth={1.2} />
                       </div>
                     )}
                   </div>
