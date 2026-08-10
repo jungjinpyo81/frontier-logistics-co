@@ -203,18 +203,26 @@ function Home() {
             {ko ? "회사 연혁" : "Our History"}
           </span>
           <div className="border border-white/10 bg-navy-deep/50 backdrop-blur-sm px-6 py-7 md:px-8">
-            <ol className="relative grid gap-6 md:grid-cols-5 md:gap-4">
-              <span className="hidden md:block absolute left-0 right-0 top-[7px] h-px bg-white/15" />
-              {TIMELINE.map((t) => (
-                <li key={t.y} className="relative flex gap-3 md:block">
-                  <span className="mt-1 md:mt-0 size-3.5 shrink-0 rounded-full border-2 border-gold bg-navy-deep md:mb-4 block" />
-                  <div>
-                    <div className="font-display text-2xl md:text-3xl text-white leading-none">{t.y}</div>
-                    <div className="mt-2 text-xs md:text-[13px] text-white/60 whitespace-pre-line leading-relaxed">{ko ? t.ko : t.en}</div>
-                  </div>
-                </li>
-              ))}
+            <ol className="relative grid gap-7 md:grid-cols-5 md:gap-4">
+              <span className="hidden md:block absolute left-0 right-0 top-[22px] h-px bg-white/15" />
+              {TIMELINE.map((t) => {
+                const Icon = t.icon;
+                return (
+                  <li key={t.y} className="group relative flex gap-4 md:block">
+                    <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-navy-deep text-gold transition duration-300 group-hover:border-gold group-hover:bg-gold/10 group-hover:-translate-y-0.5 md:mb-4">
+                      <Icon size={20} strokeWidth={1.5} />
+                    </span>
+                    <div>
+                      <div className="font-display text-2xl md:text-3xl text-white leading-none">{t.y}</div>
+                      <div className="mt-2 text-xs md:text-[13px] text-white/60 whitespace-pre-line leading-relaxed">
+                        {ko ? t.ko : t.en}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
             </ol>
+
           </div>
         </div>
       </div>
