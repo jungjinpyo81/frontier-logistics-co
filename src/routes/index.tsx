@@ -180,16 +180,16 @@ function Home() {
                   >
                     <div className="flex items-center justify-between">
                       <Icon
-                        className="size-6 text-gold group-hover:scale-110 transition-transform duration-300"
+                        className="size-6 text-gold group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)]"
                         strokeWidth={1.5}
                       />
-                      <ArrowUpRight className="size-4 text-white/60 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition" />
+                      <ArrowUpRight className="size-4 text-white/60 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)]" />
                     </div>
                     <div>
-                      <div className="text-[15px] font-medium text-white group-hover:text-gold transition">{label}</div>
-                      <div className="text-[11px] tracking-[0.18em] uppercase text-white/50">{sub}</div>
+                      <div className="text-[15px] font-medium text-white group-hover:text-gold transition drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{label}</div>
+                      <div className="text-[11px] tracking-[0.18em] uppercase text-white/50 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">{sub}</div>
                     </div>
-                    <div className="text-xs text-white/50 leading-relaxed">{desc}</div>
+                    <div className="text-xs text-white/50 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">{desc}</div>
                   </Link>
                 );
               })}
