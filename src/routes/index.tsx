@@ -82,7 +82,7 @@ const TIMELINE = [
   { y: "2016", ko: "바닥청소차\n렌탈사업 확장", en: "Expanded into floor-sweeper rental business" },
   {
     y: "2021",
-    ko: "주식회사 변환 및 \n자회사 ㈜지구글로벌 발족",
+    ko: "주식회사 변환 및\n자회사 ㈜지구글로벌 발족",
     en: "Incorporated; launched subsidiary JIGU GLOBAL Co., Ltd.",
   },
   { y: "2022", ko: "사세확장으로 인한\n㈜지구글로벌 분사", en: "JIGU GLOBAL spun off following business growth" },
