@@ -7,7 +7,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "JIGU GLOBAL — Connecting Business Beyond Borders" },
-      { name: "description", content: "Global logistics solutions across every continent. 해상·항공·특수화물·국제특송, 그리고 글로벌 비즈니스 솔루션." },
+      {
+        name: "description",
+        content:
+          "Global logistics solutions across every continent. 해상·항공·특수화물·국제특송, 그리고 글로벌 비즈니스 솔루션.",
+      },
       { property: "og:title", content: "JIGU GLOBAL — Connecting Business Beyond Borders" },
       { property: "og:description", content: "Global logistics solutions across every continent." },
       { property: "og:url", content: "/" },
@@ -18,20 +22,70 @@ export const Route = createFileRoute("/")({
 });
 
 const CTA_CARDS = [
-  { to: "/our-story", icon: BookOpen, en: "Our Story", ko: "회사소개", descEn: "Who we are and why", descKo: "우리는 누구이며 무엇을 지향하는가" },
-  { to: "/services", icon: Boxes, en: "Services", ko: "서비스", descEn: "Ocean, air, express, special cargo", descKo: "해상·항공·특송·특수화물" },
-  { to: "/global-network", icon: Globe2, en: "Global Network", ko: "글로벌 네트워크", descEn: "120+ countries, 6 continents", descKo: "120개국, 6대륙 네트워크" },
-  { to: "/trade-solutions", icon: TrendingUp, en: "Trade Solutions", ko: "트레이드 솔루션", descEn: "Cross-border B2B commerce", descKo: "국경을 넘는 B2B 커머스" },
-  { to: "/insights", icon: Newspaper, en: "Insights", ko: "인사이트", descEn: "News & industry updates", descKo: "뉴스와 산업 동향" },
-  { to: "/contact", icon: Mail, en: "Contact", ko: "문의하기", descEn: "Get a quote or talk", descKo: "견적 요청 및 상담" },
+  {
+    to: "/our-story",
+    icon: BookOpen,
+    en: "Our Story",
+    ko: "회사소개",
+    descEn: "Who we are and why",
+    descKo: "우리는 누구이며 무엇을 지향하는가",
+  },
+  {
+    to: "/services",
+    icon: Boxes,
+    en: "Services",
+    ko: "서비스",
+    descEn: "Ocean, air, express, special cargo",
+    descKo: "해상·항공·특송·특수화물",
+  },
+  {
+    to: "/global-network",
+    icon: Globe2,
+    en: "Global Network",
+    ko: "글로벌 네트워크",
+    descEn: "120+ countries, 6 continents",
+    descKo: "120개국, 6대륙 네트워크",
+  },
+  {
+    to: "/trade-solutions",
+    icon: TrendingUp,
+    en: "Trade Solutions",
+    ko: "트레이드 솔루션",
+    descEn: "Cross-border B2B commerce",
+    descKo: "국경을 넘는 B2B 커머스",
+  },
+  {
+    to: "/insights",
+    icon: Newspaper,
+    en: "Insights",
+    ko: "인사이트",
+    descEn: "News & industry updates",
+    descKo: "뉴스와 산업 동향",
+  },
+  {
+    to: "/contact",
+    icon: Mail,
+    en: "Contact",
+    ko: "문의하기",
+    descEn: "Get a quote or talk",
+    descKo: "견적 요청 및 상담",
+  },
 ];
 
 const TIMELINE = [
-  { y: "2011", ko: "서정물류 평택 화물운송업 시작", en: "Seojeong Logistics founded — freight transport in Pyeongtaek" },
-  { y: "2013", ko: "화물운송 및 중장비 사업", en: "Expanded into freight and heavy equipment" },
-  { y: "2016", ko: "바닥청소차 렌탈사업 확장", en: "Expanded into floor-sweeper rental business" },
-  { y: "2021", ko: "주식회사 변환 및 자회사 ㈜지구글로벌 발족", en: "Incorporated; launched subsidiary JIGU GLOBAL Co., Ltd." },
-  { y: "2022", ko: "사세확장으로 인한 ㈜지구글로벌 분사", en: "JIGU GLOBAL spun off following business growth" },
+  {
+    y: "2011",
+    ko: "서정물류<br />평택 화물운송업 시작",
+    en: "Seojeong Logistics founded — freight transport in Pyeongtaek",
+  },
+  { y: "2013", ko: "화물운송<br />및 중장비 사업", en: "Expanded into freight and heavy equipment" },
+  { y: "2016", ko: "바닥청소차<br />렌탈사업 확장", en: "Expanded into floor-sweeper rental business" },
+  {
+    y: "2021",
+    ko: "주식회사 변환 및<br />자회사 ㈜지구글로벌 발족",
+    en: "Incorporated; launched subsidiary JIGU GLOBAL Co., Ltd.",
+  },
+  { y: "2022", ko: "사세확장으로 인한<br />㈜지구글로벌 분사", en: "JIGU GLOBAL spun off following business growth" },
 ];
 
 function Home() {
@@ -60,18 +114,21 @@ function Home() {
               </span>
             </div>
             <h1 className="font-display text-white text-5xl md:text-7xl xl:text-[5.5rem] leading-[1.02]">
-              Connecting Business<br />
+              Connecting Business
+              <br />
               <span className="italic text-gold/90">Beyond Borders.</span>
             </h1>
             <p className="mt-8 text-white/75 text-base md:text-lg max-w-xl leading-relaxed">
               {ko ? (
                 <>
-                  해상·항공·특수화물·국제특송, 그리고 글로벌 비즈니스 솔루션까지.<br />
+                  해상·항공·특수화물·국제특송, 그리고 글로벌 비즈니스 솔루션까지.
+                  <br />
                   지구글로벌은 세계와 고객을 연결합니다.
                 </>
               ) : (
                 <>
-                  Ocean, air, special cargo and international express — plus end-to-end global business solutions.<br />
+                  Ocean, air, special cargo and international express — plus end-to-end global business solutions.
+                  <br />
                   JIGU GLOBAL connects our clients to the world.
                 </>
               )}
@@ -80,7 +137,9 @@ function Home() {
               <Link to="/contact" className="btn-gold">
                 {ko ? "견적 요청" : "Request a Quote"} <ArrowRight size={16} />
               </Link>
-              <Link to="/services" className="btn-ghost-light">{ko ? "서비스 살펴보기" : "Explore Services"}</Link>
+              <Link to="/services" className="btn-ghost-light">
+                {ko ? "서비스 살펴보기" : "Explore Services"}
+              </Link>
             </div>
           </div>
 
@@ -96,27 +155,24 @@ function Home() {
                 const sub = ko ? card.en : card.ko;
                 const desc = ko ? card.descKo : card.descEn;
                 return (
-                <Link
-                  key={to}
-                  to={to}
-                  className="group flex flex-col gap-3 p-5 bg-white/10 border border-white/15 backdrop-blur-md rounded-sm hover:bg-white/20 hover:border-gold/60 hover:-translate-y-1 transition duration-300 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.4)]"
-                >
-                  <div className="flex items-center justify-between">
-                    <Icon className="size-6 text-gold group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
-                    <ArrowUpRight className="size-4 text-white/60 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition" />
-                  </div>
-                  <div>
-                    <div className="text-[15px] font-medium text-white group-hover:text-gold transition">
-                      {label}
+                  <Link
+                    key={to}
+                    to={to}
+                    className="group flex flex-col gap-3 p-5 bg-white/10 border border-white/15 backdrop-blur-md rounded-sm hover:bg-white/20 hover:border-gold/60 hover:-translate-y-1 transition duration-300 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.4)]"
+                  >
+                    <div className="flex items-center justify-between">
+                      <Icon
+                        className="size-6 text-gold group-hover:scale-110 transition-transform duration-300"
+                        strokeWidth={1.5}
+                      />
+                      <ArrowUpRight className="size-4 text-white/60 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition" />
                     </div>
-                    <div className="text-[11px] tracking-[0.18em] uppercase text-white/50">
-                      {sub}
+                    <div>
+                      <div className="text-[15px] font-medium text-white group-hover:text-gold transition">{label}</div>
+                      <div className="text-[11px] tracking-[0.18em] uppercase text-white/50">{sub}</div>
                     </div>
-                  </div>
-                  <div className="text-xs text-white/50 leading-relaxed">
-                    {desc}
-                  </div>
-                </Link>
+                    <div className="text-xs text-white/50 leading-relaxed">{desc}</div>
+                  </Link>
                 );
               })}
             </div>
@@ -143,7 +199,6 @@ function Home() {
             </ol>
           </div>
         </div>
-
       </div>
     </section>
   );
