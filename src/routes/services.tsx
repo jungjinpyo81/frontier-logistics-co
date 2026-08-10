@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Ship, Plane, Package, Truck, Warehouse, ArrowRight, Check, Snowflake, Flame, HardHat, Sparkles } from "lucide-react";
 import air from "@/assets/air-freight.jpg";
 import oceanPort from "@/assets/ocean-freight-port.jpg.asset.json";
+import airCargo from "@/assets/air-freight-cargo.jpg.asset.json";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
@@ -29,6 +30,7 @@ const SERVICES = [
   },
   {
     icon: Plane, en: "Air Freight", ko: "항공 운송",
+    image: airCargo.url,
     desc: { ko: "긴급 화물과 고가 제품을 위한 글로벌 항공 네트워크 및 통합 솔루션.", en: "A global air network and integrated solutions built for urgent shipments and high-value goods." },
     items: { ko: ["일반 항공 화물", "긴급/시간제한 화물", "고가 제품", "국제특송 연계"], en: ["General Air Cargo", "Urgent / Time-critical", "High-value Products", "International Express Integration"] },
   },
