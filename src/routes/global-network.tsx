@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import network from "@/assets/global-network.jpg";
+import { Truck, Warehouse, ArrowRight, Check, AlertTriangle, Snowflake, Palette, Wrench } from "lucide-react";
+import containers from "@/assets/containers.jpg";
+import warehouseInterior from "@/assets/warehouse-interior.jpg.asset.json";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
@@ -9,121 +9,168 @@ import { useLang } from "@/lib/i18n";
 export const Route = createFileRoute("/global-network")({
   head: () => ({
     meta: [
-      { title: "Global Network — JIGU GLOBAL" },
-      { name: "description", content: "Six continents, one partner. JIGU GLOBAL의 글로벌 네트워크를 만나보세요." },
-      { property: "og:title", content: "Global Network — JIGU GLOBAL" },
-      { property: "og:description", content: "Six continents, one partner." },
+      { title: "Transport & Warehousing — JIGU GLOBAL" },
+      { name: "description", content: "Inland transport, warehousing, and special cargo capabilities — JIGU GLOBAL." },
+      { property: "og:title", content: "Transport & Warehousing — JIGU GLOBAL" },
+      { property: "og:description", content: "Inland transport, warehousing, and special cargo." },
       { property: "og:url", content: "/global-network" },
     ],
     links: [{ rel: "canonical", href: "/global-network" }],
   }),
-  component: GlobalNetwork,
+  component: TransportWarehouse,
 });
 
-const REGIONS = {
-  "Asia Pacific":  { ko: "아시아 태평양", hubs: ["Seoul", "Shanghai", "Tokyo", "Singapore", "Ho Chi Minh", "Sydney"], cap: { ko: "Korea를 중심으로 한 가장 강력한 인트라-아시아 네트워크. 주요 항만/공항 직접 운영.", en: "The strongest intra-Asia network centered on Korea, with direct operations at key ports and airports." } },
-  "Europe":        { ko: "유럽",          hubs: ["Rotterdam", "Hamburg", "Antwerp", "Frankfurt", "London"], cap: { ko: "유럽 주요 게이트웨이 항만과 내륙 운송 네트워크 연결.", en: "Connecting Europe's major gateway ports with an extensive inland transport network." } },
-  "Middle East":   { ko: "중동",          hubs: ["Dubai", "Jeddah", "Istanbul"], cap: { ko: "프로젝트 카고와 위험물 처리에 강점을 가진 중동 허브.", en: "A Middle East hub specializing in project cargo and dangerous goods handling." } },
-  "Africa":        { ko: "아프리카",       hubs: ["Cairo", "Nairobi", "Lagos", "Cape Town"], cap: { ko: "신흥 시장 진입을 지원하는 신뢰할 수 있는 현지 파트너십.", en: "Trusted local partnerships that support entry into emerging markets." } },
-  "North America": { ko: "북미",           hubs: ["Los Angeles", "New York", "Chicago", "Vancouver"], cap: { ko: "주요 항만/공항 풀필먼트 및 내륙 트럭킹 통합 솔루션.", en: "Integrated fulfillment and inland trucking solutions across major ports and airports." } },
-  "Latin America": { ko: "중남미",          hubs: ["Mexico City", "São Paulo", "Buenos Aires", "Lima"], cap: { ko: "성장하는 중남미 시장을 위한 전문 포워딩 서비스.", en: "Specialized forwarding services for the fast-growing Latin American market." } },
-};
-
-const STATS = [
-  { k: "120+", v: { ko: "국가", en: "Countries" } },
-  { k: "6", v: { ko: "대륙", en: "Continents" } },
-  { k: "40+", v: { ko: "전략 허브", en: "Strategic Hubs" } },
-  { k: "24/7", v: { ko: "운영", en: "Operations" } },
+const SERVICES = [
+  {
+    icon: Truck, en: "Inland Transportation", ko: "내륙 운송",
+    desc: { ko: "국내·해외 트럭킹, 철도, 라스트마일을 아우르는 내륙 운송 인프라.", en: "Domestic and overseas trucking, rail, and last-mile infrastructure covering every stage of inland transport." },
+    items: { ko: ["국내 트럭킹", "철도 운송", "라스트마일 배송", "국내 유통"], en: ["Local Trucking", "Rail Transportation", "Last Mile Delivery", "Domestic Distribution"] },
+  },
+  {
+    icon: Warehouse, en: "Warehousing Solutions", ko: "창고 (일반/특수)",
+    image: warehouseInterior.url,
+    keepBadge: true,
+    desc: { ko: "보관·리패킹·풀필먼트·디스트리뷰션을 통합 운영하는 글로벌 창고 네트워크.", en: "A global warehouse network integrating storage, repacking, fulfillment, and distribution." },
+    items: { ko: ["보관", "리패킹", "풀필먼트", "물류센터 연계"], en: ["Storage", "Repacking", "Fulfillment", "Distribution Center Integration"] },
+  },
 ];
 
-function GlobalNetwork() {
+const SPECIAL_ITEMS = [
+  {
+    icon: AlertTriangle,
+    en: "Dangerous Goods", ko: "위험물 운송",
+    desc: { ko: "IMO & IATA 인증 핸들링. 화학물, 배터리, 인화성 물질 등 위험물 화물의 안전한 글로벌 운송.", en: "IMO & IATA certified handling. Safe global transport of chemicals, batteries, flammables, and other hazardous cargo." },
+    tags: ["IMO Certified", "IATA DGR", "MSDS Support"],
+  },
+  {
+    icon: Snowflake,
+    en: "Cold Chain Logistics", ko: "콜드체인",
+    desc: { ko: "식품·제약·바이오 제품을 위한 정온/냉장/냉동 통합 콜드체인 솔루션.", en: "Integrated chilled, refrigerated, and frozen cold chain solutions for food, pharmaceutical, and bio products." },
+    tags: ["Food", "Pharmaceutical", "Bio Products"],
+  },
+  {
+    icon: Palette,
+    en: "Fine Art Logistics", ko: "예술품 운송",
+    desc: { ko: "예술품과 럭셔리 제품을 위한 항온항습 환경 제어와 전용 보험 지원.", en: "Climate-controlled environments and dedicated insurance support for artworks and luxury goods." },
+    tags: ["Artworks", "Luxury Goods", "Climate Control", "Insurance"],
+  },
+  {
+    icon: Wrench,
+    en: "Project Cargo", ko: "프로젝트 카고",
+    desc: { ko: "산업 장비, 중장비, 초대형 화물에 대한 종합 운송 엔지니어링.", en: "Comprehensive transport engineering for industrial equipment, heavy machinery, and oversized cargo." },
+    tags: ["Industrial Equipment", "Heavy Machinery", "Oversized Cargo"],
+  },
+];
+
+function TransportWarehouse() {
   const { lang } = useLang();
   const ko = lang === "ko";
-  const [region, setRegion] = useState<keyof typeof REGIONS>("Asia Pacific");
-  const data = REGIONS[region];
-
   return (
     <>
       <PageHero
-        eyebrow="Global Network"
-        title={<>Six continents. <br /><span className="italic text-gold">One partner.</span></>}
-        sub={ko ? "지구글로벌은 6대륙 120개 이상의 국가와 연결된 물류 네트워크를 운영합니다." : "JIGU GLOBAL operates a logistics network connecting more than 120 countries across six continents."}
-        image={network}
+        eyebrow="Transport & Warehousing"
+        title={ko ? <>운송에서 창고까지, <br /><span className="italic text-gold">특수화물까지.</span></> : <>From transport to warehousing, <br /><span className="italic text-gold">to special cargo.</span></>}
+        sub={ko ? "내륙 운송, 창고 관리, 그리고 특수화물까지 — 물류의 마지막 단계까지 책임집니다." : "Inland transport, warehousing, and special cargo — we own every last mile of your logistics."}
+        image={containers}
       />
 
       <section className="bg-background py-28 md:py-36">
-        <div className="container-x">
-          <Reveal className="grid gap-12 lg:grid-cols-[1fr_1.4fr] items-start">
-            <div>
-              <span className="eyebrow"><span className="hairline" /> {ko ? "지역" : "Regions"}</span>
-              <h2 className="font-display mt-6 text-3xl md:text-4xl text-navy">{ko ? "지역별로 살펴보세요." : "Explore by region."}</h2>
-              <ul className="mt-10 divide-y divide-border border-y border-border">
-                {(Object.keys(REGIONS) as Array<keyof typeof REGIONS>).map((r) => (
-                  <li key={r}>
-                    <button
-                      onClick={() => setRegion(r)}
-                      className={`w-full py-5 flex items-center justify-between text-left group transition ${
-                        region === r ? "text-navy" : "text-foreground/60 hover:text-navy"
-                      }`}
-                    >
-                      <span className="flex items-center gap-4">
-                        <span className={`size-1.5 rounded-full ${region === r ? "bg-gold" : "bg-border"}`} />
-                        <span>
-                          <span className="font-display text-xl block">{r}</span>
-                          <span className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">{REGIONS[r].ko}</span>
-                        </span>
-                      </span>
-                      <ArrowRight size={16} className={`transition ${region === r ? "text-gold translate-x-1" : ""}`} />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-navy-deep text-white p-10 md:p-14 min-h-[520px] relative overflow-hidden">
-              <img src={network} alt="" width={1600} height={900} loading="lazy" className="absolute inset-0 size-full object-cover opacity-25" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-navy-deep via-navy-deep/80 to-transparent" />
-              <div className="relative" key={region}>
-                <div className="animate-fade-up">
-                  <div className="text-[11px] tracking-[0.25em] uppercase text-gold">{data.ko}</div>
-                  <h3 className="font-display text-4xl md:text-6xl mt-3">{region}</h3>
-                  <p className="mt-8 text-white/75 max-w-md leading-relaxed">{ko ? data.cap.ko : data.cap.en}</p>
-                  <div className="mt-12">
-                    <div className="text-[11px] tracking-[0.25em] uppercase text-white/50 mb-4">{ko ? "주요 허브" : "Key Hubs"}</div>
-                    <div className="flex flex-wrap gap-2">
-                      {data.hubs.map((h) => (
-                        <span key={h} className="px-4 py-2 border border-white/20 text-sm">{h}</span>
-                      ))}
-                    </div>
+        <div className="container-x space-y-28">
+          {SERVICES.map(({ icon: Icon, en, ko: koLabel, desc, items, ...rest }, i) => (
+            <Reveal key={en}>
+              <div className={`grid gap-12 lg:grid-cols-12 items-center ${i % 2 ? "lg:[direction:rtl]" : ""}`}>
+                <div className="lg:col-span-5 [direction:ltr]">
+                  <div className="flex items-center gap-3">
+                    <span className="hairline" />
+                    <span className="text-[11px] tracking-[0.25em] uppercase text-gold">0{i + 4} · {koLabel}</span>
+                  </div>
+                  <h2 className="font-display text-4xl md:text-5xl text-navy mt-6 leading-tight">{en}</h2>
+                  <p className="mt-6 text-foreground/70 leading-relaxed">{ko ? desc.ko : desc.en}</p>
+                  <ul className="mt-8 space-y-3">
+                    {(ko ? items.ko : items.en).map((it) => (
+                      <li key={it} className="flex items-start gap-3 text-sm text-foreground/80">
+                        <Check size={16} className="text-gold mt-0.5 shrink-0" />
+                        <span>{it}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="lg:col-span-7 [direction:ltr]">
+                  <div className="relative aspect-[4/3] bg-mist overflow-hidden border border-border">
+                    {"image" in rest && rest.image ? (
+                      <img
+                        src={rest.image as string}
+                        alt={ko ? `${koLabel} 서비스 이미지` : `${en} service image`}
+                        loading="lazy"
+                        className="absolute inset-0 size-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 grid place-items-center">
+                        <Icon className="size-32 md:size-44 text-navy/10" strokeWidth={0.8} />
+                      </div>
+                    )}
+                    {(!("image" in rest && rest.image) || ("keepBadge" in rest && rest.keepBadge)) && (
+                      <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div className={`font-display text-7xl md:text-8xl ${"image" in rest && rest.image ? "text-white/80 drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)]" : "text-navy/15"}`}>0{i + 4}</div>
+                        <Icon className="size-10 text-gold drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]" strokeWidth={1.2} />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="bg-mist py-24">
-        <div className="container-x grid md:grid-cols-4 gap-px bg-border border border-border">
-          {STATS.map((s) => (
-            <div key={s.k} className="bg-background p-10 text-center">
-              <div className="font-display text-5xl text-navy">{s.k}</div>
-              <div className="mt-2 text-[11px] tracking-[0.25em] uppercase text-muted-foreground">{ko ? s.v.ko : s.v.en}</div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="bg-navy text-white py-24">
-        <div className="container-x flex flex-col md:flex-row gap-8 md:items-center md:justify-between">
-          <h2 className="font-display text-3xl md:text-5xl max-w-2xl">
-            {ko ? (
-              <>사업이 향하는 곳이라면 어디든, <span className="italic text-gold">이미 저희가 있습니다.</span></>
-            ) : (
-              <>Wherever your business goes, <span className="italic text-gold">we're already there.</span></>
-            )}
+      {/* Special Cargo section */}
+      <section className="bg-navy-deep text-white py-28 md:py-36">
+        <div className="container-x">
+          <Reveal>
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-3">
+                <span className="hairline" />
+                <span className="text-[11px] tracking-[0.25em] uppercase text-gold">06 · {ko ? "특수화물" : "Special Cargo"}</span>
+              </div>
+              <h2 className="font-display text-4xl md:text-5xl text-white mt-6 leading-tight">
+                {ko ? <>물류 그 이상을 요구하는 <span className="italic text-gold">화물을 위해.</span></> : <>For shipments that demand <span className="italic text-gold">more than logistics.</span></>}
+              </h2>
+              <p className="mt-6 text-white/70 leading-relaxed">
+                {ko ? "위험물·콜드체인·예술품·프로젝트 카고까지 — 전문성을 요구하는 화물을 위한 지구글로벌의 특수 운송 서비스." : "Dangerous goods, cold chain, fine art, and project cargo — JIGU GLOBAL's special cargo services for shipments that demand expertise."}
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-14 grid gap-px md:grid-cols-2 bg-white/10">
+            {SPECIAL_ITEMS.map(({ icon: Icon, en, ko: koLabel, desc, tags }, i) => (
+              <Reveal key={en} delay={i * 80}>
+                <div className="bg-navy-deep p-10 md:p-14 h-full group hover:bg-navy transition">
+                  <Icon className="size-10 text-gold" strokeWidth={1.2} />
+                  <div className="mt-12">
+                    <div className="text-[11px] tracking-[0.25em] uppercase text-white/50">{koLabel}</div>
+                    <h3 className="font-display text-3xl md:text-4xl mt-2">{en}</h3>
+                    <p className="mt-6 text-white/70 leading-relaxed max-w-md">{ko ? desc.ko : desc.en}</p>
+                    <div className="mt-8 flex flex-wrap gap-2">
+                      {tags.map((t) => (
+                        <span key={t} className="px-3 py-1.5 border border-white/20 text-[12px] tracking-wide">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-24">
+        <div className="container-x grid gap-10 lg:grid-cols-[1.4fr_1fr] items-center">
+          <h2 className="font-display text-3xl md:text-5xl text-navy">
+            {ko ? <>목적을 가지고 다루는, <span className="italic">특수화물.</span></> : <>Special cargo, <span className="italic">handled with intent.</span></>}
           </h2>
-          <Link to="/contact" className="btn-gold self-start">{ko ? "문의하기" : "Talk to us"} <ArrowRight size={16} /></Link>
+          <div className="flex lg:justify-end">
+            <Link to="/contact" className="btn-gold">{ko ? "견적 요청하기" : "Request a Quote"} <ArrowRight size={16} /></Link>
+          </div>
         </div>
       </section>
     </>

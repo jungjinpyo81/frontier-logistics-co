@@ -23,10 +23,18 @@ const NAV: NavItem[] = [
       { to: "/services", ko: "해상 수출입 (FCL / LCL)", en: "Ocean (FCL / LCL)" },
       { to: "/services", ko: "항공 수출입", en: "Air Freight" },
       { to: "/services", ko: "국제특송", en: "Express" },
-      { to: "/services", ko: "창고 (일반/특수)", en: "Warehousing" },
     ],
   },
-  { to: "/global-network", ko: "네트워크", en: "Network" },
+  {
+    to: "/global-network",
+    ko: "운송/창고",
+    en: "Transport/Warehouse",
+    sub: [
+      { to: "/global-network", ko: "내륙 운송", en: "Inland Transport" },
+      { to: "/global-network", ko: "창고 (일반/특수)", en: "Warehousing" },
+      { to: "/global-network", ko: "특수화물", en: "Special Cargo" },
+    ],
+  },
   {
     to: "/trade-solutions",
     ko: "무역",

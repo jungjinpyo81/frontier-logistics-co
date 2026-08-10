@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Ship, Plane, Package, Truck, Warehouse, ArrowRight, Check, Snowflake, Flame, HardHat, Sparkles } from "lucide-react";
+import { Ship, Plane, Package, ArrowRight, Check } from "lucide-react";
+import { useState } from "react";
 import air from "@/assets/air-freight.jpg";
+import network from "@/assets/global-network.jpg";
 import oceanPort from "@/assets/ocean-freight-port.jpg.asset.json";
 import airCargo from "@/assets/air-freight-cargo.jpg.asset.json";
 import expressDelivery from "@/assets/express-delivery.jpg.asset.json";
-import warehouseInterior from "@/assets/warehouse-interior.jpg.asset.json";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services — JIGU GLOBAL" },
-      { name: "description", content: "Ocean, Air, Express, Inland, and Warehousing — end-to-end global logistics by JIGU GLOBAL." },
+      { name: "description", content: "Ocean, Air, Express, and our global network — end-to-end global logistics by JIGU GLOBAL." },
       { property: "og:title", content: "Services — JIGU GLOBAL" },
       { property: "og:description", content: "End-to-end global logistics solutions." },
       { property: "og:url", content: "/services" },
@@ -45,30 +46,30 @@ const SERVICES = [
     desc: { ko: "B2B 특송부터 이커머스 물류, 샘플 발송까지 — 빠르게 성장하는 국제특송 서비스.", en: "From B2B express to e-commerce logistics and sample shipping — our fast-growing international express service." },
     items: { ko: ["B2B 특송", "이커머스 물류", "샘플 발송", "긴급 배송"], en: ["B2B Express", "E-commerce Logistics", "Sample Shipping", "Urgent Delivery"] },
   },
-  {
-    icon: Truck, en: "Inland Transportation", ko: "내륙 운송",
-    desc: { ko: "국내·해외 트럭킹, 철도, 라스트마일을 아우르는 내륙 운송 인프라.", en: "Domestic and overseas trucking, rail, and last-mile infrastructure covering every stage of inland transport." },
-    items: { ko: ["국내 트럭킹", "철도 운송", "라스트마일 배송", "국내 유통"], en: ["Local Trucking", "Rail Transportation", "Last Mile Delivery", "Domestic Distribution"] },
-  },
-  {
-    icon: Warehouse, en: "Warehousing Solutions", ko: "창고 (일반/특수)",
-    image: warehouseInterior.url,
-    keepBadge: true,
-    desc: { ko: "보관·리패킹·풀필먼트·디스트리뷰션을 통합 운영하는 글로벌 창고 네트워크.", en: "A global warehouse network integrating storage, repacking, fulfillment, and distribution." },
-    items: { ko: ["보관", "리패킹", "풀필먼트", "물류센터 연계"], en: ["Storage", "Repacking", "Fulfillment", "Distribution Center Integration"] },
-  },
 ];
 
-const SPECIAL_ITEMS = [
-  { icon: Flame, en: "Dangerous Goods", ko: "위험물", desc: { ko: "IMDG · IATA DGR 자격 보유. 전 클래스 운송 가능.", en: "IMDG- & IATA DGR-certified handling across every hazard class." } },
-  { icon: Snowflake, en: "Cold Chain", ko: "콜드체인", desc: { ko: "온도 민감 화물·식품·바이오를 위한 정온 운송.", en: "Temperature-controlled transport for sensitive goods, food, and bio products." } },
-  { icon: HardHat, en: "Project Cargo", ko: "프로젝트 화물", desc: { ko: "중량물·플랜트 설비를 위한 맞춤 솔루션.", en: "Tailored solutions for heavy-lift and plant equipment shipments." } },
-  { icon: Sparkles, en: "High-Value Goods", ko: "고가품", desc: { ko: "보안 운송·풀 트래킹·전용 보험 옵션.", en: "Secure transport, full tracking, and dedicated insurance options." } },
+const REGIONS = {
+  "Asia Pacific":  { ko: "아시아 태평양", hubs: ["Seoul", "Shanghai", "Tokyo", "Singapore", "Ho Chi Minh", "Sydney"], cap: { ko: "Korea를 중심으로 한 가장 강력한 인트라-아시아 네트워크. 주요 항만/공항 직접 운영.", en: "The strongest intra-Asia network centered on Korea, with direct operations at key ports and airports." } },
+  "Europe":        { ko: "유럽",          hubs: ["Rotterdam", "Hamburg", "Antwerp", "Frankfurt", "London"], cap: { ko: "유럽 주요 게이트웨이 항만과 내륙 운송 네트워크 연결.", en: "Connecting Europe's major gateway ports with an extensive inland transport network." } },
+  "Middle East":   { ko: "중동",          hubs: ["Dubai", "Jeddah", "Istanbul"], cap: { ko: "프로젝트 카고와 위험물 처리에 강점을 가진 중동 허브.", en: "A Middle East hub specializing in project cargo and dangerous goods handling." } },
+  "Africa":        { ko: "아프리카",       hubs: ["Cairo", "Nairobi", "Lagos", "Cape Town"], cap: { ko: "신흥 시장 진입을 지원하는 신뢰할 수 있는 현지 파트너십.", en: "Trusted local partnerships that support entry into emerging markets." } },
+  "North America": { ko: "북미",           hubs: ["Los Angeles", "New York", "Chicago", "Vancouver"], cap: { ko: "주요 항만/공항 풀필먼트 및 내륙 트럭킹 통합 솔루션.", en: "Integrated fulfillment and inland trucking solutions across major ports and airports." } },
+  "Latin America": { ko: "중남미",          hubs: ["Mexico City", "São Paulo", "Buenos Aires", "Lima"], cap: { ko: "성장하는 중남미 시장을 위한 전문 포워딩 서비스.", en: "Specialized forwarding services for the fast-growing Latin American market." } },
+};
+
+const STATS = [
+  { k: "120+", v: { ko: "국가", en: "Countries" } },
+  { k: "6", v: { ko: "대륙", en: "Continents" } },
+  { k: "40+", v: { ko: "전략 허브", en: "Strategic Hubs" } },
+  { k: "24/7", v: { ko: "운영", en: "Operations" } },
 ];
 
 function Services() {
   const { lang } = useLang();
   const ko = lang === "ko";
+  const [region, setRegion] = useState<keyof typeof REGIONS>("Asia Pacific");
+  const data = REGIONS[region];
+
   return (
     <>
       <PageHero
@@ -121,48 +122,78 @@ function Services() {
                     )}
                   </div>
                 </div>
-
               </div>
             </Reveal>
           ))}
         </div>
       </section>
 
+      {/* Global Network section */}
       <section className="bg-mist py-28 md:py-36 border-t border-border">
         <div className="container-x">
-          <Reveal>
-            <div className="max-w-2xl">
-              <div className="flex items-center gap-3">
-                <span className="hairline" />
-                <span className="text-[11px] tracking-[0.25em] uppercase text-gold">06 · {ko ? "특수화물" : "Special Cargo"}</span>
-              </div>
-              <h2 className="font-display text-4xl md:text-5xl text-navy mt-6 leading-tight">
-                {ko ? <>특수화물 <span className="italic text-gold">전문 역량.</span></> : <>Special Cargo <span className="italic text-gold">capabilities.</span></>}
+          <Reveal className="grid gap-12 lg:grid-cols-[1fr_1.4fr] items-start">
+            <div>
+              <span className="eyebrow"><span className="hairline" /> {ko ? "글로벌 네트워크" : "Global Network"}</span>
+              <h2 className="font-display mt-6 text-3xl md:text-4xl text-navy">
+                {ko ? <>6대륙 120개국, <span className="italic text-gold">하나의 네트워크.</span></> : <>Six continents, <span className="italic text-gold">one network.</span></>}
               </h2>
-              <p className="mt-6 text-foreground/70 leading-relaxed">
-                {ko ? "위험물, 콜드체인, 프로젝트 화물, 고가품 — 일반 화물 이상의 전문성을 요구하는 모든 화물을 안전하게 운송합니다." : "Dangerous goods, cold chain, project cargo, high-value goods — we safely handle every shipment that demands more than standard freight."}
+              <p className="mt-4 text-foreground/60 leading-relaxed">
+                {ko ? "지구글로벌은 6대륙 120개 이상의 국가와 연결된 물류 네트워크를 운영합니다." : "JIGU GLOBAL operates a logistics network connecting more than 120 countries across six continents."}
               </p>
+              <ul className="mt-10 divide-y divide-border border-y border-border">
+                {(Object.keys(REGIONS) as Array<keyof typeof REGIONS>).map((r) => (
+                  <li key={r}>
+                    <button
+                      onClick={() => setRegion(r)}
+                      className={`w-full py-5 flex items-center justify-between text-left group transition ${
+                        region === r ? "text-navy" : "text-foreground/60 hover:text-navy"
+                      }`}
+                    >
+                      <span className="flex items-center gap-4">
+                        <span className={`size-1.5 rounded-full ${region === r ? "bg-gold" : "bg-border"}`} />
+                        <span>
+                          <span className="font-display text-xl block">{r}</span>
+                          <span className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">{REGIONS[r].ko}</span>
+                        </span>
+                      </span>
+                      <ArrowRight size={16} className={`transition ${region === r ? "text-gold translate-x-1" : ""}`} />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-navy-deep text-white p-10 md:p-14 min-h-[520px] relative overflow-hidden">
+              <img src={network} alt="" width={1600} height={900} loading="lazy" className="absolute inset-0 size-full object-cover opacity-25" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-navy-deep via-navy-deep/80 to-transparent" />
+              <div className="relative" key={region}>
+                <div className="animate-fade-up">
+                  <div className="text-[11px] tracking-[0.25em] uppercase text-gold">{data.ko}</div>
+                  <h3 className="font-display text-4xl md:text-6xl mt-3">{region}</h3>
+                  <p className="mt-8 text-white/75 max-w-md leading-relaxed">{ko ? data.cap.ko : data.cap.en}</p>
+                  <div className="mt-12">
+                    <div className="text-[11px] tracking-[0.25em] uppercase text-white/50 mb-4">{ko ? "주요 허브" : "Key Hubs"}</div>
+                    <div className="flex flex-wrap gap-2">
+                      {data.hubs.map((h) => (
+                        <span key={h} className="px-4 py-2 border border-white/20 text-sm">{h}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </Reveal>
+        </div>
+      </section>
 
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
-            {SPECIAL_ITEMS.map(({ icon: Ic, en, ko: koLabel, desc }) => (
-              <Reveal key={en}>
-                <div className="bg-background p-7 h-full">
-                  <Ic className="size-7 text-gold" strokeWidth={1.5} />
-                  <div className="mt-6 text-[11px] tracking-[0.22em] uppercase text-muted-foreground">{koLabel}</div>
-                  <div className="mt-1 font-display text-xl text-navy">{en}</div>
-                  <p className="mt-3 text-sm text-foreground/70 leading-relaxed">{ko ? desc.ko : desc.en}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mt-12">
-            <Link to="/special-cargo" className="inline-flex items-center gap-2 text-sm font-medium text-navy border-b border-navy/30 pb-1 hover:text-gold hover:border-gold">
-              {ko ? "특수화물 자세히 보기" : "View Special Cargo details"} <ArrowRight size={14} />
-            </Link>
-          </div>
+      <section className="bg-background py-24">
+        <div className="container-x grid md:grid-cols-4 gap-px bg-border border border-border">
+          {STATS.map((s) => (
+            <div key={s.k} className="bg-background p-10 text-center">
+              <div className="font-display text-5xl text-navy">{s.k}</div>
+              <div className="mt-2 text-[11px] tracking-[0.25em] uppercase text-muted-foreground">{ko ? s.v.ko : s.v.en}</div>
+            </div>
+          ))}
         </div>
       </section>
 
