@@ -21,7 +21,7 @@ export const Route = createFileRoute("/our-story")({
 });
 
 const VALUES = [
-  { n: "01", t: { ko: "신뢰", en: "Trust" }, ko: "Trust", d: { ko: "매 화물마다 정시에\n안전하게 배송함으로써 신뢰를 얻습니다.", en: "We earn trust by delivering — on time, in full, every shipment." } },
+  { n: "01", t: { ko: "신뢰", en: "Trust" }, ko: "Trust", d: { ko: "정시에 안전하게 배송", en: "We earn trust by delivering — on time, in full, every shipment." } },
   { n: "02", t: { ko: "연결", en: "Connection" }, ko: "Connection", d: { ko: "대륙을 넘어 시장과 네트워크, 사람을 연결합니다.", en: "We connect markets, networks, and people across continents." } },
   { n: "03", t: { ko: "혁신", en: "Innovation" }, ko: "Innovation", d: { ko: "기술과 투명성, 세심한 관리로 포워딩을 혁신합니다.", en: "We modernize forwarding with technology, transparency, and care." } },
 ];
