@@ -6,7 +6,7 @@ const NAV = [
   { to: "/our-story", ko: "회사소개", en: "Our Story" },
   { to: "/services", ko: "서비스", en: "Services" },
   { to: "/global-network", ko: "글로벌 네트워크", en: "Global Network" },
-  { to: "/trade-solutions", ko: "트레이드 솔루션", en: "Trade Solutions" },
+  { to: "/trade-solutions", ko: "무역 솔루션", en: "Trade Solutions" },
   { to: "/insights", ko: "인사이트", en: "Insights" },
   { to: "/contact", ko: "문의하기", en: "Contact" },
 ] as const;

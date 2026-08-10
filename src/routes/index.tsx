@@ -50,7 +50,7 @@ const CTA_CARDS = [
     to: "/trade-solutions",
     icon: TrendingUp,
     en: "Trade Solutions",
-    ko: "트레이드 솔루션",
+    ko: "무역 솔루션",
     descEn: "Cross-border B2B commerce",
     descKo: "국경을 넘는 B2B 커머스",
   },
@@ -121,9 +121,9 @@ function Home() {
             <p className="mt-8 text-white/75 text-base md:text-lg max-w-xl leading-relaxed">
               {ko ? (
                 <>
-                  해상·항공·특수화물·국제특송, 그리고 글로벌 비즈니스 솔루션까지.
+                  복잡한 수출입 통관부터 해상·항공·국제특송 등 맞춤형 물류 솔루션.
                   <br />
-                  지구글로벌은 세계와 고객을 연결합니다.
+                  지구글로벌은 단순한 운송을 넘어 성공적인 글로벌 비즈니스의 길을 엽니다.
                 </>
               ) : (
                 <>
