@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Boxes, Globe2, TrendingUp, BookOpen, Newspaper, Mail } from "lucide-react";
 import heroShip from "@/assets/hero-ship.jpg";
+import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,15 +18,24 @@ export const Route = createFileRoute("/")({
 });
 
 const CTA_CARDS = [
-  { to: "/our-story", icon: BookOpen, label: "Our Story", ko: "회사소개", desc: "Who we are and why" },
-  { to: "/services", icon: Boxes, label: "Services", ko: "서비스", desc: "Ocean, air, express, special cargo" },
-  { to: "/global-network", icon: Globe2, label: "Global Network", ko: "글로벌 네트워크", desc: "120+ countries, 6 continents" },
-  { to: "/trade-solutions", icon: TrendingUp, label: "Trade Solutions", ko: "트레이드 솔루션", desc: "Cross-border B2B commerce" },
-  { to: "/insights", icon: Newspaper, label: "Insights", ko: "인사이트", desc: "News & industry updates" },
-  { to: "/contact", icon: Mail, label: "Contact", ko: "문의하기", desc: "Get a quote or talk" },
+  { to: "/our-story", icon: BookOpen, en: "Our Story", ko: "회사소개", descEn: "Who we are and why", descKo: "우리는 누구이며 무엇을 지향하는가" },
+  { to: "/services", icon: Boxes, en: "Services", ko: "서비스", descEn: "Ocean, air, express, special cargo", descKo: "해상·항공·특송·특수화물" },
+  { to: "/global-network", icon: Globe2, en: "Global Network", ko: "글로벌 네트워크", descEn: "120+ countries, 6 continents", descKo: "120개국, 6대륙 네트워크" },
+  { to: "/trade-solutions", icon: TrendingUp, en: "Trade Solutions", ko: "트레이드 솔루션", descEn: "Cross-border B2B commerce", descKo: "국경을 넘는 B2B 커머스" },
+  { to: "/insights", icon: Newspaper, en: "Insights", ko: "인사이트", descEn: "News & industry updates", descKo: "뉴스와 산업 동향" },
+  { to: "/contact", icon: Mail, en: "Contact", ko: "문의하기", descEn: "Get a quote or talk", descKo: "견적 요청 및 상담" },
+];
+
+const METRICS = [
+  { k: "120+", ko: "취급 국가", en: "Countries Served" },
+  { k: "6", ko: "대륙", en: "Continents" },
+  { k: "24 / 7", ko: "글로벌 운영", en: "Global Operations" },
+  { k: "AEO", ko: "인증 파트너", en: "Certified Partner" },
 ];
 
 function Home() {
+  const { lang } = useLang();
+  const ko = lang === "ko";
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden bg-navy flex flex-col">
       <img
@@ -45,7 +55,7 @@ function Home() {
             <div className="flex items-center gap-3 mb-8">
               <span className="hairline" />
               <span className="text-[11px] tracking-[0.32em] uppercase text-gold">
-                Global Logistics · Since Korea
+                {ko ? "글로벌 물류 · From Korea" : "Global Logistics · Since Korea"}
               </span>
             </div>
             <h1 className="font-display text-white text-5xl md:text-7xl xl:text-[5.5rem] leading-[1.02]">
@@ -53,23 +63,38 @@ function Home() {
               <span className="italic text-gold/90">Beyond Borders.</span>
             </h1>
             <p className="mt-8 text-white/75 text-base md:text-lg max-w-xl leading-relaxed">
-              해상·항공·특수화물·국제특송, 그리고 글로벌 비즈니스 솔루션까지.<br />
-              지구글로벌은 세계와 고객을 연결합니다.
+              {ko ? (
+                <>
+                  해상·항공·특수화물·국제특송, 그리고 글로벌 비즈니스 솔루션까지.<br />
+                  지구글로벌은 세계와 고객을 연결합니다.
+                </>
+              ) : (
+                <>
+                  Ocean, air, special cargo and international express — plus end-to-end global business solutions.<br />
+                  JIGU GLOBAL connects our clients to the world.
+                </>
+              )}
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link to="/contact" className="btn-gold">
-                Request a Quote <ArrowRight size={16} />
+                {ko ? "견적 요청" : "Request a Quote"} <ArrowRight size={16} />
               </Link>
-              <Link to="/services" className="btn-ghost-light">Explore Services</Link>
+              <Link to="/services" className="btn-ghost-light">{ko ? "서비스 살펴보기" : "Explore Services"}</Link>
             </div>
           </div>
 
           <div className="animate-fade-up" style={{ animationDelay: "0.15s" }}>
             <span className="text-[11px] tracking-[0.25em] uppercase text-gold mb-4 block">
-              Quick Links
+              {ko ? "바로가기" : "Quick Links"}
             </span>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {CTA_CARDS.map(({ to, icon: Icon, label, ko, desc }) => (
+              {CTA_CARDS.map((card) => {
+                const Icon = card.icon;
+                const to = card.to;
+                const label = ko ? card.ko : card.en;
+                const sub = ko ? card.en : card.ko;
+                const desc = ko ? card.descKo : card.descEn;
+                return (
                 <Link
                   key={to}
                   to={to}
@@ -84,29 +109,25 @@ function Home() {
                       {label}
                     </div>
                     <div className="text-[11px] tracking-[0.18em] uppercase text-white/50">
-                      {ko}
+                      {sub}
                     </div>
                   </div>
                   <div className="text-xs text-white/50 leading-relaxed">
                     {desc}
                   </div>
                 </Link>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
 
         {/* metric strip */}
         <div className="mt-auto pt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 border border-white/10 backdrop-blur-sm">
-          {[
-            ["120+", "Countries Served"],
-            ["6", "Continents"],
-            ["24 / 7", "Global Operations"],
-            ["AEO", "Certified Partner"],
-          ].map(([k, v]) => (
-            <div key={v} className="bg-navy-deep/60 px-6 py-6">
-              <div className="font-display text-3xl md:text-4xl text-white">{k}</div>
-              <div className="mt-1 text-[11px] tracking-[0.22em] uppercase text-white/55">{v}</div>
+          {METRICS.map((m) => (
+            <div key={m.en} className="bg-navy-deep/60 px-6 py-6">
+              <div className="font-display text-3xl md:text-4xl text-white">{m.k}</div>
+              <div className="mt-1 text-[11px] tracking-[0.22em] uppercase text-white/55">{ko ? m.ko : m.en}</div>
             </div>
           ))}
         </div>
