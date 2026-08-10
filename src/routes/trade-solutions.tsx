@@ -20,14 +20,14 @@ export const Route = createFileRoute("/trade-solutions")({
 });
 
 const CURRENT = [
-  { Icon: ShoppingBag, t: { ko: "장비 트레이딩", en: "Equipment Trading" }, d: { ko: "기계·장비 수출입 트레이딩 및 소싱 지원.", en: "Import/export trading and sourcing support for machinery and equipment." } },
-  { Icon: ShoppingBag, t: { ko: "식품 트레이딩", en: "Food Products" }, d: { ko: "식품류 수출입 및 글로벌 유통 파트너십.", en: "Import/export of food products and global distribution partnerships." } },
-  { Icon: FileText, t: { ko: "무역 대행", en: "Trade Agency" }, d: { ko: "수출입 대행 및 무역 행정 토탈 서비스.", en: "End-to-end import/export agency and trade administration services." } },
+  { Icon: ShoppingBag, t: { ko: "장비 수입", en: "Equipment Trading" }, d: { ko: "기계·장비 소싱 및 수출입 지원.", en: "Import/export trading and sourcing support for machinery and equipment." } },
+  { Icon: ShoppingBag, t: { ko: "식품 수출입", en: "Food Products" }, d: { ko: "식품류 소싱 및 수출입, 유통/판매", en: "Import/export of food products and global distribution partnerships." } },
+  { Icon: FileText, t: { ko: "무역 대행", en: "Trade Agency" }, d: { ko: "수출입 대행 및 무역 행정\n토탈 서비스.", en: "End-to-end import/export agency and trade administration services." } },
 ];
 
 const FUTURE = [
-  { Icon: Globe, t: { ko: "글로벌 트레이딩 플랫폼", en: "Global Trading Platform" }, d: { ko: "국가 간 무역을 위한 디지털 플랫폼 구축.", en: "Building a digital platform for cross-border trade." } },
-  { Icon: Globe, t: { ko: "국경 간 커머스", en: "Cross-border Commerce" }, d: { ko: "글로벌 이커머스 운영 전과정 통합 지원.", en: "Integrated support across the entire global e-commerce operation." } },
+  { Icon: Globe, t: { ko: "글로벌 트레이딩 플랫폼", en: "Global Trading Platform" }, d: { ko: "국가 간 무역을 위한 디지털 플랫폼\n구축.", en: "Building a digital platform for cross-border trade." } },
+  { Icon: Globe, t: { ko: "국경 간 커머스", en: "Cross-border Commerce" }, d: { ko: "글로벌 이커머스 운영 전과정\n통합 지원.", en: "Integrated support across the entire global e-commerce operation." } },
   { Icon: FileText, t: { ko: "수출입 컨설팅", en: "Import & Export Consulting" }, d: { ko: "국가별 통관·인증 전문 컨설팅 서비스.", en: "Specialized customs and certification consulting by country." } },
   { Icon: Handshake, t: { ko: "B2B 매칭", en: "B2B Matching" }, d: { ko: "검증된 글로벌 B2B 파트너 매칭.", en: "Matching with vetted global B2B partners." } },
 ];
@@ -56,7 +56,7 @@ function Trade() {
                   <Icon className="size-6 text-gold mt-1 shrink-0" strokeWidth={1.4} />
                   <div>
                     <div className="font-display text-xl text-navy">{ko ? t.ko : t.en}</div>
-                    <div className="text-sm text-foreground/70 mt-1">{ko ? d.ko : d.en}</div>
+                    <div className="text-sm text-foreground/70 mt-1 whitespace-pre-line">{ko ? d.ko : d.en}</div>
                   </div>
                 </div>
               ))}
@@ -65,14 +65,14 @@ function Trade() {
 
           <Reveal delay={120}>
             <span className="eyebrow"><span className="hairline" /> {ko ? "미래" : "Tomorrow"}</span>
-            <h2 className="font-display mt-6 text-4xl md:text-5xl text-navy leading-tight">{ko ? "향후 확장" : "Future Expansion"}</h2>
+            <h2 className="font-display mt-6 text-4xl md:text-5xl text-navy leading-tight">{ko ? "미래 비전" : "Future Expansion"}</h2>
             <div className="mt-10 space-y-px bg-border border border-border">
               {FUTURE.map(({ Icon, t, d }) => (
                 <div key={t.en} className="bg-background p-7 flex gap-5">
                   <Icon className="size-6 text-gold mt-1 shrink-0" strokeWidth={1.4} />
                   <div>
                     <div className="font-display text-xl text-navy">{ko ? t.ko : t.en}</div>
-                    <div className="text-sm text-foreground/70 mt-1">{ko ? d.ko : d.en}</div>
+                    <div className="text-sm text-foreground/70 mt-1 whitespace-pre-line">{ko ? d.ko : d.en}</div>
                   </div>
                 </div>
               ))}
