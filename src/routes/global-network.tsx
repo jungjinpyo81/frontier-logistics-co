@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import network from "@/assets/global-network.jpg";
+import mapAsset from "@/assets/global-network-map.png.asset.json";
+
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
