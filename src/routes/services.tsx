@@ -49,6 +49,8 @@ const SERVICES = [
   },
   {
     icon: Warehouse, en: "Warehousing Solutions", ko: "보관·풀필먼트",
+    image: warehouseInterior.url,
+    keepBadge: true,
     desc: { ko: "보관·리패킹·풀필먼트·디스트리뷰션을 통합 운영하는 글로벌 창고 네트워크.", en: "A global warehouse network integrating storage, repacking, fulfillment, and distribution." },
     items: { ko: ["보관", "리패킹", "풀필먼트", "물류센터 연계"], en: ["Storage", "Repacking", "Fulfillment", "Distribution Center Integration"] },
   },
