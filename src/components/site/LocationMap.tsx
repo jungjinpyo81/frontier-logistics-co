@@ -5,9 +5,9 @@ import { Reveal } from "@/components/site/Reveal";
 const ADDRESS_KO = "경기도 고양시 덕양구 청초로 10, A1-418";
 const ADDRESS_EN = "10 Cheongcho-ro, Deogyang-gu, Goyang-si, Gyeonggi-do, Korea (A1-418)";
 
-// 청초로 좌표 — 마커를 지도 중앙에 표시하기 위해 좌표 기반 임베드 사용
-const LAT = 37.5793;
-const LNG = 126.8644;
+// 청초로 10 지식산업센터 A타워(A1-418) 좌표 — 마커를 정확한 건물 위치에 표시
+const LAT = 37.5807;
+const LNG = 126.8572;
 
 const embedSrc = `https://www.google.com/maps?q=${LAT},${LNG}&center=${LAT},${LNG}&z=16&hl=ko&output=embed`;
 const viewUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS_KO)}`;
