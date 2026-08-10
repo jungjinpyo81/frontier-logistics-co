@@ -26,11 +26,12 @@ const CTA_CARDS = [
   { to: "/contact", icon: Mail, en: "Contact", ko: "문의하기", descEn: "Get a quote or talk", descKo: "견적 요청 및 상담" },
 ];
 
-const METRICS = [
-  { k: "120+", ko: "취급 국가", en: "Countries Served" },
-  { k: "6", ko: "대륙", en: "Continents" },
-  { k: "24 / 7", ko: "글로벌 운영", en: "Global Operations" },
-  { k: "AEO", ko: "인증 파트너", en: "Certified Partner" },
+const TIMELINE = [
+  { y: "2011", ko: "서정물류 평택 화물운송업 시작", en: "Seojeong Logistics founded — freight transport in Pyeongtaek" },
+  { y: "2013", ko: "화물운송 및 중장비 사업", en: "Expanded into freight and heavy equipment" },
+  { y: "2016", ko: "바닥청소차 렌탈사업 확장", en: "Expanded into floor-sweeper rental business" },
+  { y: "2021", ko: "주식회사 변환 및 자회사 ㈜지구글로벌 발족", en: "Incorporated; launched subsidiary JIGU GLOBAL Co., Ltd." },
+  { y: "2022", ko: "사세확장으로 인한 ㈜지구글로벌 분사", en: "JIGU GLOBAL spun off following business growth" },
 ];
 
 function Home() {
