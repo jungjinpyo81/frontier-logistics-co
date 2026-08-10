@@ -80,8 +80,7 @@ function Contact() {
             {ko ? (
               <>
                 귀사의 비즈니스가 <br />
-                한 단계 더 도약할 수 있도록 <br />
-                <span className="italic text-gold">함께합니다.</span>
+                한 단계 더 도약할 수 있도록&nbsp;함께합니다. <br />
               </>
             ) : (
               <>
