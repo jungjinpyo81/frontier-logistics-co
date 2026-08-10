@@ -26,6 +26,14 @@ const VALUES = [
   { n: "03", t: { ko: "혁신", en: "Innovation" }, ko: "Innovation", d: { ko: "기술과 투명성, 세심한 관리로 포워딩을 혁신합니다.", en: "We modernize forwarding with technology, transparency, and care." } },
 ];
 
+const TIMELINE = [
+  { y: "2011", icon: Truck, ko: "서정물류 평택 화물운송업 시작", en: "Seojeong Logistics founded — freight transport in Pyeongtaek" },
+  { y: "2013", icon: Forklift, ko: "화물운송 및 중장비 사업", en: "Expanded into freight and heavy equipment" },
+  { y: "2016", icon: Brush, ko: "바닥청소차 렌탈사업 확장", en: "Expanded into floor-sweeper rental business" },
+  { y: "2021", icon: Building2, ko: "주식회사 변환 및 자회사 ㈜지구글로벌 발족", en: "Incorporated; launched subsidiary JIGU GLOBAL Co., Ltd." },
+  { y: "2022", icon: Globe2, ko: "사세확장으로 인한 ㈜지구글로벌 분사", en: "JIGU GLOBAL spun off following business growth" },
+];
+
 function Story() {
   const { lang } = useLang();
   const ko = lang === "ko";
