@@ -47,7 +47,7 @@ function Insights() {
       <PageHero
         eyebrow="Insights"
         title={<>Logistics, <br /><span className="italic text-gold">decoded.</span></>}
-        sub={ko ? "국제 물류, 위험물, 콜드체인, 그리고 무역 트렌드 — 지구글로벌이 전하는 인사이트." : "International logistics, dangerous goods, cold chain, and trade trends — insights from JIGU GLOBAL."}
+        sub={ko ? <>국제 물류, 위험물, 콜드체인, 그리고 무역 트렌드&nbsp;<br />지구글로벌이 전하는 인사이트.</> : "International logistics, dangerous goods, cold chain, and trade trends — insights from JIGU GLOBAL."}
         image={network}
       />
 
