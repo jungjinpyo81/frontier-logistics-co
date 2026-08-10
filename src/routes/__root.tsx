@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/site/Navbar";
 import { Footer } from "../components/site/Footer";
+import { LocationMap } from "../components/site/LocationMap";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "../lib/i18n";
 
@@ -107,6 +108,7 @@ function RootComponent() {
         <main>
           <Outlet />
         </main>
+        <LocationMap />
         <Footer />
         <Toaster position="top-center" richColors />
       </LanguageProvider>
