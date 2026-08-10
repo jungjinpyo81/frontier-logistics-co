@@ -108,7 +108,6 @@ function RootComponent() {
         <main>
           <Outlet />
         </main>
-        <LocationMap />
         <Footer />
         <Toaster position="top-center" richColors />
       </LanguageProvider>
