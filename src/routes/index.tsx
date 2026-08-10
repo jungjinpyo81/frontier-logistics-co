@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Boxes, Globe2, TrendingUp, BookOpen, Newspaper, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Boxes, Globe2, TrendingUp, BookOpen, Newspaper, Mail, Truck, Forklift, Brush, Building2 } from "lucide-react";
 import heroShip from "@/assets/hero-ship.jpg";
 import { useLang } from "@/lib/i18n";
 
