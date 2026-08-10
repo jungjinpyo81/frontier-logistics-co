@@ -37,6 +37,7 @@ const SERVICES = [
   },
   {
     icon: Package, en: "Express Service", ko: "국제특송",
+    image: expressDelivery.url,
     desc: { ko: "B2B 특송부터 이커머스 물류, 샘플 발송까지 — 빠르게 성장하는 국제특송 서비스.", en: "From B2B express to e-commerce logistics and sample shipping — our fast-growing international express service." },
     items: { ko: ["B2B 특송", "이커머스 물류", "샘플 발송", "긴급 배송"], en: ["B2B Express", "E-commerce Logistics", "Sample Shipping", "Urgent Delivery"] },
   },
