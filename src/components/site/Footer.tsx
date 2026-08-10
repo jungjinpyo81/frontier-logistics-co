@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useLang } from "@/lib/i18n";
+import kakaoAsset from "@/assets/kakaotalk.png.asset.json";
 
 export function Footer() {
   const { lang, setLang } = useLang();
@@ -35,7 +36,15 @@ export function Footer() {
               [ko ? "견적 요청" : "Request a Quote", "/contact"],
               ["sj.hwang@g9global.net", "/contact"],
               ["+82 31 651 4473", "/contact"],
-              ["KakaoTalk", "/contact"],
+              [
+                <img
+                  src={kakaoAsset.url}
+                  alt="KakaoTalk"
+                  className="h-6 w-6 object-contain invert opacity-70 hover:opacity-100 transition"
+                />,
+                "/contact",
+              ],
+
             ]}
           />
         </div>
@@ -59,13 +68,13 @@ export function Footer() {
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: [string, string][] }) {
+function FooterCol({ title, links }: { title: string; links: [React.ReactNode, string][] }) {
   return (
     <div>
       <h4 className="text-[11px] tracking-[0.25em] uppercase text-gold mb-5">{title}</h4>
       <ul className="space-y-3">
-        {links.map(([label, to]) => (
-          <li key={label}>
+        {links.map(([label, to], i) => (
+          <li key={i}>
             <Link to={to} className="text-sm text-white/70 hover:text-gold transition">
               {label}
             </Link>
