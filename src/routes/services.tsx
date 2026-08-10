@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Ship, Plane, Package, Truck, Warehouse, ArrowRight, Check, Snowflake, Flame, HardHat, Sparkles } from "lucide-react";
 import air from "@/assets/air-freight.jpg";
 import oceanPort from "@/assets/ocean-freight-port.jpg.asset.json";
+import airCargo from "@/assets/air-freight-cargo.jpg.asset.json";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
