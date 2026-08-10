@@ -94,10 +94,11 @@ function Home() {
       <div className="container-x">
         <div className="relative aspect-video w-full overflow-hidden border border-white/10 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.4)]">
           <iframe
-            src="https://player.vimeo.com/video/1217004087"
-            title="JIGU GLOBAL"
+            src="https://player.vimeo.com/video/1217004087?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+            title="G9 GLOBAL"
             className="absolute inset-0 size-full"
-            allow="autoplay; fullscreen; picture-in-picture"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           />
         </div>
