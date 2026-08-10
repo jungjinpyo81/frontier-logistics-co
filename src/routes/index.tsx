@@ -26,11 +26,12 @@ const CTA_CARDS = [
   { to: "/contact", icon: Mail, en: "Contact", ko: "문의하기", descEn: "Get a quote or talk", descKo: "견적 요청 및 상담" },
 ];
 
-const METRICS = [
-  { k: "120+", ko: "취급 국가", en: "Countries Served" },
-  { k: "6", ko: "대륙", en: "Continents" },
-  { k: "24 / 7", ko: "글로벌 운영", en: "Global Operations" },
-  { k: "AEO", ko: "인증 파트너", en: "Certified Partner" },
+const TIMELINE = [
+  { y: "2011", ko: "서정물류 평택 화물운송업 시작", en: "Seojeong Logistics founded — freight transport in Pyeongtaek" },
+  { y: "2013", ko: "화물운송 및 중장비 사업", en: "Expanded into freight and heavy equipment" },
+  { y: "2016", ko: "바닥청소차 렌탈사업 확장", en: "Expanded into floor-sweeper rental business" },
+  { y: "2021", ko: "주식회사 변환 및 자회사 ㈜지구글로벌 발족", en: "Incorporated; launched subsidiary JIGU GLOBAL Co., Ltd." },
+  { y: "2022", ko: "사세확장으로 인한 ㈜지구글로벌 분사", en: "JIGU GLOBAL spun off following business growth" },
 ];
 
 function Home() {
@@ -122,15 +123,27 @@ function Home() {
           </div>
         </div>
 
-        {/* metric strip */}
-        <div className="mt-auto pt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 border border-white/10 backdrop-blur-sm">
-          {METRICS.map((m) => (
-            <div key={m.en} className="bg-navy-deep/60 px-6 py-6">
-              <div className="font-display text-3xl md:text-4xl text-white">{m.k}</div>
-              <div className="mt-1 text-[11px] tracking-[0.22em] uppercase text-white/55">{ko ? m.ko : m.en}</div>
-            </div>
-          ))}
+        {/* company history */}
+        <div className="mt-auto pt-12">
+          <span className="text-[11px] tracking-[0.25em] uppercase text-gold mb-5 block">
+            {ko ? "회사 연혁" : "Our History"}
+          </span>
+          <div className="border border-white/10 bg-navy-deep/50 backdrop-blur-sm px-6 py-7 md:px-8">
+            <ol className="relative grid gap-6 md:grid-cols-5 md:gap-4">
+              <span className="hidden md:block absolute left-0 right-0 top-[7px] h-px bg-white/15" />
+              {TIMELINE.map((t) => (
+                <li key={t.y} className="relative flex gap-3 md:block">
+                  <span className="mt-1 md:mt-0 size-3.5 shrink-0 rounded-full border-2 border-gold bg-navy-deep md:mb-4 block" />
+                  <div>
+                    <div className="font-display text-2xl md:text-3xl text-white leading-none">{t.y}</div>
+                    <div className="mt-2 text-xs md:text-[13px] text-white/60 leading-relaxed">{ko ? t.ko : t.en}</div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
+
       </div>
     </section>
   );
