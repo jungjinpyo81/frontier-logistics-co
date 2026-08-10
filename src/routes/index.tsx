@@ -201,5 +201,7 @@ function Home() {
         </div>
       </div>
     </section>
+
+    <LocationMap />
   );
 }
