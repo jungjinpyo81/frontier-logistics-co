@@ -202,16 +202,6 @@ function Contact() {
         </div>
       </section>
 
-      <section className="bg-mist py-0">
-        <div className="aspect-[16/6] w-full bg-navy-deep relative overflow-hidden">
-          <iframe
-            title="JIGU GLOBAL HQ"
-            src="https://www.google.com/maps?q=Seoul,South+Korea&output=embed"
-            className="absolute inset-0 size-full grayscale-[40%] opacity-90"
-            loading="lazy"
-          />
-        </div>
-      </section>
     </>
   );
 }
