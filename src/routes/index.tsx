@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Boxes, Globe2, TrendingUp, BookOpen, Newspaper, Mail, Truck, Forklift, Brush, Building2 } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Boxes, Globe2, TrendingUp, BookOpen, Newspaper, Mail, Ship, Plane, PackageCheck, Sparkles } from "lucide-react";
 import heroShip from "@/assets/hero-ship.jpg";
 import { useLang } from "@/lib/i18n";
 
@@ -72,38 +72,15 @@ const CTA_CARDS = [
   },
 ];
 
-const TIMELINE = [
-  {
-    y: "2011",
-    icon: Truck,
-    ko: "서정물류\n평택 화물운송업 시작",
-    en: "Seojeong Logistics founded — freight transport in Pyeongtaek",
-  },
-  {
-    y: "2013",
-    icon: Forklift,
-    ko: "화물운송 및\n중장비 사업",
-    en: "Expanded into freight and heavy equipment",
-  },
-  {
-    y: "2016",
-    icon: Brush,
-    ko: "바닥청소차\n렌탈사업 확장",
-    en: "Expanded into floor-sweeper rental business",
-  },
-  {
-    y: "2021",
-    icon: Building2,
-    ko: "주식회사 변환 및\n자회사 ㈜지구글로벌 발족",
-    en: "Incorporated; launched subsidiary JIGU GLOBAL Co., Ltd.",
-  },
-  {
-    y: "2022",
-    icon: Globe2,
-    ko: "사세확장으로 인한\n㈜지구글로벌 분사",
-    en: "JIGU GLOBAL spun off following business growth",
-  },
+const WHAT_WE_DO = [
+  { icon: Ship, ko: "해상운송", en: "Ocean Freight", koD: "FCL·LCL·Bulk", enD: "FCL · LCL · Bulk" },
+  { icon: Plane, ko: "항공운송", en: "Air Freight", koD: "긴급·정기 화물", enD: "Urgent & scheduled cargo" },
+  { icon: PackageCheck, ko: "국제특송", en: "Int'l Express", koD: "소화물·도어투도어", enD: "Parcel · door-to-door" },
+  { icon: Sparkles, ko: "특수화물", en: "Special Cargo", koD: "위험물·콜드체인·프로젝트", enD: "DG · cold chain · project" },
+  { icon: TrendingUp, ko: "무역 솔루션", en: "Trade Solutions", koD: "통관·수출입 대행", enD: "Customs & trade support" },
 ];
+
+
 
 
 function Home() {
@@ -197,32 +174,28 @@ function Home() {
           </div>
         </div>
 
-        {/* company history */}
+        {/* what we do */}
         <div className="mt-auto pt-12">
           <span className="text-[11px] tracking-[0.25em] uppercase text-gold mb-5 block">
-            {ko ? "회사 연혁" : "Our History"}
+            {ko ? "우리가 하는 일" : "What We Do"}
           </span>
           <div className="border border-white/10 bg-navy-deep/50 backdrop-blur-sm px-6 py-7 md:px-8">
-            <ol className="relative grid gap-7 md:grid-cols-5 md:gap-4">
-              <span className="hidden md:block absolute left-0 right-0 top-[22px] h-px bg-white/15" />
-              {TIMELINE.map((t) => {
-                const Icon = t.icon;
+            <ol className="grid grid-cols-2 md:grid-cols-5 gap-5 md:gap-4">
+              {WHAT_WE_DO.map((item) => {
+                const Icon = item.icon;
                 return (
-                  <li key={t.y} className="group relative flex gap-4 md:block">
-                    <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-navy-deep text-gold transition duration-300 group-hover:border-gold group-hover:bg-gold/10 group-hover:-translate-y-0.5 md:mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+                  <li key={item.en} className="group flex flex-col items-center text-center gap-3">
+                    <span className="flex size-11 items-center justify-center rounded-full border border-gold/50 bg-navy-deep text-gold transition duration-300 group-hover:border-gold group-hover:bg-gold/10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
                       <Icon size={20} strokeWidth={1.5} />
                     </span>
                     <div>
-                      <div className="font-display text-2xl md:text-3xl text-white leading-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{t.y}</div>
-                      <div className="mt-2 text-xs md:text-[13px] text-white/60 whitespace-pre-line leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">
-                        {ko ? t.ko : t.en}
-                      </div>
+                      <div className="text-[14px] font-medium text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{ko ? item.ko : item.en}</div>
+                      <div className="mt-1 text-[11px] text-white/55 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">{ko ? item.koD : item.enD}</div>
                     </div>
                   </li>
                 );
               })}
             </ol>
-
           </div>
         </div>
       </div>

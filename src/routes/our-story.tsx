@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Truck, Forklift, Brush, Building2, Globe2 } from "lucide-react";
 import containers from "@/assets/containers.jpg";
 import warehouse from "@/assets/warehouse.jpg";
 import air from "@/assets/air-freight.jpg";
@@ -24,6 +24,14 @@ const VALUES = [
   { n: "01", t: { ko: "신뢰", en: "Trust" }, ko: "Trust", d: { ko: "매 화물마다 정시에, 완전하게 배송함으로써 신뢰를 얻습니다.", en: "We earn trust by delivering — on time, in full, every shipment." } },
   { n: "02", t: { ko: "연결", en: "Connection" }, ko: "Connection", d: { ko: "대륙을 넘어 시장과 네트워크, 사람을 연결합니다.", en: "We connect markets, networks, and people across continents." } },
   { n: "03", t: { ko: "혁신", en: "Innovation" }, ko: "Innovation", d: { ko: "기술과 투명성, 세심한 관리로 포워딩을 혁신합니다.", en: "We modernize forwarding with technology, transparency, and care." } },
+];
+
+const TIMELINE = [
+  { y: "2011", icon: Truck, ko: "서정물류 평택 화물운송업 시작", en: "Seojeong Logistics founded — freight transport in Pyeongtaek" },
+  { y: "2013", icon: Forklift, ko: "화물운송 및 중장비 사업", en: "Expanded into freight and heavy equipment" },
+  { y: "2016", icon: Brush, ko: "바닥청소차 렌탈사업 확장", en: "Expanded into floor-sweeper rental business" },
+  { y: "2021", icon: Building2, ko: "주식회사 변환 및 자회사 ㈜지구글로벌 발족", en: "Incorporated; launched subsidiary JIGU GLOBAL Co., Ltd." },
+  { y: "2022", icon: Globe2, ko: "사세확장으로 인한 ㈜지구글로벌 분사", en: "JIGU GLOBAL spun off following business growth" },
 ];
 
 function Story() {
@@ -82,6 +90,36 @@ function Story() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-28 md:py-40">
+        <div className="container-x">
+          <Reveal className="max-w-2xl mb-16">
+            <span className="eyebrow"><span className="hairline" /> History</span>
+            <h2 className="font-display mt-6 text-4xl md:text-5xl text-navy">{ko ? "회사 연혁." : "Our History."}</h2>
+          </Reveal>
+          <Reveal>
+            <ol className="relative grid gap-10 md:grid-cols-5 md:gap-4">
+              <span className="hidden md:block absolute left-0 right-0 top-[22px] h-px bg-border" />
+              {TIMELINE.map((t) => {
+                const Icon = t.icon;
+                return (
+                  <li key={t.y} className="group relative flex gap-4 md:block">
+                    <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-background text-gold transition duration-300 group-hover:border-gold group-hover:bg-gold/10 md:mb-4">
+                      <Icon size={20} strokeWidth={1.5} />
+                    </span>
+                    <div>
+                      <div className="font-display text-2xl md:text-3xl text-navy leading-none">{t.y}</div>
+                      <div className="mt-2 text-xs md:text-[13px] text-foreground/60 leading-relaxed">
+                        {ko ? t.ko : t.en}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </Reveal>
         </div>
       </section>
 
