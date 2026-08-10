@@ -28,7 +28,7 @@ export function Footer() {
               <span className="hairline" />
               <span className="text-[11px] tracking-[0.25em] uppercase text-white/40">Est. Seoul · Korea</span>
             </div>
-            <div className="mt-5 text-[11px] leading-relaxed text-white/40">
+            <div className="mt-5 text-[13px] leading-relaxed text-white/40">
               (주)지구글로벌 / {ko ? "주소" : "Address"} : 경기도 덕양구 청초로 10, A1-418호 / {ko ? "사업자등록번호" : "Business No."} : 425-86-02424
             </div>
           </div>
