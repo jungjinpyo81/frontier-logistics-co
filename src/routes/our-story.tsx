@@ -171,8 +171,8 @@ function ParallaxImage({ src, ko }: { src: string; ko: boolean }) {
       <img src={src} alt="" width={1280} height={960} loading="lazy" className="absolute inset-0 size-full object-cover" />
       <div className="absolute inset-0 bg-navy/30" />
       <div className="relative container-x h-full flex items-center">
-        <p className="font-display text-white text-3xl md:text-5xl max-w-2xl leading-tight">
-          {ko ? <>"우리는 화물이 아니라 <span className="italic text-gold">가능성을 전달합니다.</span>"</> : <>"We don't just ship cargo — <span className="italic text-gold">we deliver possibility.</span>"</>}
+        <p className="font-display text-white text-3xl md:text-5xl max-w-2xl leading-tight whitespace-pre-line">
+          {ko ? <>"우리는 화물이 아니라 <br /><span className="italic text-gold">가능성을 전달합니다.</span>"</> : <>"We don't just ship cargo — <span className="italic text-gold">we deliver possibility.</span>"</>}
         </p>
       </div>
     </section>
