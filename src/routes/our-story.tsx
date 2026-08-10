@@ -21,7 +21,7 @@ export const Route = createFileRoute("/our-story")({
 });
 
 const VALUES = [
-  { n: "01", t: { ko: "신뢰", en: "Trust" }, ko: "Trust", d: { ko: "매 화물마다 정시에, 완전하게 배송함으로써 신뢰를 얻습니다.", en: "We earn trust by delivering — on time, in full, every shipment." } },
+  { n: "01", t: { ko: "신뢰", en: "Trust" }, ko: "Trust", d: { ko: "매 화물마다 정시에\n안전하게 배송함으로써 신뢰를 얻습니다.", en: "We earn trust by delivering — on time, in full, every shipment." } },
   { n: "02", t: { ko: "연결", en: "Connection" }, ko: "Connection", d: { ko: "대륙을 넘어 시장과 네트워크, 사람을 연결합니다.", en: "We connect markets, networks, and people across continents." } },
   { n: "03", t: { ko: "혁신", en: "Innovation" }, ko: "Innovation", d: { ko: "기술과 투명성, 세심한 관리로 포워딩을 혁신합니다.", en: "We modernize forwarding with technology, transparency, and care." } },
 ];
@@ -81,7 +81,7 @@ function Story() {
           <Reveal>
             <span className="eyebrow"><span className="hairline" />Philosophy</span>
             <h2 className="font-display mt-6 text-3xl md:text-5xl text-navy leading-tight">
-              {ko ? <>더 연결된 세상을 위한 <span className="italic">파트너.</span></> : <>A partner for a more <span className="italic">connected world.</span></>}
+              {ko ? <>더 넓은 시장을 위한 <span className="italic">파트너.</span></> : <>A partner for a more <span className="italic">connected world.</span></>}
             </h2>
           </Reveal>
           <Reveal delay={120} className="space-y-7 text-foreground/75 text-[15px] leading-[1.9]">
@@ -89,7 +89,7 @@ function Story() {
               <>
                 <p>글로벌 물류 환경이 빠르게 변하고 복잡해지는 시대, 지구글로벌은 고객이 전세계 어디서든<br />안정적으로&nbsp;사업을 운영할 수 있도록 돕는 신뢰할 수 있는 물류 파트너가 되고자 합니다.</p>
                 <p>우리는 해상·항공·특수화물·국제특송, 그리고 글로벌 비즈니스 솔루션을 통합적으로 제공하며, 단순한 운송이 아닌 고객의 비즈니스 성장을 함께 설계합니다.</p>
-                <p>서울에서 세계 모든 대륙까지 — 지구글로벌은 사람과 가능성, 그리고 진보를 연결합니다.</p>
+                <p>서울에서 전세계 어디든 — 지구글로벌은 사람과 가능성, 그리고 내일을 연결합니다.</p>
               </>
             ) : (
               <>
@@ -115,7 +115,7 @@ function Story() {
                   <div className="font-display text-gold text-2xl">{v.n}</div>
                   <h3 className="mt-10 font-display text-3xl text-navy">{v.t.en}</h3>
                   <div className="text-[11px] tracking-[0.25em] uppercase text-muted-foreground mt-1">{v.ko}</div>
-                  <p className="mt-6 text-sm text-foreground/70 leading-relaxed">{ko ? v.d.ko : v.d.en}</p>
+                  <p className="mt-6 text-sm text-foreground/70 leading-relaxed whitespace-pre-line">{ko ? v.d.ko : v.d.en}</p>
                 </div>
               </Reveal>
             ))}
@@ -131,7 +131,7 @@ function Story() {
           <Reveal delay={120}>
             <span className="eyebrow"><span className="hairline" /> Vision</span>
             <h2 className="font-display mt-6 text-4xl md:text-5xl leading-tight">
-              {ko ? <>대한민국을 대표하는 <span className="italic text-gold">가장 신뢰받는</span> 글로벌 물류 브랜드.</> : <>To become Korea's <span className="italic text-gold">most trusted</span> global logistics brand.</>}
+              {ko ? <>대한민국을 대표하는 <br /><span className="italic text-gold">가장 신뢰받는</span> 글로벌 물류 브랜드.</> : <>To become Korea's <span className="italic text-gold">most trusted</span> global logistics brand.</>}
             </h2>
             <p className="mt-8 text-white/70 leading-relaxed max-w-md">
               {ko ? "우리는 한국을 대표하는 글로벌 물류 브랜드로 성장하여, 세계 어느 곳에서도 우리의 고객이 안정적으로 비즈니스를 이어갈 수 있는 인프라가 되겠습니다." : "We aim to grow into Korea's leading global logistics brand — the infrastructure that lets our clients run their business reliably, anywhere in the world."}
