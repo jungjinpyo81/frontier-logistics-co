@@ -29,7 +29,7 @@ const CTA_CARDS = [
     en: "Our Story",
     ko: "회사소개",
     descEn: "Who we are and why",
-    descKo: "우리는 누구이며 무엇을 지향하는가",
+    descKo: "우리는 누구이며\n무엇을 지향하는가",
   },
   {
     to: "/services",
@@ -37,7 +37,7 @@ const CTA_CARDS = [
     en: "Services",
     ko: "서비스",
     descEn: "Ocean, air, express, special cargo",
-    descKo: "해상·항공·특송·특수화물",
+    descKo: "해상·항공·특송·\n특수화물",
   },
   {
     to: "/global-network",
@@ -45,7 +45,7 @@ const CTA_CARDS = [
     en: "Global Network",
     ko: "글로벌 네트워크",
     descEn: "120+ countries, 6 continents",
-    descKo: "120개국, 6대륙 네트워크",
+    descKo: "120개국, 6대륙\n네트워크",
   },
   {
     to: "/trade-solutions",
@@ -53,7 +53,7 @@ const CTA_CARDS = [
     en: "Trade Solutions",
     ko: "무역 솔루션",
     descEn: "Cross-border B2B commerce",
-    descKo: "국경을 넘는 B2B 커머스",
+    descKo: "국경을 넘\n\u00A0B2B 커머스",
   },
   {
     to: "/insights",
@@ -77,7 +77,7 @@ const WHAT_WE_DO = [
   { icon: Ship, ko: "해상운송", en: "Ocean Freight", koD: "FCL·LCL·Bulk", enD: "FCL · LCL · Bulk" },
   { icon: Plane, ko: "항공운송", en: "Air Freight", koD: "긴급·정기 화물", enD: "Urgent & scheduled cargo" },
   { icon: PackageCheck, ko: "국제특송", en: "Int'l Express", koD: "소화물·도어투도어", enD: "Parcel · door-to-door" },
-  { icon: Sparkles, ko: "특수화물", en: "Special Cargo", koD: "위험물·콜드체인·프로젝트", enD: "DG · cold chain · project" },
+  { icon: Sparkles, ko: "특수화물", en: "Special Cargo", koD: "위험물·콜드체인·\n프로젝트", enD: "DG · cold chain · project" },
   { icon: TrendingUp, ko: "무역 솔루션", en: "Trade Solutions", koD: "통관·수출입 대행", enD: "Customs & trade support" },
 ];
 
@@ -134,9 +134,13 @@ function Home() {
             <p className="mt-8 text-white/75 text-base md:text-lg max-w-xl leading-relaxed">
               {ko ? (
                 <>
-                  복잡한 수출입 통관부터 해상·항공·국제특송 등 맞춤형 물류 솔루션.
+                  복잡한 수출입 통관부터 해상·항공·국제특송 등
                   <br />
-                  지구글로벌은 단순한 운송을 넘어 성공적인 글로벌 비즈니스의 길을 엽니다.
+                  맞춤형 물류 솔루션.
+                  <br />
+                  지구글로벌은 단순한 운송을 넘어 성공적인
+                  <br />
+                  글로벌 비즈니스의 길을 엽니다.
                 </>
               ) : (
                 <>
@@ -184,7 +188,7 @@ function Home() {
                       <div className="text-[15px] font-medium text-white group-hover:text-gold transition drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{label}</div>
                       <div className="text-[11px] tracking-[0.18em] uppercase text-white/50 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">{sub}</div>
                     </div>
-                    <div className="text-xs text-white/50 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">{desc}</div>
+                    <div className="text-xs text-white/50 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)] whitespace-pre-line">{desc}</div>
                   </Link>
                 );
               })}
@@ -208,7 +212,7 @@ function Home() {
                     </span>
                     <div>
                       <div className="text-[14px] font-medium text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{ko ? item.ko : item.en}</div>
-                      <div className="mt-1 text-[11px] text-white/55 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">{ko ? item.koD : item.enD}</div>
+                      <div className="mt-1 text-[11px] text-white/55 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)] whitespace-pre-line">{ko ? item.koD : item.enD}</div>
                     </div>
                   </li>
                 );
