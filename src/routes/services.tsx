@@ -51,7 +51,7 @@ const SERVICES = [
     items: { ko: ["국내 트럭킹", "철도 운송", "라스트마일 배송", "국내 유통"], en: ["Local Trucking", "Rail Transportation", "Last Mile Delivery", "Domestic Distribution"] },
   },
   {
-    icon: Warehouse, en: "Warehousing Solutions", ko: "보관·풀필먼트",
+    icon: Warehouse, en: "Warehousing Solutions", ko: "창고 (일반/특수)",
     image: warehouseInterior.url,
     keepBadge: true,
     desc: { ko: "보관·리패킹·풀필먼트·디스트리뷰션을 통합 운영하는 글로벌 창고 네트워크.", en: "A global warehouse network integrating storage, repacking, fulfillment, and distribution." },
