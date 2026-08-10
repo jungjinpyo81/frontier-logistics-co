@@ -65,7 +65,7 @@ function Trade() {
 
           <Reveal delay={120}>
             <span className="eyebrow"><span className="hairline" /> {ko ? "미래" : "Tomorrow"}</span>
-            <h2 className="font-display mt-6 text-4xl md:text-5xl text-navy leading-tight">{ko ? "향후 확장" : "Future Expansion"}</h2>
+            <h2 className="font-display mt-6 text-4xl md:text-5xl text-navy leading-tight">{ko ? "미래 비전" : "Future Expansion"}</h2>
             <div className="mt-10 space-y-px bg-border border border-border">
               {FUTURE.map(({ Icon, t, d }) => (
                 <div key={t.en} className="bg-background p-7 flex gap-5">
