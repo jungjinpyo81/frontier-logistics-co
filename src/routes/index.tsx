@@ -75,17 +75,22 @@ const CTA_CARDS = [
 const TIMELINE = [
   {
     y: "2011",
-    ko: "서정물류<br />평택 화물운송업 시작",
+    ko: "서정물류
+      평택 화물운송업 시작",
     en: "Seojeong Logistics founded — freight transport in Pyeongtaek",
   },
-  { y: "2013", ko: "화물운송<br />및 중장비 사업", en: "Expanded into freight and heavy equipment" },
-  { y: "2016", ko: "바닥청소차<br />렌탈사업 확장", en: "Expanded into floor-sweeper rental business" },
+  { y: "2013", ko: "화물운송
+    및 중장비 사업", en: "Expanded into freight and heavy equipment" },
+  { y: "2016", ko: "바닥청소차
+      렌탈사업 확장", en: "Expanded into floor-sweeper rental business" },
   {
     y: "2021",
-    ko: "주식회사 변환 및<br />자회사 ㈜지구글로벌 발족",
+    ko: "주식회사 변환 및
+      자회사 ㈜지구글로벌 발족",
     en: "Incorporated; launched subsidiary JIGU GLOBAL Co., Ltd.",
   },
-  { y: "2022", ko: "사세확장으로 인한<br />㈜지구글로벌 분사", en: "JIGU GLOBAL spun off following business growth" },
+  { y: "2022", ko: "사세확장으로 인한
+    ㈜지구글로벌 분사", en: "JIGU GLOBAL spun off following business growth" },
 ];
 
 function Home() {
