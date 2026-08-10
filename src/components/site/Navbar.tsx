@@ -125,7 +125,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
 
                 {n.sub && (
                   <div
-                    className={`absolute left-1/2 top-full z-50 -translate-x-1/2 pt-1 transition-all duration-300 ${
+                    className={`absolute left-0 top-full z-50 pt-1 transition-all duration-300 md:left-1/2 md:-translate-x-1/2 ${
                       openMenu === n.to
                         ? "visible opacity-100 translate-y-0"
                         : "invisible opacity-0 -translate-y-1"
