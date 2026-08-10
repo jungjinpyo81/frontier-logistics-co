@@ -47,6 +47,36 @@ function Story() {
       />
 
       <section className="bg-background py-28 md:py-40">
+        <div className="container-x">
+          <Reveal className="max-w-2xl mb-16">
+            <span className="eyebrow"><span className="hairline" /> History</span>
+            <h2 className="font-display mt-6 text-4xl md:text-5xl text-navy">{ko ? "회사 연혁." : "Our History."}</h2>
+          </Reveal>
+          <Reveal>
+            <ol className="relative grid gap-10 md:grid-cols-5 md:gap-4">
+              <span className="hidden md:block absolute left-0 right-0 top-[22px] h-px bg-border" />
+              {TIMELINE.map((t) => {
+                const Icon = t.icon;
+                return (
+                  <li key={t.y} className="group relative flex gap-4 md:block">
+                    <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-background text-gold transition duration-300 group-hover:border-gold group-hover:bg-gold/10 md:mb-4">
+                      <Icon size={20} strokeWidth={1.5} />
+                    </span>
+                    <div>
+                      <div className="font-display text-2xl md:text-3xl text-navy leading-none">{t.y}</div>
+                      <div className="mt-2 text-xs md:text-[13px] text-foreground/60 leading-relaxed">
+                        {ko ? t.ko : t.en}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-background py-28 md:py-40">
         <div className="container-x grid gap-20 lg:grid-cols-[1fr_1.3fr]">
           <Reveal>
             <span className="eyebrow"><span className="hairline" />Philosophy</span>
@@ -90,36 +120,6 @@ function Story() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="bg-background py-28 md:py-40">
-        <div className="container-x">
-          <Reveal className="max-w-2xl mb-16">
-            <span className="eyebrow"><span className="hairline" /> History</span>
-            <h2 className="font-display mt-6 text-4xl md:text-5xl text-navy">{ko ? "회사 연혁." : "Our History."}</h2>
-          </Reveal>
-          <Reveal>
-            <ol className="relative grid gap-10 md:grid-cols-5 md:gap-4">
-              <span className="hidden md:block absolute left-0 right-0 top-[22px] h-px bg-border" />
-              {TIMELINE.map((t) => {
-                const Icon = t.icon;
-                return (
-                  <li key={t.y} className="group relative flex gap-4 md:block">
-                    <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-background text-gold transition duration-300 group-hover:border-gold group-hover:bg-gold/10 md:mb-4">
-                      <Icon size={20} strokeWidth={1.5} />
-                    </span>
-                    <div>
-                      <div className="font-display text-2xl md:text-3xl text-navy leading-none">{t.y}</div>
-                      <div className="mt-2 text-xs md:text-[13px] text-foreground/60 leading-relaxed">
-                        {ko ? t.ko : t.en}
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
-            </ol>
-          </Reveal>
         </div>
       </section>
 
