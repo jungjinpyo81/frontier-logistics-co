@@ -4,6 +4,7 @@ import air from "@/assets/air-freight.jpg";
 import oceanPort from "@/assets/ocean-freight-port.jpg.asset.json";
 import airCargo from "@/assets/air-freight-cargo.jpg.asset.json";
 import expressDelivery from "@/assets/express-delivery.jpg.asset.json";
+import warehouseDock from "@/assets/warehouse-dock.jpg.asset.json";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
@@ -43,6 +44,7 @@ const SERVICES = [
   },
   {
     icon: Truck, en: "Inland Transportation", ko: "내륙 운송",
+    image: warehouseDock.url,
     desc: { ko: "국내·해외 트럭킹, 철도, 라스트마일을 아우르는 내륙 운송 인프라.", en: "Domestic and overseas trucking, rail, and last-mile infrastructure covering every stage of inland transport." },
     items: { ko: ["국내 트럭킹", "철도 운송", "라스트마일 배송", "국내 유통"], en: ["Local Trucking", "Rail Transportation", "Last Mile Delivery", "Domestic Distribution"] },
   },
@@ -107,12 +109,13 @@ function Services() {
                         <Icon className="size-32 md:size-44 text-navy/10" strokeWidth={0.8} />
                       </div>
                     )}
-                    {!("image" in rest && rest.image) && (
-                      <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                        <div className="font-display text-7xl md:text-8xl text-navy/15">0{i + 1}</div>
-                        <Icon className="size-10 text-gold" strokeWidth={1.2} />
-                      </div>
-                    )}
+                    {"image" in rest && rest.image ? (
+                      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy-deep/70 to-transparent" />
+                    ) : null}
+                    <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                      <div className={`font-display text-7xl md:text-8xl ${"image" in rest && rest.image ? "text-white/70 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" : "text-navy/15"}`}>0{i + 1}</div>
+                      <Icon className="size-10 text-gold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" strokeWidth={1.2} />
+                    </div>
                   </div>
                 </div>
 
