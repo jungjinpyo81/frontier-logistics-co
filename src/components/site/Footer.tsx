@@ -41,7 +41,7 @@ export function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4 text-[12px] text-white/40">
-          <div>© {new Date().getFullYear()} JIGU GLOBAL Co., Ltd. All rights reserved.</div>
+          <div>© {new Date().getFullYear()}&nbsp;G9 GLOBAL Co., Ltd. All rights reserved.</div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-gold transition">
               {ko ? "개인정보처리방침" : "Privacy"}
