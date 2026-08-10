@@ -43,6 +43,7 @@ const SERVICES = [
   },
   {
     icon: Truck, en: "Inland Transportation", ko: "내륙 운송",
+    image: warehouseDock.url,
     desc: { ko: "국내·해외 트럭킹, 철도, 라스트마일을 아우르는 내륙 운송 인프라.", en: "Domestic and overseas trucking, rail, and last-mile infrastructure covering every stage of inland transport." },
     items: { ko: ["국내 트럭킹", "철도 운송", "라스트마일 배송", "국내 유통"], en: ["Local Trucking", "Rail Transportation", "Last Mile Delivery", "Domestic Distribution"] },
   },
