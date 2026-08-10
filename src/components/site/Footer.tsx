@@ -1,6 +1,10 @@
 import { Link } from "@tanstack/react-router";
+import { useLang } from "@/lib/i18n";
 
 export function Footer() {
+  const { lang, setLang } = useLang();
+  const ko = lang === "ko";
+
   return (
     <footer className="bg-navy text-white/80">
       <div className="container-x py-20">
@@ -12,8 +16,17 @@ export function Footer() {
               className="h-10 w-auto object-contain mb-6"
             />
             <p className="text-sm leading-relaxed max-w-sm text-white/60">
-              Connecting business beyond borders. <br />
-              Global logistics solutions across every continent.
+              {ko ? (
+                <>
+                  국경을 넘어 비즈니스를 연결합니다. <br />
+                  전 대륙을 아우르는 글로벌 물류 솔루션.
+                </>
+              ) : (
+                <>
+                  Connecting business beyond borders. <br />
+                  Global logistics solutions across every continent.
+                </>
+              )}
             </p>
             <div className="mt-8 flex gap-3">
               <span className="hairline" />
@@ -24,9 +37,9 @@ export function Footer() {
           </div>
 
           <FooterCol
-            title="Contact"
+            title={ko ? "문의" : "Contact"}
             links={[
-              ["Request a Quote", "/contact"],
+              [ko ? "견적 요청" : "Request a Quote", "/contact"],
               ["sales@jiguglobal.com", "/contact"],
               ["+82 2 0000 0000", "/contact"],
               ["KakaoTalk", "/contact"],
@@ -37,9 +50,15 @@ export function Footer() {
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4 text-[12px] text-white/40">
           <div>© {new Date().getFullYear()} JIGU GLOBAL Co., Ltd. All rights reserved.</div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-gold transition">Privacy</a>
-            <a href="#" className="hover:text-gold transition">Terms</a>
-            <a href="#" className="hover:text-gold transition">한국어 · EN</a>
+            <a href="#" className="hover:text-gold transition">{ko ? "개인정보처리방침" : "Privacy"}</a>
+            <a href="#" className="hover:text-gold transition">{ko ? "이용약관" : "Terms"}</a>
+            <button
+              type="button"
+              onClick={() => setLang(ko ? "en" : "ko")}
+              className="hover:text-gold transition"
+            >
+              {ko ? "한국어 · EN" : "EN · 한국어"}
+            </button>
           </div>
         </div>
       </div>
