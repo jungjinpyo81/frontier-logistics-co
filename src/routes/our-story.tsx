@@ -4,6 +4,7 @@ import containers from "@/assets/containers.jpg";
 import warehouse from "@/assets/warehouse.jpg";
 import air from "@/assets/air-freight.jpg";
 import { Reveal } from "@/components/site/Reveal";
+import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/our-story")({
   head: () => ({
@@ -19,13 +20,21 @@ export const Route = createFileRoute("/our-story")({
   component: Story,
 });
 
+const VALUES = [
+  { n: "01", t: { ko: "신뢰", en: "Trust" }, ko: "Trust", d: { ko: "매 화물마다 정시에, 완전하게 배송함으로써 신뢰를 얻습니다.", en: "We earn trust by delivering — on time, in full, every shipment." } },
+  { n: "02", t: { ko: "연결", en: "Connection" }, ko: "Connection", d: { ko: "대륙을 넘어 시장과 네트워크, 사람을 연결합니다.", en: "We connect markets, networks, and people across continents." } },
+  { n: "03", t: { ko: "혁신", en: "Innovation" }, ko: "Innovation", d: { ko: "기술과 투명성, 세심한 관리로 포워딩을 혁신합니다.", en: "We modernize forwarding with technology, transparency, and care." } },
+];
+
 function Story() {
+  const { lang } = useLang();
+  const ko = lang === "ko";
   return (
     <>
       <PageHero
         eyebrow="Our Story"
-        title={<>We Move More <br /><span className="italic text-gold">Than Cargo.</span></>}
-        sub="우리는 단순히 화물을 운송하지 않습니다. 새로운 시장과 기회, 사람과 비즈니스를 연결합니다."
+        title={ko ? <>화물, <br /><span className="italic text-gold">그 이상을 움직입니다.</span></> : <>We Move More <br /><span className="italic text-gold">Than Cargo.</span></>}
+        sub={ko ? "우리는 단순히 화물을 운송하지 않습니다. 새로운 시장과 기회, 사람과 비즈니스를 연결합니다." : "We don't just move freight. We connect new markets, opportunities, people, and businesses."}
         image={containers}
       />
 
@@ -34,13 +43,23 @@ function Story() {
           <Reveal>
             <span className="eyebrow"><span className="hairline" />Philosophy</span>
             <h2 className="font-display mt-6 text-3xl md:text-5xl text-navy leading-tight">
-              A partner for a more <span className="italic">connected world.</span>
+              {ko ? <>더 연결된 세상을 위한 <span className="italic">파트너.</span></> : <>A partner for a more <span className="italic">connected world.</span></>}
             </h2>
           </Reveal>
           <Reveal delay={120} className="space-y-7 text-foreground/75 text-[15px] leading-[1.9]">
-            <p>글로벌 공급망이 더욱 복잡해지는 시대, 지구글로벌은 고객이 세계 어디서든 안정적으로 사업을 운영할 수 있도록 신뢰할 수 있는 파트너가 되고자 합니다.</p>
-            <p>우리는 해상·항공·특수화물·국제특송, 그리고 글로벌 비즈니스 솔루션을 통합적으로 제공하며, 단순한 운송이 아닌 고객의 비즈니스 성장 그 자체를 함께 설계합니다.</p>
-            <p>From Seoul to every continent — JIGU GLOBAL connects people, possibilities, and progress.</p>
+            {ko ? (
+              <>
+                <p>글로벌 공급망이 더욱 복잡해지는 시대, 지구글로벌은 고객이 세계 어디서든 안정적으로 사업을 운영할 수 있도록 신뢰할 수 있는 파트너가 되고자 합니다.</p>
+                <p>우리는 해상·항공·특수화물·국제특송, 그리고 글로벌 비즈니스 솔루션을 통합적으로 제공하며, 단순한 운송이 아닌 고객의 비즈니스 성장 그 자체를 함께 설계합니다.</p>
+                <p>서울에서 세계 모든 대륙까지 — 지구글로벌은 사람과 가능성, 그리고 진보를 연결합니다.</p>
+              </>
+            ) : (
+              <>
+                <p>As global supply chains grow more complex, JIGU GLOBAL strives to be the trusted partner that keeps your business running smoothly anywhere in the world.</p>
+                <p>We provide an integrated suite of ocean, air, special cargo, international express, and global business solutions — designing not just transport, but the growth of our clients' businesses.</p>
+                <p>From Seoul to every continent — JIGU GLOBAL connects people, possibilities, and progress.</p>
+              </>
+            )}
           </Reveal>
         </div>
       </section>
@@ -49,20 +68,16 @@ function Story() {
         <div className="container-x">
           <Reveal className="max-w-2xl">
             <span className="eyebrow"><span className="hairline" /> Values</span>
-            <h2 className="font-display mt-6 text-4xl md:text-5xl text-navy">What we stand for.</h2>
+            <h2 className="font-display mt-6 text-4xl md:text-5xl text-navy">{ko ? "우리가 지키는 가치." : "What we stand for."}</h2>
           </Reveal>
           <div className="mt-16 grid md:grid-cols-3 gap-px bg-border border border-border">
-            {[
-              ["01", "Trust",       "신뢰", "We earn trust by delivering — on time, in full, every shipment."],
-              ["02", "Connection",  "연결", "We connect markets, networks, and people across continents."],
-              ["03", "Innovation",  "혁신", "We modernize forwarding with technology, transparency, and care."],
-            ].map(([n, t, ko, d], i) => (
-              <Reveal key={t} delay={i * 80}>
+            {VALUES.map((v, i) => (
+              <Reveal key={v.ko} delay={i * 80}>
                 <div className="bg-background p-10 h-full">
-                  <div className="font-display text-gold text-2xl">{n}</div>
-                  <h3 className="mt-10 font-display text-3xl text-navy">{t}</h3>
-                  <div className="text-[11px] tracking-[0.25em] uppercase text-muted-foreground mt-1">{ko}</div>
-                  <p className="mt-6 text-sm text-foreground/70 leading-relaxed">{d}</p>
+                  <div className="font-display text-gold text-2xl">{v.n}</div>
+                  <h3 className="mt-10 font-display text-3xl text-navy">{v.t.en}</h3>
+                  <div className="text-[11px] tracking-[0.25em] uppercase text-muted-foreground mt-1">{v.ko}</div>
+                  <p className="mt-6 text-sm text-foreground/70 leading-relaxed">{ko ? v.d.ko : v.d.en}</p>
                 </div>
               </Reveal>
             ))}
@@ -78,19 +93,19 @@ function Story() {
           <Reveal delay={120}>
             <span className="eyebrow"><span className="hairline" /> Vision</span>
             <h2 className="font-display mt-6 text-4xl md:text-5xl leading-tight">
-              To become Korea's <span className="italic text-gold">most trusted</span> global logistics brand.
+              {ko ? <>대한민국을 대표하는 <span className="italic text-gold">가장 신뢰받는</span> 글로벌 물류 브랜드.</> : <>To become Korea's <span className="italic text-gold">most trusted</span> global logistics brand.</>}
             </h2>
             <p className="mt-8 text-white/70 leading-relaxed max-w-md">
-              우리는 한국을 대표하는 글로벌 물류 브랜드로 성장하여, 세계 어느 곳에서도 우리의 고객이 안정적으로 비즈니스를 이어갈 수 있는 인프라가 되겠습니다.
+              {ko ? "우리는 한국을 대표하는 글로벌 물류 브랜드로 성장하여, 세계 어느 곳에서도 우리의 고객이 안정적으로 비즈니스를 이어갈 수 있는 인프라가 되겠습니다." : "We aim to grow into Korea's leading global logistics brand — the infrastructure that lets our clients run their business reliably, anywhere in the world."}
             </p>
             <Link to="/contact" className="mt-10 inline-flex btn-gold">
-              Partner with us <ArrowRight size={16} />
+              {ko ? "함께하기" : "Partner with us"} <ArrowRight size={16} />
             </Link>
           </Reveal>
         </div>
       </section>
 
-      <ParallaxImage src={air} />
+      <ParallaxImage src={air} ko={ko} />
     </>
   );
 }
@@ -112,14 +127,14 @@ function PageHero({ eyebrow, title, sub, image }: { eyebrow: string; title: Reac
   );
 }
 
-function ParallaxImage({ src }: { src: string }) {
+function ParallaxImage({ src, ko }: { src: string; ko: boolean }) {
   return (
     <section className="relative h-[60svh] overflow-hidden">
       <img src={src} alt="" width={1280} height={960} loading="lazy" className="absolute inset-0 size-full object-cover" />
       <div className="absolute inset-0 bg-navy/30" />
       <div className="relative container-x h-full flex items-center">
         <p className="font-display text-white text-3xl md:text-5xl max-w-2xl leading-tight">
-          "We don't just ship cargo — <span className="italic text-gold">we deliver possibility.</span>"
+          {ko ? <>"우리는 화물이 아니라 <span className="italic text-gold">가능성을 전달합니다.</span>"</> : <>"We don't just ship cargo — <span className="italic text-gold">we deliver possibility.</span>"</>}
         </p>
       </div>
     </section>

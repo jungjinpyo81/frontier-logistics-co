@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/site/Navbar";
 import { Footer } from "../components/site/Footer";
 import { Toaster } from "sonner";
+import { LanguageProvider } from "../lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -100,12 +101,14 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <Navbar overlay />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-      <Toaster position="top-center" richColors />
+      <LanguageProvider>
+        <Navbar overlay />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+        <Toaster position="top-center" richColors />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }
