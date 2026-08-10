@@ -107,12 +107,13 @@ function Services() {
                         <Icon className="size-32 md:size-44 text-navy/10" strokeWidth={0.8} />
                       </div>
                     )}
-                    {!("image" in rest && rest.image) && (
-                      <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                        <div className="font-display text-7xl md:text-8xl text-navy/15">0{i + 1}</div>
-                        <Icon className="size-10 text-gold" strokeWidth={1.2} />
-                      </div>
-                    )}
+                    {"image" in rest && rest.image ? (
+                      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy-deep/70 to-transparent" />
+                    ) : null}
+                    <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                      <div className={`font-display text-7xl md:text-8xl ${"image" in rest && rest.image ? "text-white/70 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" : "text-navy/15"}`}>0{i + 1}</div>
+                      <Icon className="size-10 text-gold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" strokeWidth={1.2} />
+                    </div>
                   </div>
                 </div>
 
