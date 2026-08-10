@@ -24,7 +24,6 @@ const NAV: NavItem[] = [
       { to: "/services", ko: "항공 수출입", en: "Air Freight" },
       { to: "/services", ko: "국제특송", en: "Express" },
       { to: "/services", ko: "창고 (일반)", en: "Warehousing" },
-      { to: "/special-cargo", ko: "창고 (특수)", en: "Special Cargo" },
     ],
   },
   { to: "/global-network", ko: "글로벌 네트워크", en: "Global Network" },
