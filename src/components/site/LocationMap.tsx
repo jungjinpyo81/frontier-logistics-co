@@ -60,7 +60,7 @@ export function LocationMap() {
                   <div className="text-[11px] tracking-[0.2em] uppercase text-white/40 mb-1">
                     {ko ? "연락처" : "Contact"}
                   </div>
-                  <a href="tel:+823165144 73" className="block hover:text-gold transition">+82 31 651 4473</a>
+                  <a href="tel:+82316514473" className="block hover:text-gold transition">+82 31 651 4473</a>
                   <a href="mailto:sj.hwang@g9global.net" className="block hover:text-gold transition">
                     sj.hwang@g9global.net
                   </a>
