@@ -22,6 +22,7 @@ export const Route = createFileRoute("/services")({
 const SERVICES = [
   {
     icon: Ship, en: "Ocean Freight", ko: "해상 운송",
+    image: oceanPort.url,
     desc: { ko: "FCL · LCL · 프로젝트 카고. 주요 글로벌 항로의 안정적인 선복 확보와 경쟁력 있는 운임을 제공합니다.", en: "FCL · LCL · Project Cargo. We secure reliable space and competitive rates across major global trade lanes." },
     items: { ko: ["FCL (풀 컨테이너)", "LCL (혼재 화물)", "프로젝트 & 벌크 화물", "글로벌 선적 솔루션"], en: ["FCL (Full Container Load)", "LCL (Less than Container Load)", "Project & Break-bulk Cargo", "Global Shipping Solutions"] },
   },
