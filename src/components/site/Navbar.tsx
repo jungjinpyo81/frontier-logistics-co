@@ -1,17 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useLang } from "@/lib/i18n";
 
 const NAV = [
-  { to: "/our-story", label: "회사소개" },
-  { to: "/services", label: "서비스" },
-  { to: "/global-network", label: "글로벌 네트워크" },
-  { to: "/trade-solutions", label: "트레이드 솔루션" },
-  { to: "/insights", label: "인사이트" },
-  { to: "/contact", label: "문의하기" },
+  { to: "/our-story", ko: "회사소개", en: "Our Story" },
+  { to: "/services", ko: "서비스", en: "Services" },
+  { to: "/global-network", ko: "글로벌 네트워크", en: "Global Network" },
+  { to: "/trade-solutions", ko: "트레이드 솔루션", en: "Trade Solutions" },
+  { to: "/insights", ko: "인사이트", en: "Insights" },
+  { to: "/contact", ko: "문의하기", en: "Contact" },
 ] as const;
 
 export function Navbar({ overlay = false }: { overlay?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
+  const { lang, setLang } = useLang();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -48,9 +50,18 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
           <div className={`hidden md:flex items-center gap-5 text-[11px] tracking-[0.18em] uppercase font-medium ${solid ? "text-foreground/70" : "text-white/80"}`}>
             <Link to="/" className="hover:text-gold transition-colors">HOME</Link>
             <span className={solid ? "text-foreground/30" : "text-white/30"}>|</span>
-            <button type="button" className="hover:text-gold transition-colors" aria-label="English">ENG</button>
+            <button
+              type="button"
+              onClick={() => setLang(lang === "ko" ? "en" : "ko")}
+              className="hover:text-gold transition-colors"
+              aria-label={lang === "ko" ? "Switch to English" : "한국어로 전환"}
+            >
+              {lang === "ko" ? "ENG" : "KOR"}
+            </button>
             <span className={solid ? "text-foreground/30" : "text-white/30"}>|</span>
-            <Link to="/contact" className="hover:text-gold transition-colors">CONTACT US</Link>
+            <Link to="/contact" className="hover:text-gold transition-colors">
+              {lang === "ko" ? "CONTACT US" : "CONTACT US"}
+            </Link>
           </div>
         </div>
 
@@ -66,7 +77,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
                   }`}
                   activeProps={{ className: "!text-gold" }}
                 >
-                  {n.label}
+                  {lang === "ko" ? n.ko : n.en}
                 </Link>
               </li>
             ))}
