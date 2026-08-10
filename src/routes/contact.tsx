@@ -80,8 +80,7 @@ function Contact() {
             {ko ? (
               <>
                 귀사의 비즈니스가 <br />
-                한 단계 더 도약할 수 있도록 <br />
-                <span className="italic text-gold">함께합니다.</span>
+                한 단계 더 도약할 수 있도록&nbsp;함께합니다. <br />
               </>
             ) : (
               <>
@@ -102,9 +101,9 @@ function Contact() {
         <div className="container-x grid gap-16 lg:grid-cols-[1.4fr_1fr]">
           <Reveal>
             <h2 className="font-display text-3xl md:text-4xl text-navy">{ko ? "견적 요청" : "Request a Quote"}</h2>
-            <p className="mt-3 text-foreground/70 text-sm">
+            <p className="mt-3 text-foreground/70 text-sm whitespace-pre-line">
               {ko
-                ? "아래 양식을 작성해주시면 영업일 기준 24시간 내 연락드리겠습니다."
+                ? "아래 양식을 작성해주시면 영업일 기준 24시간 내\n연락드리겠습니다."
                 : "Fill out the form below and we'll get back to you within 24 business hours."}
             </p>
 
