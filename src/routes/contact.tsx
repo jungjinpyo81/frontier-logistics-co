@@ -76,9 +76,10 @@ function Contact() {
             <span className="hairline" />
             <span className="text-[11px] tracking-[0.32em] uppercase text-gold">{ko ? "문의" : "Contact"}</span>
           </div>
-          <h1 className="font-display text-5xl md:text-7xl leading-[1.03] max-w-4xl">
+          <h1 className="font-display text-3xl md:text-5xl leading-[1.15] max-w-4xl break-keep">
             {ko ? (
               <>
+                귀사의 비즈니스가 <br />
                 한 단계 더 도약할 수 있도록 <br />
                 <span className="italic text-gold">함께합니다.</span>
               </>
