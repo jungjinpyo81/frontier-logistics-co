@@ -3,6 +3,7 @@ import { Ship, Plane, Package, Truck, Warehouse, ArrowRight, Check, Snowflake, F
 import air from "@/assets/air-freight.jpg";
 import oceanPort from "@/assets/ocean-freight-port.jpg.asset.json";
 import airCargo from "@/assets/air-freight-cargo.jpg.asset.json";
+import expressDelivery from "@/assets/express-delivery.jpg.asset.json";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
