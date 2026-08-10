@@ -2,8 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import network from "@/assets/global-network.jpg";
-import mapAsset from "@/assets/global-network-map.png.asset.json";
-
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
@@ -50,10 +48,8 @@ function GlobalNetwork() {
         eyebrow="Global Network"
         title={<>Six continents. <br /><span className="italic text-gold">One partner.</span></>}
         sub={ko ? "지구글로벌은 6대륙 120개 이상의 국가와 연결된 물류 네트워크를 운영합니다." : "JIGU GLOBAL operates a logistics network connecting more than 120 countries across six continents."}
-        image={mapAsset.url}
-        imageClassName="absolute inset-0 size-full object-contain opacity-40 mix-blend-screen saturate-50 p-8 md:p-16"
+        image={network}
       />
-
 
       <section className="bg-background py-28 md:py-36">
         <div className="container-x">

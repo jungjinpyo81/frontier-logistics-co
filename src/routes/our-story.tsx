@@ -148,12 +148,11 @@ function Story() {
   );
 }
 
-function PageHero({ eyebrow, title, sub, image, imageClassName }: { eyebrow: string; title: React.ReactNode; sub: React.ReactNode; image: string; imageClassName?: string }) {
+function PageHero({ eyebrow, title, sub, image }: { eyebrow: string; title: React.ReactNode; sub: React.ReactNode; image: string }) {
   return (
     <section className="relative h-[80svh] min-h-[520px] w-full overflow-hidden bg-navy-deep">
-      <img src={image} alt="" width={1920} height={1280} className={imageClassName ?? "absolute inset-0 size-full object-cover opacity-55 animate-ken"} />
+      <img src={image} alt="" width={1920} height={1280} className="absolute inset-0 size-full object-cover opacity-55 animate-ken" />
       <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy-deep/40 to-navy-deep/95" />
-
       <div className="relative z-10 container-x h-full flex flex-col justify-end pb-24 pt-32 animate-fade-up">
         <div className="flex items-center gap-3 mb-6">
           <span className="hairline" />
