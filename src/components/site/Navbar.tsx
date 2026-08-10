@@ -105,23 +105,53 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
         </div>
 
         {/* Bottom row: horizontal menu */}
-        <nav className="w-full mt-3 md:mt-4">
-          <ul className="flex items-center justify-center gap-6 md:gap-10 overflow-x-auto whitespace-nowrap px-2 pb-1 scrollbar-none">
+        <nav className="w-full mt-3 md:mt-4" onMouseLeave={() => setOpenMenu(null)}>
+          <ul className="flex items-center justify-center gap-6 md:gap-10 whitespace-nowrap px-2 pb-1">
             {NAV.map((n) => (
-              <li key={n.to}>
+              <li
+                key={n.to}
+                className="relative"
+                onMouseEnter={() => setOpenMenu(n.to)}
+                onFocus={() => setOpenMenu(n.to)}
+              >
                 <Link
                   to={n.to}
-                  className={`text-[13px] md:text-[14px] font-semibold tracking-wide transition-colors hover:text-gold ${
+                  className={`inline-block pb-2 text-[13px] md:text-[14px] font-semibold tracking-wide transition-colors hover:text-gold ${
                     solid ? "text-foreground/85" : "text-white/95"
                   }`}
                   activeProps={{ className: "!text-gold" }}
                 >
                   {lang === "ko" ? n.ko : n.en}
                 </Link>
+
+                {n.sub && (
+                  <div
+                    className={`absolute left-1/2 top-full z-50 -translate-x-1/2 pt-1 transition-all duration-300 ${
+                      openMenu === n.to
+                        ? "visible opacity-100 translate-y-0"
+                        : "invisible opacity-0 -translate-y-1"
+                    }`}
+                  >
+                    <ul className="min-w-[200px] rounded-md border border-white/15 bg-navy/80 py-2 shadow-xl backdrop-blur-md">
+                      {n.sub.map((s) => (
+                        <li key={`${s.to}-${s.en}`}>
+                          <Link
+                            to={s.to}
+                            onClick={() => setOpenMenu(null)}
+                            className="block px-5 py-2.5 text-[13px] font-medium text-white/85 transition-colors hover:bg-white/10 hover:text-gold"
+                          >
+                            {lang === "ko" ? s.ko : s.en}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
         </nav>
+
       </div>
     </header>
   );
