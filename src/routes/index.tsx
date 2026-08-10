@@ -78,7 +78,7 @@ const TIMELINE = [
     ko: "서정물류\n평택 화물운송업 시작",
     en: "Seojeong Logistics founded — freight transport in Pyeongtaek",
   },
-  { y: "2013", ko: "화물운송 \n및 중장비 사업", en: "Expanded into freight and heavy equipment" },
+  { y: "2013", ko: "화물운송 및\n중장비 사업", en: "Expanded into freight and heavy equipment" },
   { y: "2016", ko: "바닥청소차\n렌탈사업 확장", en: "Expanded into floor-sweeper rental business" },
   {
     y: "2021",
