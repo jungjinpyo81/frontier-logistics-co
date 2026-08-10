@@ -3,6 +3,7 @@ import { Ship, Plane, Package, Truck, Warehouse, ArrowRight, Check, Snowflake, F
 import air from "@/assets/air-freight.jpg";
 import oceanPort from "@/assets/ocean-freight-port.jpg.asset.json";
 import airCargo from "@/assets/air-freight-cargo.jpg.asset.json";
+import expressDelivery from "@/assets/express-delivery.jpg.asset.json";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
@@ -36,6 +37,7 @@ const SERVICES = [
   },
   {
     icon: Package, en: "Express Service", ko: "국제특송",
+    image: expressDelivery.url,
     desc: { ko: "B2B 특송부터 이커머스 물류, 샘플 발송까지 — 빠르게 성장하는 국제특송 서비스.", en: "From B2B express to e-commerce logistics and sample shipping — our fast-growing international express service." },
     items: { ko: ["B2B 특송", "이커머스 물류", "샘플 발송", "긴급 배송"], en: ["B2B Express", "E-commerce Logistics", "Sample Shipping", "Urgent Delivery"] },
   },
