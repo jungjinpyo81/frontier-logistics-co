@@ -70,7 +70,7 @@ function Services() {
 
       <section className="bg-background py-28 md:py-36">
         <div className="container-x space-y-28">
-          {SERVICES.map(({ icon: Icon, en, ko: koLabel, desc, items }, i) => (
+          {SERVICES.map(({ icon: Icon, en, ko: koLabel, desc, items, ...rest }, i) => (
             <Reveal key={en}>
               <div className={`grid gap-12 lg:grid-cols-12 items-center ${i % 2 ? "lg:[direction:rtl]" : ""}`}>
                 <div className="lg:col-span-5 [direction:ltr]">
@@ -91,15 +91,27 @@ function Services() {
                 </div>
                 <div className="lg:col-span-7 [direction:ltr]">
                   <div className="relative aspect-[4/3] bg-mist overflow-hidden border border-border">
-                    <div className="absolute inset-0 grid place-items-center">
-                      <Icon className="size-32 md:size-44 text-navy/10" strokeWidth={0.8} />
-                    </div>
-                    <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                      <div className="font-display text-7xl md:text-8xl text-navy/15">0{i + 1}</div>
-                      <Icon className="size-10 text-gold" strokeWidth={1.2} />
-                    </div>
+                    {"image" in rest && rest.image ? (
+                      <img
+                        src={rest.image as string}
+                        alt={ko ? `${koLabel} 서비스 이미지` : `${en} service image`}
+                        loading="lazy"
+                        className="absolute inset-0 size-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 grid place-items-center">
+                        <Icon className="size-32 md:size-44 text-navy/10" strokeWidth={0.8} />
+                      </div>
+                    )}
+                    {!("image" in rest && rest.image) && (
+                      <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div className="font-display text-7xl md:text-8xl text-navy/15">0{i + 1}</div>
+                        <Icon className="size-10 text-gold" strokeWidth={1.2} />
+                      </div>
+                    )}
                   </div>
                 </div>
+
               </div>
             </Reveal>
           ))}
