@@ -42,7 +42,7 @@ function Story() {
       <PageHero
         eyebrow="Our Story"
         title={ko ? <>화물, <br /><span className="italic text-gold">그 이상을 움직입니다.</span></> : <>We Move More <br /><span className="italic text-gold">Than Cargo.</span></>}
-        sub={ko ? "우리는 단순히 화물을 운송하지 않습니다. 새로운 시장과 기회, 사람과 비즈니스를 연결합니다." : "We don't just move freight. We connect new markets, opportunities, people, and businesses."}
+        sub={ko ? <>물류를 넘어, 글로벌 비즈니스를 함께 설계합니다.&nbsp;<br />지구글로벌의 트레이드 솔루션.</> : "We don't just move freight. We connect new markets, opportunities, people, and businesses."}
         image={containers}
       />
 
@@ -148,7 +148,7 @@ function Story() {
   );
 }
 
-function PageHero({ eyebrow, title, sub, image }: { eyebrow: string; title: React.ReactNode; sub: string; image: string }) {
+function PageHero({ eyebrow, title, sub, image }: { eyebrow: string; title: React.ReactNode; sub: React.ReactNode; image: string }) {
   return (
     <section className="relative h-[80svh] min-h-[520px] w-full overflow-hidden bg-navy-deep">
       <img src={image} alt="" width={1920} height={1280} className="absolute inset-0 size-full object-cover opacity-55 animate-ken" />
@@ -159,7 +159,7 @@ function PageHero({ eyebrow, title, sub, image }: { eyebrow: string; title: Reac
           <span className="text-[11px] tracking-[0.32em] uppercase text-gold">{eyebrow}</span>
         </div>
         <h1 className="font-display text-white text-5xl md:text-7xl leading-[1.03] max-w-4xl">{title}</h1>
-        <p className="mt-6 text-white/70 max-w-xl text-base md:text-lg leading-relaxed">{sub}</p>
+        <div className="mt-6 text-white/70 max-w-xl text-base md:text-lg leading-relaxed">{sub}</div>
       </div>
     </section>
   );
