@@ -192,7 +192,7 @@ function Home() {
                   <span className="mt-1 md:mt-0 size-3.5 shrink-0 rounded-full border-2 border-gold bg-navy-deep md:mb-4 block" />
                   <div>
                     <div className="font-display text-2xl md:text-3xl text-white leading-none">{t.y}</div>
-                    <div className="mt-2 text-xs md:text-[13px] text-white/60 leading-relaxed">{ko ? t.ko : t.en}</div>
+                    <div className="mt-2 text-xs md:text-[13px] text-white/60 whitespace-pre-line leading-relaxed">{ko ? t.ko : t.en}</div>
                   </div>
                 </li>
               ))}
