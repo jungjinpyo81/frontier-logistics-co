@@ -15,7 +15,7 @@ export function Footer() {
             <p className="text-sm leading-relaxed max-w-sm text-white/60">
               {ko ? (
                 <>
-                  국경을 넘어 비즈니스를 연결합니다. <br />전 대륙을 아우르는 글로벌 물류 솔루션.
+                  국경을 넘어 비즈니스를 연결합니다. <br />전 세계를 아우르는 글로벌 물류 솔루션.
                 </>
               ) : (
                 <>
