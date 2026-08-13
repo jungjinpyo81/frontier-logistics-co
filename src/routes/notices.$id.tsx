@@ -40,6 +40,13 @@ function NoticeDetail() {
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
       <div className="container-x max-w-3xl">
+        <Breadcrumbs
+          items={[
+            { label: ko ? "홈" : "Home", to: "/" },
+            { label: ko ? "공지사항" : "Notices", to: "/notices" },
+            { label: ko ? "상세보기" : "Detail" },
+          ]}
+        />
         <div className="text-[11px] tracking-[0.32em] uppercase text-gold">Notice</div>
 
         {isLoading && (
