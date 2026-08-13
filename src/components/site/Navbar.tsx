@@ -51,7 +51,9 @@ const NAV: NavItem[] = [
     en: "Contact / News",
     sub: [
       { to: "/contact", ko: "온라인 문의", en: "Online Inquiry" },
-      { to: "/insights", ko: "공지사항", en: "Notices" },
+      { to: "/notices", ko: "공지사항", en: "Notices" },
+      { to: "/insights", ko: "인사이트", en: "Insights" },
+
     ],
   },
 ];
