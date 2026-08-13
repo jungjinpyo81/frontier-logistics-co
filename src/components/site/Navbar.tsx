@@ -47,12 +47,11 @@ const NAV: NavItem[] = [
   },
   {
     to: "/contact",
-    ko: "문의 / 공지",
+    ko: "문의 / 소식",
     en: "Contact / News",
     sub: [
       { to: "/contact", ko: "온라인 문의", en: "Online Inquiry" },
-      { to: "/notices", ko: "공지사항", en: "Notices" },
-      { to: "/insights", ko: "인사이트", en: "Insights" },
+      { to: "/insights", ko: "소식 & 정보", en: "News & Insights" },
 
     ],
   },

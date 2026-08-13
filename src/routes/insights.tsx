@@ -7,14 +7,15 @@ import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
 import { supabase } from "@/integrations/supabase/client";
 import { useLang } from "@/lib/i18n";
+import { NoticeBoard } from "@/components/site/NoticeBoard";
 
 export const Route = createFileRoute("/insights")({
   head: () => ({
     meta: [
-      { title: "Insights — JIGU GLOBAL" },
-      { name: "description", content: "International logistics trends, dangerous goods guide, cold chain, and trade insights." },
-      { property: "og:title", content: "Insights — JIGU GLOBAL" },
-      { property: "og:description", content: "Logistics knowledge from the JIGU GLOBAL team." },
+      { title: "소식 & 정보 — JIGU GLOBAL" },
+      { name: "description", content: "지구글로벌의 공지사항과 물류·무역 인사이트를 한 곳에서 확인하세요. 국제 물류 트렌드, 위험물, 콜드체인 정보." },
+      { property: "og:title", content: "소식 & 정보 — JIGU GLOBAL" },
+      { property: "og:description", content: "지구글로벌의 공지사항과 물류·무역 인사이트." },
       { property: "og:url", content: "/insights" },
     ],
     links: [{ rel: "canonical", href: "/insights" }],
@@ -45,11 +46,24 @@ function Insights() {
   return (
     <>
       <PageHero
-        eyebrow="Insights"
-        title={<>Logistics, <br /><span className="italic text-gold">decoded.</span></>}
-        sub={ko ? <>국제 물류, 위험물, 콜드체인, 그리고 무역 트렌드&nbsp;<br />지구글로벌이 전하는 인사이트.</> : "International logistics, dangerous goods, cold chain, and trade trends — insights from JIGU GLOBAL."}
+        eyebrow="News & Insights"
+        title={ko ? <>소식 &amp; <span className="italic text-gold">정보</span></> : <>News &amp; <span className="italic text-gold">Insights</span></>}
+        sub={ko ? <>지구글로벌의 공지사항과 인사이트&nbsp;<br />국제 물류, 위험물, 콜드체인, 무역 트렌드를 한 곳에서.</> : "Notices and insights from JIGU GLOBAL — international logistics, dangerous goods, cold chain, and trade trends."}
         image={network}
       />
+
+      <section id="notices" className="scroll-mt-28 bg-background pt-24 pb-8">
+        <div className="container-x">
+          <NoticeBoard />
+        </div>
+      </section>
+
+      <section id="insights" className="scroll-mt-28 bg-background pt-20">
+        <div className="container-x border-b-2 border-navy pb-6">
+          <div className="text-[11px] tracking-[0.32em] uppercase text-gold">Insights</div>
+          <h2 className="font-display text-3xl md:text-4xl text-navy mt-2">{ko ? "인사이트" : "Insights"}</h2>
+        </div>
+      </section>
 
       {isLoading && (
         <section className="bg-background py-28">

@@ -59,7 +59,7 @@ const CTA_CARDS = [
     to: "/insights",
     icon: Newspaper,
     en: "INSIGHTS/NOTICE",
-    ko: "인사이트/공지",
+    ko: "소식 & 정보",
     descEn: "News & industry updates",
     descKo: "뉴스와 산업 동향",
   },
