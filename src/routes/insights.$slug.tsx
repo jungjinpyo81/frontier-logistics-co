@@ -75,9 +75,16 @@ function ArticleDetail() {
           <p className="mt-10 text-lg text-navy/80 leading-relaxed font-medium">{data.summary}</p>
         )}
 
-        <div className="mt-10 text-base text-foreground/90 leading-[1.85] whitespace-pre-wrap">
-          {data.content}
-        </div>
+        {/^\s*<[a-z]/i.test(data.content ?? "") ? (
+          <div
+            className="article-body mt-10 text-base text-foreground/90 leading-[1.85]"
+            dangerouslySetInnerHTML={{ __html: data.content }}
+          />
+        ) : (
+          <div className="mt-10 text-base text-foreground/90 leading-[1.85] whitespace-pre-wrap">
+            {data.content}
+          </div>
+        )}
       </div>
     </article>
   );
