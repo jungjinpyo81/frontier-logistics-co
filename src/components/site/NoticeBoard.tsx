@@ -7,6 +7,16 @@ import { useLang } from "@/lib/i18n";
 
 const PER_PAGE = 10;
 
+type Row = {
+  key: string;
+  kind: "notice" | "insight";
+  title: string;
+  author: string;
+  date: string;
+  id?: string;
+  slug?: string;
+};
+
 export function NoticeBoard() {
   const { lang } = useLang();
   const ko = lang === "ko";
@@ -14,14 +24,37 @@ export function NoticeBoard() {
   const [page, setPage] = useState(1);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["notices"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("notices")
-        .select("id, no, title, author, created_at")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return data;
+    queryKey: ["news-and-insights"],
+    queryFn: async (): Promise<Row[]> => {
+      const [notices, articles] = await Promise.all([
+        supabase.from("notices").select("id, title, author, created_at"),
+        supabase
+          .from("articles")
+          .select("id, slug, title, status, published_at, created_at")
+          .in("status", ["published", "private"]),
+      ]);
+      if (notices.error) throw notices.error;
+      if (articles.error) throw articles.error;
+
+      const rows: Row[] = [
+        ...(notices.data ?? []).map((n) => ({
+          key: `n-${n.id}`,
+          kind: "notice" as const,
+          title: n.title,
+          author: n.author,
+          date: n.created_at,
+          id: n.id,
+        })),
+        ...(articles.data ?? []).map((a) => ({
+          key: `a-${a.id}`,
+          kind: "insight" as const,
+          title: a.title,
+          author: "지구글로벌",
+          date: a.published_at ?? a.created_at,
+          slug: a.slug,
+        })),
+      ];
+      return rows.sort((a, b) => +new Date(b.date) - +new Date(a.date));
     },
   });
 
@@ -39,8 +72,8 @@ export function NoticeBoard() {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-navy pb-6">
         <div>
-          <div className="text-[11px] tracking-[0.32em] uppercase text-gold">Notice</div>
-          <h2 className="font-display text-3xl md:text-4xl text-navy mt-2">{ko ? "공지사항" : "Notices"}</h2>
+          <div className="text-[11px] tracking-[0.32em] uppercase text-gold">News &amp; Insights</div>
+          <h2 className="font-display text-3xl md:text-4xl text-navy mt-2">{ko ? "소식 & 정보" : "News & Insights"}</h2>
         </div>
         <div className="text-sm text-muted-foreground">
           {ko ? "전체" : "Total"} <span className="text-gold font-semibold">[ {filtered.length} ]</span>
@@ -85,23 +118,29 @@ export function NoticeBoard() {
             {!isLoading && rows.length === 0 && (
               <tr>
                 <td colSpan={4} className="px-4 py-14 text-center text-muted-foreground">
-                  {ko ? "등록된 공지사항이 없습니다." : "No notices yet."}
+                  {ko ? "등록된 글이 없습니다." : "Nothing here yet."}
                 </td>
               </tr>
             )}
             {rows.map((n, i) => (
-              <tr key={n.id} className="border-b border-border/70 hover:bg-mist/60 transition-colors">
+              <tr key={n.key} className="border-b border-border/70 hover:bg-mist/60 transition-colors">
                 <td className="px-4 py-4 text-center text-muted-foreground">
                   {filtered.length - ((current - 1) * PER_PAGE + i)}
                 </td>
                 <td className="px-4 py-4">
-                  <Link to="/notices/$id" params={{ id: n.id }} className="text-navy hover:text-gold break-keep">
-                    {n.title}
-                  </Link>
+                  {n.kind === "notice" ? (
+                    <Link to="/notices/$id" params={{ id: n.id! }} className="text-navy hover:text-gold break-keep">
+                      {n.title}
+                    </Link>
+                  ) : (
+                    <Link to="/insights/$slug" params={{ slug: n.slug! }} className="text-navy hover:text-gold break-keep">
+                      {n.title}
+                    </Link>
+                  )}
                 </td>
                 <td className="px-4 py-4 text-center text-muted-foreground">{n.author}</td>
                 <td className="px-4 py-4 text-center text-muted-foreground">
-                  {new Date(n.created_at).toISOString().slice(0, 10)}
+                  {new Date(n.date).toISOString().slice(0, 10)}
                 </td>
               </tr>
             ))}
