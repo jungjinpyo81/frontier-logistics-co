@@ -59,6 +59,36 @@ export type Database = {
         }
         Relationships: []
       }
+      notices: {
+        Row: {
+          author: string
+          content: string
+          created_at: string
+          id: string
+          no: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string
+          content?: string
+          created_at?: string
+          id?: string
+          no?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          content?: string
+          created_at?: string
+          id?: string
+          no?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
