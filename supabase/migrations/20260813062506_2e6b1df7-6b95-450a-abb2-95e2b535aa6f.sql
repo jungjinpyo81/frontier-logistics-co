@@ -1,0 +1,4 @@
+CREATE POLICY "Anyone can view article covers" ON storage.objects FOR SELECT TO anon, authenticated USING (bucket_id = 'article-covers');
+CREATE POLICY "Admins can upload article covers" ON storage.objects FOR INSERT TO authenticated WITH CHECK (bucket_id = 'article-covers' AND public.has_role(auth.uid(), 'admin'::app_role));
+CREATE POLICY "Admins can update article covers" ON storage.objects FOR UPDATE TO authenticated USING (bucket_id = 'article-covers' AND public.has_role(auth.uid(), 'admin'::app_role));
+CREATE POLICY "Admins can delete article covers" ON storage.objects FOR DELETE TO authenticated USING (bucket_id = 'article-covers' AND public.has_role(auth.uid(), 'admin'::app_role));
