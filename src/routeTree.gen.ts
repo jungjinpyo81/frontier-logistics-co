@@ -22,6 +22,7 @@ import { Route as SpecialCargoRouteImport } from './routes/special-cargo'
 import { Route as TradeSolutionsRouteImport } from './routes/trade-solutions'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminNewRouteImport } from './routes/admin.new'
+import { Route as AdminNoticesRouteImport } from './routes/admin.notices'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as NoticesIndexRouteImport } from './routes/notices.index'
 import { Route as NoticesIdRouteImport } from './routes/notices.$id'
@@ -92,6 +93,11 @@ const AdminNewRoute = AdminNewRouteImport.update({
   path: '/new',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminNoticesRoute = AdminNoticesRouteImport.update({
+  id: '/notices',
+  path: '/notices',
+  getParentRoute: () => AdminRoute,
+} as any)
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -126,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/special-cargo': typeof SpecialCargoRoute
   '/trade-solutions': typeof TradeSolutionsRoute
   '/admin/new': typeof AdminNewRoute
+  '/admin/notices': typeof AdminNoticesRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/notices/$id': typeof NoticesIdRoute
   '/admin/': typeof AdminIndexRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/special-cargo': typeof SpecialCargoRoute
   '/trade-solutions': typeof TradeSolutionsRoute
   '/admin/new': typeof AdminNewRoute
+  '/admin/notices': typeof AdminNoticesRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/notices/$id': typeof NoticesIdRoute
   '/admin': typeof AdminIndexRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/special-cargo': typeof SpecialCargoRoute
   '/trade-solutions': typeof TradeSolutionsRoute
   '/admin/new': typeof AdminNewRoute
+  '/admin/notices': typeof AdminNoticesRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/notices/$id': typeof NoticesIdRoute
   '/admin/': typeof AdminIndexRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
     | '/special-cargo'
     | '/trade-solutions'
     | '/admin/new'
+    | '/admin/notices'
     | '/insights/$slug'
     | '/notices/$id'
     | '/admin/'
@@ -203,6 +213,7 @@ export interface FileRouteTypes {
     | '/special-cargo'
     | '/trade-solutions'
     | '/admin/new'
+    | '/admin/notices'
     | '/insights/$slug'
     | '/notices/$id'
     | '/admin'
@@ -222,6 +233,7 @@ export interface FileRouteTypes {
     | '/special-cargo'
     | '/trade-solutions'
     | '/admin/new'
+    | '/admin/notices'
     | '/insights/$slug'
     | '/notices/$id'
     | '/admin/'
@@ -338,6 +350,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminNewRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/notices': {
+      id: '/admin/notices'
+      path: '/notices'
+      fullPath: '/admin/notices'
+      preLoaderRoute: typeof AdminNoticesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/insights/$slug': {
       id: '/insights/$slug'
       path: '/$slug'
@@ -371,12 +390,14 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminNewRoute: typeof AdminNewRoute
+  AdminNoticesRoute: typeof AdminNoticesRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminEditIdRoute: typeof AdminEditIdRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminNewRoute: AdminNewRoute,
+  AdminNoticesRoute: AdminNoticesRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminEditIdRoute: AdminEditIdRoute,
 }
