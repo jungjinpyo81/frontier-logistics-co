@@ -76,14 +76,21 @@ function NoticeDetail() {
           </article>
         )}
 
-        <div className="mt-14 border-t border-border pt-8">
+        <div className="mt-14 flex flex-wrap items-center gap-3 border-t border-border pt-8">
           <Link
             to="/notices"
-            className="inline-flex items-center gap-2 text-sm text-navy hover:text-gold"
+            className="inline-flex items-center gap-2 border border-navy/25 px-4 py-2.5 text-sm text-navy transition-colors hover:border-gold hover:text-gold"
           >
             <ArrowLeft className="h-4 w-4" />
             {ko ? "목록으로" : "Back to list"}
           </Link>
+          <button
+            type="button"
+            onClick={() => router.history.back()}
+            className="inline-flex items-center gap-2 px-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-navy"
+          >
+            {ko ? "이전 페이지로" : "Go back"}
+          </button>
         </div>
       </div>
     </div>
