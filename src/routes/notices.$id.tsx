@@ -44,7 +44,7 @@ function NoticeDetail() {
         <Breadcrumbs
           items={[
             { label: ko ? "홈" : "Home", to: "/" },
-            { label: ko ? "공지사항" : "Notices", to: "/notices" },
+            { label: ko ? "소식 & 정보" : "News & Insights", to: "/insights" },
             { label: ko ? "상세보기" : "Detail" },
           ]}
         />
@@ -79,7 +79,7 @@ function NoticeDetail() {
 
         <div className="mt-14 flex flex-wrap items-center gap-3 border-t border-border pt-8">
           <Link
-            to="/notices"
+            to="/insights"
             className="inline-flex items-center gap-2 border border-navy/25 px-4 py-2.5 text-sm text-navy transition-colors hover:border-gold hover:text-gold"
           >
             <ArrowLeft className="h-4 w-4" />
