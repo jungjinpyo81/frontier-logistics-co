@@ -61,6 +61,8 @@ function AdminLayout() {
           </div>
           <div className="flex items-center gap-4 text-xs">
             <Link to="/admin" className="text-navy hover:text-gold">Articles</Link>
+            <Link to="/admin/notices" className="text-navy hover:text-gold">Notices</Link>
+
             <Link to="/admin/new" className="btn-gold !py-2 !px-4 !text-[12px]">New article</Link>
             <button onClick={signOut} className="text-muted-foreground hover:text-navy">Sign out</button>
           </div>
