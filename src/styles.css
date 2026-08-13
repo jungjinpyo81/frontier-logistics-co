@@ -207,3 +207,14 @@
 
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
 .reveal.is-visible { opacity: 1; transform: none; }
+
+/* Rich text editor + rendered article body */
+.prose-editor h2, .article-body h2 { font-size: 1.5rem; font-weight: 600; color: var(--color-navy, #0b1f3a); margin: 1.75rem 0 .75rem; }
+.prose-editor p, .article-body p { margin: 0 0 1rem; }
+.prose-editor ul, .article-body ul { list-style: disc; padding-left: 1.25rem; margin: 0 0 1rem; }
+.prose-editor ol, .article-body ol { list-style: decimal; padding-left: 1.25rem; margin: 0 0 1rem; }
+.prose-editor blockquote, .article-body blockquote { border-left: 3px solid var(--color-gold, #c9a227); padding-left: 1rem; font-style: italic; margin: 0 0 1rem; }
+.prose-editor hr, .article-body hr { border-top: 1px solid var(--color-border, #e5e7eb); margin: 2rem 0; }
+.prose-editor img, .article-body img { max-width: 100%; height: auto; margin: 1.5rem 0; }
+.prose-editor strong, .article-body strong { font-weight: 600; }
+.prose-editor p.is-editor-empty:first-child::before { content: "본문을 입력하세요"; color: #9ca3af; float: left; height: 0; pointer-events: none; }
