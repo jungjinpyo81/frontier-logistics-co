@@ -30,7 +30,6 @@ function EditArticle() {
     slug: data.slug,
     title: data.title,
     content: data.content ?? "",
-    cover_url: data.cover_url ?? "",
     status: data.status,
     published_at: data.published_at,
   };
