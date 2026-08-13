@@ -29,10 +29,8 @@ function EditArticle() {
     id: data.id,
     slug: data.slug,
     title: data.title,
-    summary: data.summary ?? "",
     content: data.content ?? "",
     cover_url: data.cover_url ?? "",
-    tag: data.tag ?? "",
     status: data.status,
     published_at: data.published_at,
   };
