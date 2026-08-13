@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Search } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useLang } from "@/lib/i18n";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 
 export const Route = createFileRoute("/notices/")({
   head: () => ({
@@ -53,6 +54,13 @@ function NoticeList() {
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
       <div className="container-x">
+        <Breadcrumbs
+          items={[
+            { label: ko ? "홈" : "Home", to: "/" },
+            { label: ko ? "문의 / 공지" : "Contact / Notice", to: "/contact" },
+            { label: ko ? "공지사항" : "Notices" },
+          ]}
+        />
         <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-navy pb-6">
           <div>
             <div className="text-[11px] tracking-[0.32em] uppercase text-gold">Notice</div>

@@ -1,8 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useLang } from "@/lib/i18n";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 
 export const Route = createFileRoute("/notices/$id")({
   head: () => ({
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/notices/$id")({
 
 function NoticeDetail() {
   const { id } = Route.useParams();
+  const router = useRouter();
   const { lang } = useLang();
   const ko = lang === "ko";
 
@@ -39,6 +41,13 @@ function NoticeDetail() {
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
       <div className="container-x max-w-3xl">
+        <Breadcrumbs
+          items={[
+            { label: ko ? "홈" : "Home", to: "/" },
+            { label: ko ? "공지사항" : "Notices", to: "/notices" },
+            { label: ko ? "상세보기" : "Detail" },
+          ]}
+        />
         <div className="text-[11px] tracking-[0.32em] uppercase text-gold">Notice</div>
 
         {isLoading && (
@@ -68,14 +77,21 @@ function NoticeDetail() {
           </article>
         )}
 
-        <div className="mt-14 border-t border-border pt-8">
+        <div className="mt-14 flex flex-wrap items-center gap-3 border-t border-border pt-8">
           <Link
             to="/notices"
-            className="inline-flex items-center gap-2 text-sm text-navy hover:text-gold"
+            className="inline-flex items-center gap-2 border border-navy/25 px-4 py-2.5 text-sm text-navy transition-colors hover:border-gold hover:text-gold"
           >
             <ArrowLeft className="h-4 w-4" />
             {ko ? "목록으로" : "Back to list"}
           </Link>
+          <button
+            type="button"
+            onClick={() => router.history.back()}
+            className="inline-flex items-center gap-2 px-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-navy"
+          >
+            {ko ? "이전 페이지로" : "Go back"}
+          </button>
         </div>
       </div>
     </div>

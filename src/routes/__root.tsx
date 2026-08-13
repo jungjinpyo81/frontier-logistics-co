@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -98,12 +99,19 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+// Pages without a dark hero need a solid navbar from the start
+const LIGHT_PAGE_PREFIXES = ["/notices", "/admin", "/auth"];
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const lightPage = LIGHT_PAGE_PREFIXES.some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`),
+  );
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
-        <Navbar overlay />
+        <Navbar overlay={!lightPage} />
         <main>
           <Outlet />
         </main>
