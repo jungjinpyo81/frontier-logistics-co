@@ -23,6 +23,7 @@ import { Route as TradeSolutionsRouteImport } from './routes/trade-solutions'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminNewRouteImport } from './routes/admin.new'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as NoticesIndexRouteImport } from './routes/notices.index'
 import { Route as AdminEditIdRouteImport } from './routes/admin.edit.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -95,6 +96,11 @@ const InsightsSlugRoute = InsightsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => InsightsRoute,
 } as any)
+const NoticesIndexRoute = NoticesIndexRouteImport.update({
+  id: '/notices/',
+  path: '/notices/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminEditIdRoute = AdminEditIdRouteImport.update({
   id: '/edit/$id',
   path: '/edit/$id',
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/admin/new': typeof AdminNewRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/notices/': typeof NoticesIndexRoute
   '/admin/edit/$id': typeof AdminEditIdRoute
 }
 export interface FileRoutesByTo {
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/admin/new': typeof AdminNewRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/notices': typeof NoticesIndexRoute
   '/admin/edit/$id': typeof AdminEditIdRoute
 }
 export interface FileRoutesById {
@@ -150,6 +158,7 @@ export interface FileRoutesById {
   '/admin/new': typeof AdminNewRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/notices/': typeof NoticesIndexRoute
   '/admin/edit/$id': typeof AdminEditIdRoute
 }
 export interface FileRouteTypes {
@@ -169,6 +178,7 @@ export interface FileRouteTypes {
     | '/admin/new'
     | '/insights/$slug'
     | '/admin/'
+    | '/notices/'
     | '/admin/edit/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/admin/new'
     | '/insights/$slug'
     | '/admin'
+    | '/notices'
     | '/admin/edit/$id'
   id:
     | '__root__'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/admin/new'
     | '/insights/$slug'
     | '/admin/'
+    | '/notices/'
     | '/admin/edit/$id'
   fileRoutesById: FileRoutesById
 }
@@ -217,6 +229,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SpecialCargoRoute: typeof SpecialCargoRoute
   TradeSolutionsRoute: typeof TradeSolutionsRoute
+  NoticesIndexRoute: typeof NoticesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -319,6 +332,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof InsightsRoute
     }
+    '/notices/': {
+      id: '/notices/'
+      path: '/notices'
+      fullPath: '/notices/'
+      preLoaderRoute: typeof NoticesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/edit/$id': {
       id: '/admin/edit/$id'
       path: '/edit/$id'
@@ -367,6 +387,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SpecialCargoRoute: SpecialCargoRoute,
   TradeSolutionsRoute: TradeSolutionsRoute,
+  NoticesIndexRoute: NoticesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
