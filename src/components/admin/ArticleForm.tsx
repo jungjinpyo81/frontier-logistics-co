@@ -105,6 +105,21 @@ export function ArticleForm({ initial }: { initial?: ArticleInput }) {
         />
       </Field>
 
+      <Field label="Category" hint="목록에 말머리로 표시됩니다.">
+        <select
+          value={form.category}
+          onChange={(e) => patch("category", e.target.value)}
+          className="w-full sm:w-64 border border-border bg-white px-3 py-2.5 text-sm focus:outline-none focus:border-navy"
+        >
+          {CATEGORIES.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      </Field>
+
+
       <Field label="Content" hint="본문 어디에나 이미지를 삽입할 수 있습니다. 첫 이미지가 목록 썸네일로 사용됩니다.">
         <RichTextEditor value={form.content} onChange={(html) => patch("content", html)} />
       </Field>
