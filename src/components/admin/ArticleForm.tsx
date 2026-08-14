@@ -3,6 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { RichTextEditor, firstImageUrl } from "./RichTextEditor";
+import { CATEGORIES, DEFAULT_CATEGORY } from "@/lib/categories";
 
 export type ArticleStatus = "draft" | "published" | "private";
 
@@ -11,6 +12,7 @@ export type ArticleInput = {
   slug: string;
   title: string;
   content: string;
+  category: string;
   status: ArticleStatus;
   published_at: string | null;
 };
