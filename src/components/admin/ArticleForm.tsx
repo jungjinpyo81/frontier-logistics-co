@@ -59,6 +59,7 @@ export function ArticleForm({ initial }: { initial?: ArticleInput }) {
       slug,
       title: form.title.trim(),
       content: form.content,
+      category: form.category,
       cover_url: firstImageUrl(form.content),
       status,
       published_at:
