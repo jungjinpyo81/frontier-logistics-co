@@ -38,18 +38,84 @@ function toHtml(content: string) {
     .join("");
 }
 
+type Draft = { title: string; category: string; content: string; savedAt: string };
+
+function draftKey(id?: string) {
+  return `g9:article-draft:${id ?? "new"}`;
+}
+
 export function ArticleForm({ initial }: { initial?: ArticleInput }) {
   const navigate = useNavigate();
-  const [form, setForm] = useState<ArticleInput>(
-    initial
-      ? { ...initial, content: toHtml(initial.content) }
-      : { slug: "", title: "", content: "", category: DEFAULT_CATEGORY, status: "draft", published_at: null }
-  );
+  const base: ArticleInput = initial
+    ? { ...initial, content: toHtml(initial.content) }
+    : { slug: "", title: "", content: "", category: DEFAULT_CATEGORY, status: "draft", published_at: null };
+  const [form, setForm] = useState<ArticleInput>(base);
   const [busy, setBusy] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [savedAt, setSavedAt] = useState<string | null>(null);
+  const formRef = useRef(form);
+  formRef.current = form;
+
+  const key = draftKey(initial?.id);
+
+  // Restore prompt (runs once, before the editor mounts)
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(key);
+      if (raw) {
+        const draft = JSON.parse(raw) as Draft;
+        const when = new Date(draft.savedAt).toLocaleString("ko-KR");
+        if (
+          (draft.title || draft.content) &&
+          window.confirm(`작성 중이던 임시 저장 글이 있습니다. (${when})\n불러오시겠습니까?`)
+        ) {
+          setForm((f) => ({
+            ...f,
+            title: draft.title,
+            category: draft.category || f.category,
+            content: draft.content,
+          }));
+        } else {
+          localStorage.removeItem(key);
+        }
+      }
+    } catch {
+      /* ignore corrupted draft */
+    }
+    setReady(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function saveDraft(manual = false) {
+    const f = formRef.current;
+    if (!f.title && !f.content) return;
+    const draft: Draft = {
+      title: f.title,
+      category: f.category,
+      content: f.content,
+      savedAt: new Date().toISOString(),
+    };
+    try {
+      localStorage.setItem(key, JSON.stringify(draft));
+      setSavedAt(new Date().toLocaleTimeString("ko-KR"));
+      if (manual) toast.success("임시 저장되었습니다");
+    } catch {
+      if (manual) toast.error("임시 저장 실패 (저장 공간 부족)");
+    }
+  }
+
+  // Auto-save every 30s
+  useEffect(() => {
+    if (!ready) return;
+    const t = setInterval(() => saveDraft(false), 30_000);
+    return () => clearInterval(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready]);
 
   function patch<K extends keyof ArticleInput>(k: K, v: ArticleInput[K]) {
     setForm((f) => ({ ...f, [k]: v }));
   }
+
 
   async function save(publish?: ArticleStatus) {
     if (!form.title.trim()) return toast.error("제목을 입력하세요");
