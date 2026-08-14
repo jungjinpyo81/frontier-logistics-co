@@ -87,7 +87,27 @@ export function NoticeBoard() {
         </div>
       </div>
 
-      <div className="mt-6 flex justify-end">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap gap-2" role="tablist" aria-label={ko ? "말머리 필터" : "Category filter"}>
+          {["전체", ...CATEGORIES].map((c) => (
+            <button
+              key={c}
+              role="tab"
+              aria-selected={cat === c}
+              onClick={() => {
+                setCat(c);
+                setPage(1);
+              }}
+              className={`rounded-full border px-4 py-1.5 text-xs transition-colors ${
+                cat === c
+                  ? "border-navy bg-navy text-white"
+                  : "border-border bg-white text-navy hover:border-gold hover:text-gold"
+              }`}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
         <div className="relative w-full sm:w-72">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
