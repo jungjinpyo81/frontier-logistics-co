@@ -3,6 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { RichTextEditor, firstImageUrl } from "./RichTextEditor";
+import { CATEGORIES, DEFAULT_CATEGORY } from "@/lib/categories";
 
 export type ArticleStatus = "draft" | "published" | "private";
 
@@ -11,6 +12,7 @@ export type ArticleInput = {
   slug: string;
   title: string;
   content: string;
+  category: string;
   status: ArticleStatus;
   published_at: string | null;
 };
@@ -40,7 +42,7 @@ export function ArticleForm({ initial }: { initial?: ArticleInput }) {
   const [form, setForm] = useState<ArticleInput>(
     initial
       ? { ...initial, content: toHtml(initial.content) }
-      : { slug: "", title: "", content: "", status: "draft", published_at: null }
+      : { slug: "", title: "", content: "", category: DEFAULT_CATEGORY, status: "draft", published_at: null }
   );
   const [busy, setBusy] = useState(false);
 
@@ -57,6 +59,7 @@ export function ArticleForm({ initial }: { initial?: ArticleInput }) {
       slug,
       title: form.title.trim(),
       content: form.content,
+      category: form.category,
       cover_url: firstImageUrl(form.content),
       status,
       published_at:
@@ -101,6 +104,21 @@ export function ArticleForm({ initial }: { initial?: ArticleInput }) {
           className="w-full border border-border px-3 py-2.5 text-base focus:outline-none focus:border-navy"
         />
       </Field>
+
+      <Field label="Category" hint="목록에 말머리로 표시됩니다.">
+        <select
+          value={form.category}
+          onChange={(e) => patch("category", e.target.value)}
+          className="w-full sm:w-64 border border-border bg-white px-3 py-2.5 text-sm focus:outline-none focus:border-navy"
+        >
+          {CATEGORIES.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      </Field>
+
 
       <Field label="Content" hint="본문 어디에나 이미지를 삽입할 수 있습니다. 첫 이미지가 목록 썸네일로 사용됩니다.">
         <RichTextEditor value={form.content} onChange={(html) => patch("content", html)} />
