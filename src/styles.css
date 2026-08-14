@@ -215,6 +215,15 @@
 .prose-editor ol, .article-body ol { list-style: decimal; padding-left: 1.25rem; margin: 0 0 1rem; }
 .prose-editor blockquote, .article-body blockquote { border-left: 3px solid var(--color-gold, #c9a227); padding-left: 1rem; font-style: italic; margin: 0 0 1rem; }
 .prose-editor hr, .article-body hr { border-top: 1px solid var(--color-border, #e5e7eb); margin: 2rem 0; }
-.prose-editor img, .article-body img { max-width: 100%; height: auto; margin: 1.5rem 0; }
+.prose-editor img, .article-body img { max-width: 100%; height: auto; margin: 1.5rem 0; display: block; }
+.prose-editor img[data-align="center"], .article-body img[data-align="center"] { margin-left: auto; margin-right: auto; }
+.prose-editor img[data-align="left"], .article-body img[data-align="left"] { margin-right: auto; margin-left: 0; }
+.prose-editor img[data-align="right"], .article-body img[data-align="right"] { margin-left: auto; margin-right: 0; }
+.prose-editor img.ProseMirror-selectednode { outline: 2px solid var(--color-gold, #c9a227); }
+.prose-editor a, .article-body a { color: var(--color-navy, #0b1f3a); text-decoration: underline; text-underline-offset: 2px; }
+.prose-editor a:hover, .article-body a:hover { color: var(--color-gold, #c9a227); }
+.prose-editor .video-embed, .article-body .video-embed { position: relative; width: 100%; padding-top: 56.25%; margin: 1.75rem 0; background: #000; }
+.prose-editor .video-embed iframe, .article-body .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .prose-editor strong, .article-body strong { font-weight: 600; }
 .prose-editor p.is-editor-empty:first-child::before { content: "본문을 입력하세요"; color: #9ca3af; float: left; height: 0; pointer-events: none; }
+
