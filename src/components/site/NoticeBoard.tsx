@@ -154,15 +154,18 @@ export function NoticeBoard() {
                   {filtered.length - ((current - 1) * PER_PAGE + i)}
                 </td>
                 <td className="px-4 py-4">
-                  {n.kind === "notice" ? (
-                    <Link to="/notices/$id" params={{ id: n.id! }} className="text-navy hover:text-gold break-keep">
-                      {n.title}
-                    </Link>
-                  ) : (
-                    <Link to="/insights/$slug" params={{ slug: n.slug! }} className="text-navy hover:text-gold break-keep">
-                      {n.title}
-                    </Link>
-                  )}
+                  <div className="flex items-center gap-2.5">
+                    <span className={CategoryBadgeClass(n.category)}>{n.category}</span>
+                    {n.kind === "notice" ? (
+                      <Link to="/notices/$id" params={{ id: n.id! }} className="text-navy hover:text-gold break-keep">
+                        {n.title}
+                      </Link>
+                    ) : (
+                      <Link to="/insights/$slug" params={{ slug: n.slug! }} className="text-navy hover:text-gold break-keep">
+                        {n.title}
+                      </Link>
+                    )}
+                  </div>
                 </td>
                 <td className="px-4 py-4 text-center text-muted-foreground">{n.author}</td>
                 <td className="px-4 py-4 text-center text-muted-foreground">
