@@ -30,6 +30,7 @@ function EditArticle() {
     slug: data.slug,
     title: data.title,
     content: data.content ?? "",
+    category: data.category ?? "물류인사이트",
     status: data.status,
     published_at: data.published_at,
   };

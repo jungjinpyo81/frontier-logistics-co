@@ -42,7 +42,7 @@ export function ArticleForm({ initial }: { initial?: ArticleInput }) {
   const [form, setForm] = useState<ArticleInput>(
     initial
       ? { ...initial, content: toHtml(initial.content) }
-      : { slug: "", title: "", content: "", status: "draft", published_at: null }
+      : { slug: "", title: "", content: "", category: DEFAULT_CATEGORY, status: "draft", published_at: null }
   );
   const [busy, setBusy] = useState(false);
 
