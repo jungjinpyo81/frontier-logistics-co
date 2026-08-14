@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Search } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useLang } from "@/lib/i18n";
+import { CATEGORIES, CategoryBadgeClass, DEFAULT_CATEGORY } from "@/lib/categories";
 
 const PER_PAGE = 10;
 
@@ -13,6 +14,7 @@ type Row = {
   title: string;
   author: string;
   date: string;
+  category: string;
   id?: string;
   slug?: string;
 };
@@ -22,15 +24,16 @@ export function NoticeBoard() {
   const ko = lang === "ko";
   const [q, setQ] = useState("");
   const [page, setPage] = useState(1);
+  const [cat, setCat] = useState<string>("전체");
 
   const { data, isLoading } = useQuery({
     queryKey: ["news-and-insights"],
     queryFn: async (): Promise<Row[]> => {
       const [notices, articles] = await Promise.all([
-        supabase.from("notices").select("id, title, author, created_at"),
+        supabase.from("notices").select("id, title, author, category, created_at"),
         supabase
           .from("articles")
-          .select("id, slug, title, status, published_at, created_at")
+          .select("id, slug, title, status, category, published_at, created_at")
           .in("status", ["published", "private"]),
       ]);
       if (notices.error) throw notices.error;
@@ -43,6 +46,7 @@ export function NoticeBoard() {
           title: n.title,
           author: n.author,
           date: n.created_at,
+          category: n.category || DEFAULT_CATEGORY,
           id: n.id,
         })),
         ...(articles.data ?? []).map((a) => ({
@@ -51,6 +55,7 @@ export function NoticeBoard() {
           title: a.title,
           author: "지구글로벌",
           date: a.published_at ?? a.created_at,
+          category: a.category || DEFAULT_CATEGORY,
           slug: a.slug,
         })),
       ];
@@ -60,9 +65,10 @@ export function NoticeBoard() {
 
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();
-    if (!term) return data ?? [];
-    return (data ?? []).filter((n) => n.title.toLowerCase().includes(term));
-  }, [data, q]);
+    return (data ?? []).filter(
+      (n) => (cat === "전체" || n.category === cat) && (!term || n.title.toLowerCase().includes(term))
+    );
+  }, [data, q, cat]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
   const current = Math.min(page, totalPages);
