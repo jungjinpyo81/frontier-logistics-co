@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { RichTextEditor, firstImageUrl } from "./RichTextEditor";
 import { CATEGORIES, DEFAULT_CATEGORY } from "@/lib/categories";
+
 
 export type ArticleStatus = "draft" | "published" | "private";
 
