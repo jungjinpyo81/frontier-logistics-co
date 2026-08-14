@@ -4,7 +4,7 @@ import { PageHero } from "./our-story";
 import { useLang } from "@/lib/i18n";
 import { NoticeBoard } from "@/components/site/NoticeBoard";
 
-export const Route = createFileRoute("/insights")({
+export const Route = createFileRoute("/insights/")({
   head: () => ({
     meta: [
       { title: "소식 & 정보 — JIGU GLOBAL" },

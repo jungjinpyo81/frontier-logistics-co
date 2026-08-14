@@ -14,7 +14,6 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GlobalNetworkRouteImport } from './routes/global-network'
-import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -23,6 +22,7 @@ import { Route as TradeSolutionsRouteImport } from './routes/trade-solutions'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminNewRouteImport } from './routes/admin.new'
 import { Route as AdminNoticesRouteImport } from './routes/admin.notices'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as NoticesIndexRouteImport } from './routes/notices.index'
 import { Route as NoticesIdRouteImport } from './routes/notices.$id'
@@ -51,11 +51,6 @@ const ContactRoute = ContactRouteImport.update({
 const GlobalNetworkRoute = GlobalNetworkRouteImport.update({
   id: '/global-network',
   path: '/global-network',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InsightsRoute = InsightsRouteImport.update({
-  id: '/insights',
-  path: '/insights',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OurStoryRoute = OurStoryRouteImport.update({
@@ -98,10 +93,15 @@ const AdminNoticesRoute = AdminNoticesRouteImport.update({
   path: '/notices',
   getParentRoute: () => AdminRoute,
 } as any)
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => InsightsRoute,
+  id: '/insights/$slug',
+  path: '/insights/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const NoticesIndexRoute = NoticesIndexRouteImport.update({
   id: '/notices/',
@@ -125,7 +125,6 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/global-network': typeof GlobalNetworkRoute
-  '/insights': typeof InsightsRouteWithChildren
   '/our-story': typeof OurStoryRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -136,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/insights/$slug': typeof InsightsSlugRoute
   '/notices/$id': typeof NoticesIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/insights/': typeof InsightsIndexRoute
   '/notices/': typeof NoticesIndexRoute
   '/admin/edit/$id': typeof AdminEditIdRoute
 }
@@ -144,7 +144,6 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/global-network': typeof GlobalNetworkRoute
-  '/insights': typeof InsightsRouteWithChildren
   '/our-story': typeof OurStoryRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -155,6 +154,7 @@ export interface FileRoutesByTo {
   '/insights/$slug': typeof InsightsSlugRoute
   '/notices/$id': typeof NoticesIdRoute
   '/admin': typeof AdminIndexRoute
+  '/insights': typeof InsightsIndexRoute
   '/notices': typeof NoticesIndexRoute
   '/admin/edit/$id': typeof AdminEditIdRoute
 }
@@ -165,7 +165,6 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/global-network': typeof GlobalNetworkRoute
-  '/insights': typeof InsightsRouteWithChildren
   '/our-story': typeof OurStoryRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -176,6 +175,7 @@ export interface FileRoutesById {
   '/insights/$slug': typeof InsightsSlugRoute
   '/notices/$id': typeof NoticesIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/insights/': typeof InsightsIndexRoute
   '/notices/': typeof NoticesIndexRoute
   '/admin/edit/$id': typeof AdminEditIdRoute
 }
@@ -187,7 +187,6 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/global-network'
-    | '/insights'
     | '/our-story'
     | '/services'
     | '/sitemap.xml'
@@ -198,6 +197,7 @@ export interface FileRouteTypes {
     | '/insights/$slug'
     | '/notices/$id'
     | '/admin/'
+    | '/insights/'
     | '/notices/'
     | '/admin/edit/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -206,7 +206,6 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/global-network'
-    | '/insights'
     | '/our-story'
     | '/services'
     | '/sitemap.xml'
@@ -217,6 +216,7 @@ export interface FileRouteTypes {
     | '/insights/$slug'
     | '/notices/$id'
     | '/admin'
+    | '/insights'
     | '/notices'
     | '/admin/edit/$id'
   id:
@@ -226,7 +226,6 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/global-network'
-    | '/insights'
     | '/our-story'
     | '/services'
     | '/sitemap.xml'
@@ -237,6 +236,7 @@ export interface FileRouteTypes {
     | '/insights/$slug'
     | '/notices/$id'
     | '/admin/'
+    | '/insights/'
     | '/notices/'
     | '/admin/edit/$id'
   fileRoutesById: FileRoutesById
@@ -247,13 +247,14 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   GlobalNetworkRoute: typeof GlobalNetworkRoute
-  InsightsRoute: typeof InsightsRouteWithChildren
   OurStoryRoute: typeof OurStoryRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SpecialCargoRoute: typeof SpecialCargoRoute
   TradeSolutionsRoute: typeof TradeSolutionsRoute
+  InsightsSlugRoute: typeof InsightsSlugRoute
   NoticesIdRoute: typeof NoticesIdRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
   NoticesIndexRoute: typeof NoticesIndexRoute
 }
 
@@ -292,13 +293,6 @@ declare module '@tanstack/react-router' {
       path: '/global-network'
       fullPath: '/global-network'
       preLoaderRoute: typeof GlobalNetworkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/insights': {
-      id: '/insights'
-      path: '/insights'
-      fullPath: '/insights'
-      preLoaderRoute: typeof InsightsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/our-story': {
@@ -357,12 +351,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminNoticesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/insights/$slug': {
       id: '/insights/$slug'
-      path: '/$slug'
+      path: '/insights/$slug'
       fullPath: '/insights/$slug'
       preLoaderRoute: typeof InsightsSlugRouteImport
-      parentRoute: typeof InsightsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/notices/': {
       id: '/notices/'
@@ -404,31 +405,20 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
-interface InsightsRouteChildren {
-  InsightsSlugRoute: typeof InsightsSlugRoute
-}
-
-const InsightsRouteChildren: InsightsRouteChildren = {
-  InsightsSlugRoute: InsightsSlugRoute,
-}
-
-const InsightsRouteWithChildren = InsightsRoute._addFileChildren(
-  InsightsRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   GlobalNetworkRoute: GlobalNetworkRoute,
-  InsightsRoute: InsightsRouteWithChildren,
   OurStoryRoute: OurStoryRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SpecialCargoRoute: SpecialCargoRoute,
   TradeSolutionsRoute: TradeSolutionsRoute,
+  InsightsSlugRoute: InsightsSlugRoute,
   NoticesIdRoute: NoticesIdRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
   NoticesIndexRoute: NoticesIndexRoute,
 }
 export const routeTree = rootRouteImport
