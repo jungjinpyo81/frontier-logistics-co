@@ -3,14 +3,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { CATEGORIES, CategoryBadgeClass, DEFAULT_CATEGORY } from "@/lib/categories";
 
 export const Route = createFileRoute("/admin/notices")({
   component: AdminNotices,
 });
 
-type Draft = { id?: string; title: string; author: string; content: string };
+type Draft = { id?: string; title: string; author: string; content: string; category: string };
 
-const empty: Draft = { title: "", author: "관리자", content: "" };
+const empty: Draft = { title: "", author: "관리자", content: "", category: DEFAULT_CATEGORY };
 
 function AdminNotices() {
   const qc = useQueryClient();
@@ -21,7 +22,7 @@ function AdminNotices() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("notices")
-        .select("id, title, content, author, created_at")
+        .select("id, title, content, author, category, created_at")
         .order("created_at", { ascending: false });
       if (error) throw error;
       return data;
@@ -34,6 +35,7 @@ function AdminNotices() {
         title: d.title.trim(),
         author: d.author.trim() || "관리자",
         content: d.content,
+        category: d.category,
       };
       if (d.id) {
         const { error } = await supabase.from("notices").update(payload).eq("id", d.id);
@@ -89,6 +91,19 @@ function AdminNotices() {
             />
           </div>
           <div>
+            <label className="block text-xs text-muted-foreground mb-1.5" htmlFor="notice-category">말머리</label>
+            <select
+              id="notice-category"
+              value={draft.category}
+              onChange={(e) => setDraft({ ...draft, category: e.target.value })}
+              className="w-full border border-border bg-white px-3 py-2.5 outline-none focus:border-gold"
+            >
+              {CATEGORIES.map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+          <div>
             <label className="block text-xs text-muted-foreground mb-1.5" htmlFor="notice-author">글쓴이</label>
             <input
               id="notice-author"
@@ -139,14 +154,17 @@ function AdminNotices() {
             )}
             {data?.map((n) => (
               <tr key={n.id} className="border-b border-border/60 hover:bg-mist/40">
-                <td className="px-5 py-4 text-navy break-keep">{n.title}</td>
+                <td className="px-5 py-4 text-navy break-keep">
+                  <span className={`${CategoryBadgeClass(n.category)} mr-2`}>{n.category}</span>
+                  {n.title}
+                </td>
                 <td className="px-5 py-4 text-muted-foreground">{n.author}</td>
                 <td className="px-5 py-4 text-xs text-muted-foreground">
                   {new Date(n.created_at).toISOString().slice(0, 10)}
                 </td>
                 <td className="px-5 py-4 text-right whitespace-nowrap">
                   <button
-                    onClick={() => setDraft({ id: n.id, title: n.title, author: n.author, content: n.content ?? "" })}
+                    onClick={() => setDraft({ id: n.id, title: n.title, author: n.author, content: n.content ?? "", category: n.category || DEFAULT_CATEGORY })}
                     className="text-xs text-navy hover:text-gold mr-3"
                   >
                     Edit
