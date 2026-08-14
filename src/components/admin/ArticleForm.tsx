@@ -150,10 +150,12 @@ export function ArticleForm({ initial }: { initial?: ArticleInput }) {
           .select("id")
           .single();
         if (error) throw error;
+        localStorage.removeItem(key);
         toast.success(status === "published" ? "발행되었습니다" : "저장되었습니다");
         navigate({ to: "/admin/edit/$id", params: { id: data.id } });
         return;
       }
+      localStorage.removeItem(key);
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "저장 실패");
     } finally {
@@ -187,11 +189,25 @@ export function ArticleForm({ initial }: { initial?: ArticleInput }) {
       </Field>
 
 
-      <Field label="Content" hint="본문 어디에나 이미지를 삽입할 수 있습니다. 첫 이미지가 목록 썸네일로 사용됩니다.">
-        <RichTextEditor value={form.content} onChange={(html) => patch("content", html)} />
+      <Field label="Content" hint="이미지·링크·동영상 삽입, 색상/크기/정렬 지정이 가능합니다. 첫 이미지가 목록 썸네일로 사용됩니다.">
+        {ready ? (
+          <RichTextEditor value={form.content} onChange={(html) => patch("content", html)} />
+        ) : (
+          <div className="min-h-[420px] border border-border" />
+        )}
       </Field>
 
       <div className="flex flex-wrap items-center justify-end gap-2 pt-4 border-t border-border">
+        <span className="mr-auto text-[11px] text-muted-foreground">
+          {savedAt ? `임시 저장됨 · ${savedAt}` : "30초마다 자동 임시 저장됩니다"}
+        </span>
+        <button
+          onClick={() => saveDraft(true)}
+          disabled={busy}
+          className="btn-ghost-light !text-navy !border-navy/30 hover:!bg-navy hover:!text-white"
+        >
+          임시저장
+        </button>
         <button
           onClick={() => save("draft")}
           disabled={busy}
@@ -203,6 +219,7 @@ export function ArticleForm({ initial }: { initial?: ArticleInput }) {
           Publish article
         </button>
       </div>
+
     </div>
   );
 }
