@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, Phone, MessageCircle, MapPin, ArrowRight, Check } from "lucide-react";
+import { Mail, Phone, MessageCircle, MapPin, ArrowRight, Check, ChevronDown, ShieldCheck } from "lucide-react";
 import { z } from "zod";
 import { Reveal } from "@/components/site/Reveal";
 import { useLang } from "@/lib/i18n";
@@ -26,6 +26,9 @@ const Schema = z.object({
   phone: z.string().trim().max(40).optional(),
   service: z.string().trim().max(80).optional(),
   message: z.string().trim().min(1, "Tell us about your shipment").max(2000),
+  privacyConsent: z.literal("true", {
+    errorMap: () => ({ message: "개인정보 수집 및 이용에 동의해주세요." }),
+  }),
 });
 
 const SERVICES = [
@@ -38,16 +41,40 @@ const SERVICES = [
   { ko: "무역 & 솔루션", en: "Trade & Solutions" },
 ];
 
+const PRIVACY_ITEMS = {
+  purpose: {
+    ko: "견적 문의 접수 및 상담 회신",
+    en: "Receiving quote inquiries and responding to consultations",
+  },
+  items: {
+    ko: "이름, 회사명, 이메일, 전화번호, 서비스 구분, 문의 내용",
+    en: "Name, company name, email, phone number, service type, and inquiry details",
+  },
+  retention: {
+    ko: "문의 처리 완료 후 관련 법령에 따라 최대 3년간 보관 후 파기",
+    en: "Kept for up to 3 years after the inquiry is processed, then destroyed in accordance with applicable laws",
+  },
+  refusal: {
+    ko: "이용자는 동의를 거부할 권리가 있으며, 동의 거부 시 견적 문의 접수가 제한됩니다.",
+    en: "You have the right to refuse consent; however, quote inquiry submission will be restricted without consent.",
+  },
+};
+
 function Contact() {
   const { lang } = useLang();
   const ko = lang === "ko";
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   const errorMessages: Record<string, { ko: string; en: string }> = {
     "Name is required": { ko: "이름을 입력해주세요.", en: "Name is required" },
     "Valid email required": { ko: "유효한 이메일을 입력해주세요.", en: "Valid email required" },
     "Tell us about your shipment": { ko: "화물에 대해 알려주세요.", en: "Tell us about your shipment" },
+    "개인정보 수집 및 이용에 동의해주세요.": {
+      ko: "개인정보 수집 및 이용에 동의해주세요.",
+      en: "Please agree to the collection and use of personal information.",
+    },
   };
   const trErr = (msg: string) => (errorMessages[msg] ? (ko ? errorMessages[msg].ko : errorMessages[msg].en) : msg);
 
