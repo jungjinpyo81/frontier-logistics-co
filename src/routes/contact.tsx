@@ -295,7 +295,7 @@ function Contact() {
                     {ko ? "[필수] 개인정보 수집 및 이용에 동의합니다." : "[Required] I agree to the collection and use of personal information."}
                   </span>
                 </label>
-                {errors.privacyConsent && <p className="text-xs text-destructive -mt-7">{trErr(errors.privacyConsent)}</p>}
+                {errors.privacyConsent && <p className="text-xs text-destructive -mt-3">{trErr(errors.privacyConsent)}</p>}
 
                 <button type="submit" className="btn-primary self-start">
                   {ko ? "문의 보내기" : "Send Inquiry"} <ArrowRight size={16} />
