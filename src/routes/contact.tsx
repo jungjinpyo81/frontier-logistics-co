@@ -25,7 +25,12 @@ const Schema = z.object({
   email: z.string().trim().email("Valid email required").max(255),
   phone: z.string().trim().max(40).optional(),
   service: z.string().trim().max(80).optional(),
-  message: z.string().trim().min(1, "Tell us about your shipment").max(2000),
+  origin: z.string().trim().min(1, "Origin is required").max(200),
+  destination: z.string().trim().min(1, "Destination is required").max(200),
+  cargoType: z.string().trim().min(1, "Cargo type is required").max(200),
+  quantity: z.string().trim().max(200).optional(),
+  schedule: z.string().trim().max(200).optional(),
+  notes: z.string().trim().max(2000).optional(),
   privacyConsent: z.literal("true", {
     errorMap: () => ({ message: "개인정보 수집 및 이용에 동의해주세요." }),
   }),
@@ -33,12 +38,9 @@ const Schema = z.object({
 
 const SERVICES = [
   { ko: "해상 운송", en: "Ocean Freight" },
-  { ko: "항공 운송", en: "Air Freight" },
-  { ko: "특송 서비스", en: "Express Service" },
-  { ko: "내륙 운송", en: "Inland Transportation" },
-  { ko: "창고보관", en: "Warehousing" },
-  { ko: "특수 화물", en: "Special Cargo" },
-  { ko: "무역 & 솔루션", en: "Trade & Solutions" },
+  { ko: "항공 특송", en: "Air Express" },
+  { ko: "식물/식품 검역 대행", en: "Plant/Food Quarantine Agency" },
+  { ko: "수입 소싱 컨설팅", en: "Import Sourcing Consulting" },
 ];
 
 const PRIVACY_ITEMS = {
@@ -70,7 +72,9 @@ function Contact() {
   const errorMessages: Record<string, { ko: string; en: string }> = {
     "Name is required": { ko: "이름을 입력해주세요.", en: "Name is required" },
     "Valid email required": { ko: "유효한 이메일을 입력해주세요.", en: "Valid email required" },
-    "Tell us about your shipment": { ko: "화물에 대해 알려주세요.", en: "Tell us about your shipment" },
+    "Origin is required": { ko: "출발지를 입력해주세요.", en: "Origin is required" },
+    "Destination is required": { ko: "도착지를 입력해주세요.", en: "Destination is required" },
+    "Cargo type is required": { ko: "화물의 종류를 입력해주세요.", en: "Cargo type is required" },
     "개인정보 수집 및 이용에 동의해주세요.": {
       ko: "개인정보 수집 및 이용에 동의해주세요.",
       en: "Please agree to the collection and use of personal information.",
@@ -145,56 +149,103 @@ function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={onSubmit} className="mt-10 grid gap-5" noValidate>
-                <Field name="name" label={ko ? "이름 *" : "Name *"} err={errors.name && trErr(errors.name)} />
-                <div className="grid md:grid-cols-2 gap-5">
-                  <Field
-                    name="company"
-                    label={ko ? "회사명" : "Company"}
-                    err={errors.company && trErr(errors.company)}
-                  />
-                  <Field
-                    name="email"
-                    label={ko ? "이메일 *" : "Email *"}
-                    type="email"
-                    err={errors.email && trErr(errors.email)}
-                  />
-                </div>
-                <div className="grid md:grid-cols-2 gap-5">
-                  <Field name="phone" label={ko ? "전화번호" : "Phone"} err={errors.phone && trErr(errors.phone)} />
-                  <div>
-                    <label className="block text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-2">
-                      {ko ? "서비스" : "Service"}
-                    </label>
-                    <select
-                      name="service"
-                      className="w-full bg-mist border border-border px-4 py-3.5 text-sm focus:outline-none focus:border-navy"
-                    >
-                      {SERVICES.map((s) => (
-                        <option key={s.en} value={s.en}>
-                          {ko ? s.ko : s.en}
-                        </option>
-                      ))}
-                    </select>
+              <form onSubmit={onSubmit} className="mt-10 space-y-10" noValidate>
+                {/* 1. Contact Information */}
+                <div>
+                  <h3 className="font-display text-lg text-navy mb-5 pb-2 border-b border-border">
+                    {ko ? "1. 기본 정보" : "1. Contact Information"}
+                  </h3>
+                  <div className="grid gap-5 md:grid-cols-2">
+                    <Field name="name" label={ko ? "이름 *" : "Full Name *"} err={errors.name && trErr(errors.name)} />
+                    <Field name="company" label={ko ? "회사명" : "Company Name"} err={errors.company && trErr(errors.company)} />
+                    <Field
+                      name="email"
+                      label={ko ? "이메일 *" : "Email *"}
+                      type="email"
+                      err={errors.email && trErr(errors.email)}
+                    />
+                    <Field name="phone" label={ko ? "전화번호" : "Phone Number"} type="tel" err={errors.phone && trErr(errors.phone)} />
+                    <div className="md:col-span-2">
+                      <label className="block text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-2">
+                        {ko ? "서비스" : "Service"}
+                      </label>
+                      <select
+                        name="service"
+                        className="w-full bg-mist border border-border px-4 py-3.5 text-sm focus:outline-none focus:border-navy"
+                      >
+                        {SERVICES.map((s) => (
+                          <option key={s.en} value={s.en}>
+                            {ko ? s.ko : s.en}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 </div>
+
+                {/* 2. Logistics Details */}
                 <div>
-                  <label className="block text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-2">
-                    {ko ? "메시지 *" : "Message *"}
-                  </label>
-                  <textarea
-                    name="message"
-                    rows={6}
-                    className="w-full bg-mist border border-border px-4 py-3.5 text-sm focus:outline-none focus:border-navy resize-none"
-                    placeholder={
-                      ko
-                        ? "출발지, 도착지, 화물 종류, 물량, 일정 등을 알려주세요..."
-                        : "Origin, destination, cargo type, volume, timing..."
-                    }
-                  />
-                {errors.message && <p className="text-xs text-destructive mt-1">{trErr(errors.message)}</p>}
+                  <h3 className="font-display text-lg text-navy mb-5 pb-2 border-b border-border">
+                    {ko ? "2. 화물 및 운송 정보" : "2. Cargo & Shipping Information"}
+                  </h3>
+                  <div className="grid gap-5 md:grid-cols-2">
+                    <Field
+                      name="origin"
+                      label={ko ? "출발지 *" : "Origin / Departure *"}
+                      placeholder={ko ? "예: 프랑스 파리, 중국 심천 등" : "e.g. Paris, France; Shenzhen, China"}
+                      err={errors.origin && trErr(errors.origin)}
+                    />
+                    <Field
+                      name="destination"
+                      label={ko ? "도착지 *" : "Destination *"}
+                      placeholder={ko ? "예: 인천공항, 부산항, 국내 창고 등" : "e.g. Incheon Airport, Busan Port, domestic warehouse"}
+                      err={errors.destination && trErr(errors.destination)}
+                    />
+                    <Field
+                      name="cargoType"
+                      label={ko ? "화물의 종류 *" : "Cargo Type *"}
+                      placeholder={ko ? "예: 건조과일, 캔 견과류, 가공식품 등" : "e.g. dried fruit, canned nuts, processed food"}
+                      err={errors.cargoType && trErr(errors.cargoType)}
+                    />
+                    <Field
+                      name="quantity"
+                      label={ko ? "물량 / 중량" : "Quantity / Volume"}
+                      placeholder={ko ? "예: 3 CTN, 1 Pallet, 50kg, 2 CBM 등" : "e.g. 3 CTN, 1 Pallet, 50kg, 2 CBM"}
+                      err={errors.quantity && trErr(errors.quantity)}
+                    />
+                    <Field
+                      name="schedule"
+                      label={ko ? "희망 일정" : "Preferred Schedule"}
+                      placeholder={ko ? "예: 8월 말 출하 희망, 즉시 등" : "e.g. end of August, immediately"}
+                      err={errors.schedule && trErr(errors.schedule)}
+                    />
+                  </div>
                 </div>
 
+                {/* 3. Additional Notes */}
+                <div>
+                  <h3 className="font-display text-lg text-navy mb-5 pb-2 border-b border-border">
+                    {ko ? "3. 기타 요청사항" : "3. Additional Notes"}
+                  </h3>
+                  <div>
+                    <label className="block text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-2">
+                      {ko ? "기타 요청사항" : "Additional Notes"}
+                    </label>
+                    <textarea
+                      name="notes"
+                      rows={3}
+                      className="w-full bg-mist border border-border px-4 py-3.5 text-sm focus:outline-none focus:border-navy resize-none"
+                      placeholder={
+                        ko
+                          ? "기타 문의사항이나 요청 조건이 있다면 적어주세요..."
+                          : "Please let us know of any other questions or requirements..."
+                      }
+                    />
+                    {errors.notes && <p className="text-xs text-destructive mt-1">{trErr(errors.notes)}</p>}
+                  </div>
+                </div>
+
+                {/* 4. Privacy Consent & Submission */}
                 <div className="border border-border bg-mist/50">
                   <button
                     type="button"
@@ -244,9 +295,9 @@ function Contact() {
                     {ko ? "[필수] 개인정보 수집 및 이용에 동의합니다." : "[Required] I agree to the collection and use of personal information."}
                   </span>
                 </label>
-                {errors.privacyConsent && <p className="text-xs text-destructive -mt-3">{trErr(errors.privacyConsent)}</p>}
+                {errors.privacyConsent && <p className="text-xs text-destructive -mt-7">{trErr(errors.privacyConsent)}</p>}
 
-                <button type="submit" className="btn-primary self-start mt-2">
+                <button type="submit" className="btn-primary self-start">
                   {ko ? "문의 보내기" : "Send Inquiry"} <ArrowRight size={16} />
                 </button>
               </form>
@@ -286,14 +337,27 @@ function Contact() {
   );
 }
 
-function Field({ name, label, type = "text", err }: { name: string; label: string; type?: string; err?: string }) {
+function Field({
+  name,
+  label,
+  type = "text",
+  placeholder,
+  err,
+}: {
+  name: string;
+  label: string;
+  type?: string;
+  placeholder?: string;
+  err?: string;
+}) {
   return (
     <div>
       <label className="block text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-2">{label}</label>
       <input
         name={name}
         type={type}
-        className="w-full bg-mist border border-border px-4 py-3.5 text-sm focus:outline-none focus:border-navy"
+        placeholder={placeholder}
+        className="w-full bg-mist border border-border px-4 py-3.5 text-sm focus:outline-none focus:border-navy placeholder:text-foreground/40"
       />
       {err && <p className="text-xs text-destructive mt-1">{err}</p>}
     </div>
