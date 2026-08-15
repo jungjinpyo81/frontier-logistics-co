@@ -4,6 +4,7 @@ import { Mail, Phone, Printer, MessageCircle, MapPin, ArrowRight, Check, Chevron
 import { z } from "zod";
 import { Reveal } from "@/components/site/Reveal";
 import { useLang } from "@/lib/i18n";
+import { submitQuote } from "@/lib/quote.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -66,6 +67,8 @@ function Contact() {
   const { lang } = useLang();
   const ko = lang === "ko";
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [showPrivacy, setShowPrivacy] = useState(false);
 
@@ -82,7 +85,7 @@ function Contact() {
   };
   const trErr = (msg: string) => (errorMessages[msg] ? (ko ? errorMessages[msg].ko : errorMessages[msg].en) : msg);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd.entries());
@@ -96,8 +99,21 @@ function Contact() {
       return;
     }
     setErrors({});
-    setSent(true);
+    setSubmitting(true);
+    try {
+      const { privacyConsent: _c, ...payload } = r.data;
+      await submitQuote({ data: payload });
+      setSent(true);
+    } catch (err) {
+      console.error(err);
+      setSendError(
+        ko ? "전송에 실패했습니다. 잠시 후 다시 시도해주세요." : "Failed to send. Please try again in a moment.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
+
 
   return (
     <>
@@ -297,8 +313,10 @@ function Contact() {
                 </label>
                 {errors.privacyConsent && <p className="text-xs text-destructive -mt-3">{trErr(errors.privacyConsent)}</p>}
 
-                <button type="submit" className="btn-primary self-start">
-                  {ko ? "문의 보내기" : "Send Inquiry"} <ArrowRight size={16} />
+                {sendError && <p className="text-xs text-destructive">{sendError}</p>}
+
+                <button type="submit" disabled={submitting} className="btn-primary self-start disabled:opacity-60">
+                  {submitting ? (ko ? "전송 중..." : "Sending...") : ko ? "문의 보내기" : "Send Inquiry"} <ArrowRight size={16} />
                 </button>
               </form>
             )}
