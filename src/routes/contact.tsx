@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, Phone, MessageCircle, MapPin, ArrowRight, Check, ChevronDown, ShieldCheck } from "lucide-react";
+import { Mail, Phone, Printer, MessageCircle, MapPin, ArrowRight, Check, ChevronDown, ShieldCheck } from "lucide-react";
 import { z } from "zod";
 import { Reveal } from "@/components/site/Reveal";
 import { useLang } from "@/lib/i18n";
@@ -260,6 +260,7 @@ function Contact() {
               <ul className="mt-10 space-y-8">
                 <Info icon={Mail} label={ko ? "이메일" : "Email"} value="sj.hwang@g9global.net" />
                 <Info icon={Phone} label={ko ? "전화" : "Phone"} value="+82 31 651 4473" />
+                <Info icon={Printer} label={ko ? "팩스" : "Fax"} value="+82 31 949 4471" />
                 <Info icon={MessageCircle} label="KakaoTalk" value={ko ? "카카오톡 상담하기" : "@jiguglobal"} />
                 <Info
                   icon={MapPin}
