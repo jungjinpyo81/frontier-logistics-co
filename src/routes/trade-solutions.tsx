@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShoppingBag, Globe, FileText, Handshake } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { ShoppingBag, Globe, FileText, Handshake } from "lucide-react";
 import warehouse from "@/assets/warehouse.jpg";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
@@ -90,9 +90,6 @@ function Trade() {
               <>Let's build your next <span className="italic text-gold">market.</span></>
             )}
           </h2>
-          <div className="flex lg:justify-end">
-            <Link to="/contact" className="btn-gold">{ko ? "문의하기" : "Get in touch"} <ArrowRight size={16} /></Link>
-          </div>
         </div>
       </section>
     </>
