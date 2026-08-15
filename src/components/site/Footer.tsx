@@ -30,8 +30,6 @@ export function Footer() {
             </div>
             <div className="mt-5 text-[13px] leading-relaxed text-white/40">
               (주)지구글로벌 / {ko ? "주소" : "Address"} : 경기도 고양시 덕양구 청초로 10, A1-418 / {ko ? "사업자등록번호" : "Business No."} : 425-86-02424
-              <br />
-              {ko ? "팩스" : "Fax"} : 031-949-4471
             </div>
           </div>
 
