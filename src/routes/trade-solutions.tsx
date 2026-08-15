@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShoppingBag, Globe, FileText, Handshake } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { ShoppingBag, Globe, FileText, Handshake } from "lucide-react";
 import warehouse from "@/assets/warehouse.jpg";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "./our-story";
