@@ -136,9 +136,6 @@ function Story() {
             <p className="mt-8 text-white/70 leading-relaxed max-w-md">
               {ko ? "우리는 한국을 대표하는 글로벌 물류 브랜드로 성장하여, 세계 어느 곳에서도 우리의 고객이 안정적으로 비즈니스를 이어갈 수 있는 인프라가 되겠습니다." : "We aim to grow into Korea's leading global logistics brand — the infrastructure that lets our clients run their business reliably, anywhere in the world."}
             </p>
-            <Link to="/contact" className="mt-10 inline-flex btn-gold">
-              {ko ? "함께하기" : "Partner with us"} <ArrowRight size={16} />
-            </Link>
           </Reveal>
         </div>
       </section>
