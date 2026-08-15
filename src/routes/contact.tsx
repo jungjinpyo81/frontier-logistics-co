@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, Phone, MessageCircle, MapPin, ArrowRight, Check } from "lucide-react";
+import { Mail, Phone, MessageCircle, MapPin, ArrowRight, Check, ChevronDown, ShieldCheck } from "lucide-react";
 import { z } from "zod";
 import { Reveal } from "@/components/site/Reveal";
 import { useLang } from "@/lib/i18n";
@@ -26,6 +26,9 @@ const Schema = z.object({
   phone: z.string().trim().max(40).optional(),
   service: z.string().trim().max(80).optional(),
   message: z.string().trim().min(1, "Tell us about your shipment").max(2000),
+  privacyConsent: z.literal("true", {
+    errorMap: () => ({ message: "개인정보 수집 및 이용에 동의해주세요." }),
+  }),
 });
 
 const SERVICES = [
@@ -38,16 +41,40 @@ const SERVICES = [
   { ko: "무역 & 솔루션", en: "Trade & Solutions" },
 ];
 
+const PRIVACY_ITEMS = {
+  purpose: {
+    ko: "견적 문의 접수 및 상담 회신",
+    en: "Receiving quote inquiries and responding to consultations",
+  },
+  items: {
+    ko: "이름, 회사명, 이메일, 전화번호, 서비스 구분, 문의 내용",
+    en: "Name, company name, email, phone number, service type, and inquiry details",
+  },
+  retention: {
+    ko: "문의 처리 완료 후 관련 법령에 따라 최대 3년간 보관 후 파기",
+    en: "Kept for up to 3 years after the inquiry is processed, then destroyed in accordance with applicable laws",
+  },
+  refusal: {
+    ko: "이용자는 동의를 거부할 권리가 있으며, 동의 거부 시 견적 문의 접수가 제한됩니다.",
+    en: "You have the right to refuse consent; however, quote inquiry submission will be restricted without consent.",
+  },
+};
+
 function Contact() {
   const { lang } = useLang();
   const ko = lang === "ko";
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   const errorMessages: Record<string, { ko: string; en: string }> = {
     "Name is required": { ko: "이름을 입력해주세요.", en: "Name is required" },
     "Valid email required": { ko: "유효한 이메일을 입력해주세요.", en: "Valid email required" },
     "Tell us about your shipment": { ko: "화물에 대해 알려주세요.", en: "Tell us about your shipment" },
+    "개인정보 수집 및 이용에 동의해주세요.": {
+      ko: "개인정보 수집 및 이용에 동의해주세요.",
+      en: "Please agree to the collection and use of personal information.",
+    },
   };
   const trErr = (msg: string) => (errorMessages[msg] ? (ko ? errorMessages[msg].ko : errorMessages[msg].en) : msg);
 
@@ -165,8 +192,60 @@ function Contact() {
                         : "Origin, destination, cargo type, volume, timing..."
                     }
                   />
-                  {errors.message && <p className="text-xs text-destructive mt-1">{trErr(errors.message)}</p>}
+                {errors.message && <p className="text-xs text-destructive mt-1">{trErr(errors.message)}</p>}
                 </div>
+
+                <div className="border border-border bg-mist/50">
+                  <button
+                    type="button"
+                    onClick={() => setShowPrivacy((s) => !s)}
+                    className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-mist transition"
+                  >
+                    <span className="flex items-center gap-2 text-sm font-medium text-navy">
+                      <ShieldCheck className="size-4 text-gold" strokeWidth={1.6} />
+                      {ko ? "개인정보 수집 및 이용 동의" : "Personal Information Collection & Usage Consent"}
+                    </span>
+                    <ChevronDown
+                      className={`size-4 text-muted-foreground transition-transform duration-300 ${showPrivacy ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  {showPrivacy && (
+                    <div className="px-5 pb-5 pt-1 text-sm text-foreground/80 space-y-3 border-t border-border bg-white/40">
+                      <p>
+                        <span className="font-semibold text-navy">{ko ? "수집 및 이용 목적" : "Purpose"}:</span>{" "}
+                        {ko ? PRIVACY_ITEMS.purpose.ko : PRIVACY_ITEMS.purpose.en}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-navy">{ko ? "수집 항목" : "Collected Items"}:</span>{" "}
+                        {ko ? PRIVACY_ITEMS.items.ko : PRIVACY_ITEMS.items.en}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-navy">
+                          {ko ? "보유 및 이용 기간" : "Retention & Usage Period"}:
+                        </span>{" "}
+                        {ko ? PRIVACY_ITEMS.retention.ko : PRIVACY_ITEMS.retention.en}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-navy">{ko ? "동의 거부 안내" : "Right to Refuse"}:</span>{" "}
+                        {ko ? PRIVACY_ITEMS.refusal.ko : PRIVACY_ITEMS.refusal.en}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    name="privacyConsent"
+                    value="true"
+                    className="mt-0.5 size-4 accent-navy border-border text-navy focus:ring-navy"
+                  />
+                  <span className="text-sm text-foreground/80 group-hover:text-foreground transition">
+                    {ko ? "[필수] 개인정보 수집 및 이용에 동의합니다." : "[Required] I agree to the collection and use of personal information."}
+                  </span>
+                </label>
+                {errors.privacyConsent && <p className="text-xs text-destructive -mt-3">{trErr(errors.privacyConsent)}</p>}
+
                 <button type="submit" className="btn-primary self-start mt-2">
                   {ko ? "문의 보내기" : "Send Inquiry"} <ArrowRight size={16} />
                 </button>
