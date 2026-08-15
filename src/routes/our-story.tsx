@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Truck, Forklift, Brush, Building2, Globe2 } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { Truck, Forklift, Brush, Building2, Globe2 } from "lucide-react";
 import containers from "@/assets/containers.jpg";
 import warehouse from "@/assets/warehouse.jpg";
 import air from "@/assets/air-freight.jpg";
