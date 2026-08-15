@@ -39,6 +39,7 @@ export function Footer() {
               [ko ? "견적 요청" : "Request a Quote", "/contact"],
               ["sj.hwang@g9global.net", "/contact"],
               ["+82 31 651 4473", "/contact"],
+              ["+82 31 949 4471 (Fax)", "/contact"],
               [
                 <img
                   src={kakaoAsset.url}
@@ -47,7 +48,6 @@ export function Footer() {
                 />,
                 "/contact",
               ],
-
             ]}
           />
         </div>
