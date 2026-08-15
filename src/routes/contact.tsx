@@ -313,8 +313,10 @@ function Contact() {
                 </label>
                 {errors.privacyConsent && <p className="text-xs text-destructive -mt-3">{trErr(errors.privacyConsent)}</p>}
 
-                <button type="submit" className="btn-primary self-start">
-                  {ko ? "문의 보내기" : "Send Inquiry"} <ArrowRight size={16} />
+                {sendError && <p className="text-xs text-destructive">{sendError}</p>}
+
+                <button type="submit" disabled={submitting} className="btn-primary self-start disabled:opacity-60">
+                  {submitting ? (ko ? "전송 중..." : "Sending...") : ko ? "문의 보내기" : "Send Inquiry"} <ArrowRight size={16} />
                 </button>
               </form>
             )}
