@@ -90,9 +90,6 @@ function Trade() {
               <>Let's build your next <span className="italic text-gold">market.</span></>
             )}
           </h2>
-          <div className="flex lg:justify-end">
-            <Link to="/contact" className="btn-gold">{ko ? "문의하기" : "Get in touch"} <ArrowRight size={16} /></Link>
-          </div>
         </div>
       </section>
     </>
