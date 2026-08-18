@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n";
+import logoAsset from "@/assets/europe-connect-logo.png.asset.json";
 
 type SubItem = { to: string; ko: string; en: string };
 type NavItem = { to: string; ko: string; en: string; sub?: SubItem[] };
