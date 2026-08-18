@@ -12,7 +12,7 @@ export function Footer() {
       <div className="container-x py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div>
-            <img src="/logo.png" alt="G9 GLOBAL" className="h-10 w-auto object-contain mb-6" />
+            <img src={logoAsset.url} alt="Europe Connect" className="h-10 w-auto object-contain mb-6" />
             <p className="text-sm leading-relaxed max-w-sm text-white/60">
               {ko ? (
                 <>
