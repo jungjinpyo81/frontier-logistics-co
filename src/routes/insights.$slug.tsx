@@ -24,6 +24,12 @@ export const Route = createFileRoute("/insights/$slug")({
   ),
 });
 
+/** The cover is auto-extracted from the first inline image, so skip the hero to avoid duplicates. */
+function coverIsFirstInlineImage(coverUrl: string, content: string | null) {
+  const first = /<img[^>]+src=["']([^"']+)["']/i.exec(content ?? "")?.[1];
+  return Boolean(first && first === coverUrl);
+}
+
 function ArticleDetail() {
   const { slug } = Route.useParams();
   const { data, isLoading } = useQuery({
@@ -65,7 +71,7 @@ function ArticleDetail() {
           </div>
         </div>
 
-        {data.cover_url && (
+        {data.cover_url && !coverIsFirstInlineImage(data.cover_url, data.content) && (
           <div className="mt-10 aspect-[16/9] overflow-hidden bg-mist">
             <img src={data.cover_url} alt={data.title} className="size-full object-cover" />
           </div>
