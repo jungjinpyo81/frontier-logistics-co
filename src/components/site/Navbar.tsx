@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n";
+import logoAsset from "@/assets/europe-connect-logo.png.asset.json";
 
 type SubItem = { to: string; ko: string; en: string };
 type NavItem = { to: string; ko: string; en: string; sub?: SubItem[] };
@@ -88,8 +89,8 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
 
           <Link to="/" className="flex items-center group mx-auto md:mx-0 md:absolute md:left-1/2 md:-translate-x-1/2">
             <img
-              src={solid ? "/logo-dark.png" : "/logo.png"}
-              alt="G9 GLOBAL"
+              src={logoAsset.url}
+              alt="Europe Connect"
               className="h-10 md:h-12 w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
             />
           </Link>
