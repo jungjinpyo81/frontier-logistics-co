@@ -89,8 +89,8 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
 
           <Link to="/" className="flex items-center group mx-auto md:mx-0 md:absolute md:left-1/2 md:-translate-x-1/2">
             <img
-              src={solid ? "/logo-dark.png" : "/logo.png"}
-              alt="G9 GLOBAL"
+              src={logoAsset.url}
+              alt="Europe Connect"
               className="h-10 md:h-12 w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
             />
           </Link>

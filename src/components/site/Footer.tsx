@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useLang } from "@/lib/i18n";
 import kakaoAsset from "@/assets/kakaotalk.png.asset.json";
+import logoAsset from "@/assets/europe-connect-logo.png.asset.json";
 
 export function Footer() {
   const { lang, setLang } = useLang();
