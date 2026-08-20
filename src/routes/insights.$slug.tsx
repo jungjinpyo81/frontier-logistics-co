@@ -3,6 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
+function coverIsFirstInlineImage(coverUrl: string | null, content: string | null) {
+  if (!coverUrl || !content) return false;
+  const match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+  if (!match) return false;
+  return match[1].trim() === coverUrl.trim();
+}
+
 export const Route = createFileRoute("/insights/$slug")({
   component: ArticleDetail,
   notFoundComponent: () => (
