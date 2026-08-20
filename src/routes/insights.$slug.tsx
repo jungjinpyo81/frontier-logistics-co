@@ -72,7 +72,7 @@ function ArticleDetail() {
           </div>
         </div>
 
-        {data.cover_url && (
+        {data.cover_url && !coverIsFirstInlineImage(data.cover_url, data.content) && (
           <div className="mt-10 aspect-[16/9] overflow-hidden bg-mist">
             <img src={data.cover_url} alt={data.title} className="size-full object-cover" />
           </div>
